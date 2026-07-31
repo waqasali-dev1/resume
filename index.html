@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waqas Ali — Senior Software Engineer</title>
+<meta name="description" content="Waqas Ali — Senior Software Engineer. Backend architecture, APIs, and production systems for platforms in fintech, logistics, e-commerce, and government infrastructure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bp-navy-deep:#081827;
+    --bp-navy:#0b2036;
+    --bp-navy-mid:#102a47;
+    --bp-panel:#0e2540;
+    --bp-line:#2c527a;
+    --bp-line-soft:#1c3a5c;
+    --bp-line-bright:#6fa8dc;
+    --bp-paper:#eaf1f8;
+    --bp-muted:#8fa9c4;
+    --bp-amber:#f5a623;
+    --bp-green:#4cd787;
+    --sheet-max:1120px;
+    --edge-pad:clamp(20px, 5vw, 64px);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bp-navy-deep);
+    color:var(--bp-paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* blueprint grid backdrop */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(var(--bp-line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bp-line-soft) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:.35;
+    pointer-events:none;
+    z-index:0;
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(var(--bp-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bp-line) 1px, transparent 1px);
+    background-size:320px 320px;
+    opacity:.3;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  a{color:inherit;}
+
+  :focus-visible{
+    outline:2px solid var(--bp-amber);
+    outline-offset:3px;
+  }
+
+  /* ---------- scroll progress ruler ---------- */
+  #ruler{
+    position:fixed;
+    top:0; left:0; right:0;
+    height:4px;
+    z-index:200;
+    background:repeating-linear-gradient(90deg, var(--bp-line) 0 1px, transparent 1px 24px);
+  }
+  #ruler-fill{
+    height:100%;
+    width:0%;
+    background:var(--bp-amber);
+    box-shadow:0 0 8px rgba(245,166,35,.7);
+    transition:width .08s linear;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed;
+    top:4px; left:0; right:0;
+    z-index:150;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px var(--edge-pad);
+    backdrop-filter:blur(10px);
+    background:linear-gradient(rgba(8,24,39,.75), rgba(8,24,39,0));
+  }
+  .seal{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+  }
+  .seal-mark{
+    width:38px; height:38px;
+    border:1.5px solid var(--bp-line-bright);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    color:var(--bp-line-bright);
+    position:relative;
+    flex-shrink:0;
+  }
+  .seal-mark::before{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:1px solid rgba(111,168,220,.35);
+    border-radius:50%;
+  }
+  .seal-text{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.12em;
+    color:var(--bp-muted);
+    line-height:1.3;
+  }
+  .seal-text b{color:var(--bp-paper); display:block; font-size:11px;}
+
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:clamp(14px,2.4vw,34px);
+  }
+  nav a{
+    text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.14em;
+    color:var(--bp-muted);
+    text-transform:uppercase;
+    position:relative;
+    padding-bottom:4px;
+  }
+  nav a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    height:1px; width:0%;
+    background:var(--bp-amber);
+    transition:width .3s ease;
+  }
+  nav a:hover, nav a:focus-visible{color:var(--bp-paper);}
+  nav a:hover::after, nav a:focus-visible::after{width:100%;}
+
+  @media (max-width:720px){
+    nav ul{gap:12px;}
+    nav a{font-size:10px;}
+    .seal-text{display:none;}
+  }
+
+  /* ---------- sheet / section chrome ---------- */
+  main{position:relative; z-index:1;}
+
+  .sheet{
+    max-width:var(--sheet-max);
+    margin:0 auto;
+    padding:120px var(--edge-pad) 80px;
+    position:relative;
+  }
+
+  .sheet-tag{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--bp-line-bright);
+    margin-bottom:22px;
+    opacity:0;
+  }
+  .sheet-tag .num{
+    color:var(--bp-amber);
+  }
+  .sheet-tag .rule{
+    flex:1;
+    height:1px;
+    background:var(--bp-line);
+    transform:scaleX(0);
+    transform-origin:left;
+  }
+  .sheet-tag.in .rule{transform:scaleX(1); transition:transform 1s cubic-bezier(.16,1,.3,1);}
+  .sheet-tag.in{opacity:1; transition:opacity .6s ease;}
+
+  .sheet h2{
+    font-size:clamp(28px, 4vw, 44px);
+    margin-bottom:28px;
+  }
+
+  /* ---------- hero ---------- */
+  #hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:140px;
+    position:relative;
+  }
+
+  .hero-inner{
+    max-width:var(--sheet-max);
+    margin:0 auto;
+    width:100%;
+    padding:0 var(--edge-pad);
+    position:relative;
+  }
+
+  .crosshair{
+    position:absolute;
+    width:22px; height:22px;
+    opacity:.55;
+  }
+  .crosshair::before, .crosshair::after{
+    content:"";
+    position:absolute;
+    background:var(--bp-line-bright);
+  }
+  .crosshair::before{ top:50%; left:0; right:0; height:1px; transform:translateY(-50%); }
+  .crosshair::after{ left:50%; top:0; bottom:0; width:1px; transform:translateX(-50%); }
+  .ch-tl{top:100px; left:var(--edge-pad);}
+  .ch-tr{top:100px; right:var(--edge-pad);}
+  .ch-bl{bottom:24px; left:var(--edge-pad);}
+  .ch-br{bottom:24px; right:var(--edge-pad);}
+  @media (max-width:600px){ .crosshair{display:none;} }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--bp-amber);
+    margin-bottom:22px;
+    opacity:0;
+    transform:translateY(12px);
+  }
+
+  .hero-node-wrap{
+    position:relative;
+    display:inline-block;
+  }
+
+  .hero-title{
+    font-size:clamp(46px, 9vw, 108px);
+    line-height:.98;
+    color:var(--bp-paper);
+    opacity:0;
+    transform:translateY(24px);
+  }
+
+  .hero-sub{
+    max-width:620px;
+    font-size:clamp(16px,2vw,19px);
+    color:var(--bp-muted);
+    margin-top:26px;
+    opacity:0;
+    transform:translateY(16px);
+  }
+
+  .hero-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:36px;
+    opacity:0;
+  }
+  .hero-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--bp-line-bright);
+    border:1px solid var(--bp-line);
+    padding:7px 12px;
+    border-radius:2px;
+    background:rgba(111,168,220,.05);
+  }
+
+  .hero-cta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-top:44px;
+    opacity:0;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:transform .25s ease, background .25s ease, border-color .25s ease;
+  }
+  .btn-primary{
+    background:var(--bp-amber);
+    color:#0b2036;
+    font-weight:500;
+  }
+  .btn-primary:hover{transform:translateY(-2px); background:#ffb84d;}
+  .btn-ghost{
+    border:1px solid var(--bp-line);
+    color:var(--bp-paper);
+  }
+  .btn-ghost:hover{border-color:var(--bp-line-bright); transform:translateY(-2px);}
+
+  .hero-meta{
+    margin-top:64px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 28px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--bp-muted);
+    border-top:1px solid var(--bp-line-soft);
+    padding-top:18px;
+    opacity:0;
+  }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:64px; left:var(--edge-pad);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.15em;
+    color:var(--bp-muted);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    opacity:0;
+  }
+  .scroll-cue .line{
+    width:1px; height:34px;
+    background:var(--bp-line-bright);
+    position:relative;
+    overflow:hidden;
+  }
+  .scroll-cue .line::after{
+    content:"";
+    position:absolute;
+    top:-100%; left:0; right:0; height:100%;
+    background:var(--bp-amber);
+    animation:cue-drop 2s ease-in-out infinite;
+  }
+  @keyframes cue-drop{
+    0%{top:-100%;}
+    60%{top:100%;}
+    100%{top:100%;}
+  }
+
+  /* ---------- summary ---------- */
+  .summary-grid{
+    display:grid;
+    grid-template-columns:1fr 1.6fr;
+    gap:48px;
+    align-items:start;
+  }
+  @media (max-width:760px){ .summary-grid{grid-template-columns:1fr;} }
+
+  .summary-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--bp-muted);
+  }
+  .summary-body p{
+    font-size:clamp(17px,2vw,21px);
+    color:var(--bp-paper);
+    max-width:640px;
+  }
+  .summary-body p + p{margin-top:20px;}
+  .summary-body .glow{color:var(--bp-line-bright);}
+
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+    margin-top:52px;
+    padding-top:32px;
+    border-top:1px solid var(--bp-line-soft);
+  }
+  @media (max-width:560px){ .stat-row{grid-template-columns:1fr 1fr;} }
+  .stat b{
+    display:block;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(28px,4vw,40px);
+    color:var(--bp-amber);
+  }
+  .stat span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--bp-muted);
+  }
+
+  /* ---------- experience / architecture ---------- */
+  #experience{padding-bottom:60px;}
+  .arch-wrap{
+    position:relative;
+    padding-left:56px;
+  }
+  @media (max-width:600px){ .arch-wrap{padding-left:32px;} }
+
+  #arch-svg{
+    position:absolute;
+    top:0; left:0;
+    height:100%;
+    width:56px;
+    overflow:visible;
+  }
+  @media (max-width:600px){ #arch-svg{width:32px;} }
+
+  .node{
+    position:relative;
+    padding:36px 0 36px 40px;
+    opacity:0;
+    transform:translateX(24px);
+  }
+  .node:not(:last-child){border-bottom:1px solid var(--bp-line-soft);}
+
+  .node-dot{
+    position:absolute;
+    left:-56px; top:44px;
+    width:14px; height:14px;
+    border-radius:50%;
+    background:var(--bp-navy-deep);
+    border:2px solid var(--bp-line-bright);
+  }
+  @media (max-width:600px){ .node-dot{left:-32px; width:11px; height:11px;} }
+  .node.live .node-dot{
+    border-color:var(--bp-green);
+    box-shadow:0 0 0 4px rgba(76,215,135,.15);
+  }
+  .node.live .node-dot::after{
+    content:"";
+    position:absolute;
+    inset:2px;
+    border-radius:50%;
+    background:var(--bp-green);
+    animation:pulse-dot 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse-dot{
+    0%,100%{opacity:1;}
+    50%{opacity:.35;}
+  }
+
+  .node-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    gap:12px 18px;
+    margin-bottom:8px;
+  }
+  .node-company{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(20px,2.6vw,27px);
+    font-weight:600;
+    color:var(--bp-paper);
+  }
+  .node-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--bp-amber);
+    border:1px solid rgba(245,166,35,.4);
+    padding:4px 9px;
+    border-radius:2px;
+  }
+  .node.live .node-tag{
+    color:var(--bp-green);
+    border-color:rgba(76,215,135,.45);
+  }
+  .node-role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--bp-line-bright);
+    margin-bottom:4px;
+  }
+  .node-period{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--bp-muted);
+    margin-bottom:16px;
+    letter-spacing:.04em;
+  }
+  .node-desc{
+    max-width:640px;
+    color:var(--bp-muted);
+    font-size:15.5px;
+  }
+  .node-desc b{color:var(--bp-paper); font-weight:500;}
+
+  .node-progress{
+    margin-top:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--bp-muted);
+  }
+  .node-progress span{display:flex; align-items:center; gap:8px;}
+  .node-progress span:not(:last-child)::after{
+    content:"→";
+    color:var(--bp-line);
+    margin-left:8px;
+  }
+
+  /* ---------- stack / parts list ---------- */
+  .stack-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:36px 48px;
+  }
+  @media (max-width:700px){ .stack-grid{grid-template-columns:1fr;} }
+
+  .stack-group{
+    opacity:0;
+    transform:translateY(16px);
+  }
+  .stack-group-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--bp-amber);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .stack-group-label::before{
+    content:"";
+    width:6px; height:6px;
+    background:var(--bp-amber);
+    border-radius:1px;
+    flex-shrink:0;
+  }
+  .stack-items{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+  .stack-items li{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:15px;
+    color:var(--bp-paper);
+    padding-bottom:9px;
+    border-bottom:1px dashed var(--bp-line-soft);
+  }
+  .stack-items li::before{
+    content:"";
+    width:0px;
+    height:1px;
+    background:var(--bp-line-bright);
+    transition:width .5s ease;
+  }
+  .stack-group.in .stack-items li::before{ width:16px; }
+
+  /* ---------- education ---------- */
+  .edu-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .edu-item{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:24px;
+    padding:28px 0;
+    border-top:1px solid var(--bp-line-soft);
+    opacity:0;
+    transform:translateY(14px);
+  }
+  .edu-list .edu-item:last-child{border-bottom:1px solid var(--bp-line-soft);}
+  @media (max-width:600px){ .edu-item{grid-template-columns:1fr; gap:6px;} }
+  .edu-period{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--bp-muted);
+    letter-spacing:.04em;
+  }
+  .edu-degree{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:19px;
+    font-weight:600;
+    color:var(--bp-paper);
+    margin-bottom:4px;
+  }
+  .edu-school{
+    font-size:14.5px;
+    color:var(--bp-line-bright);
+  }
+
+  /* ---------- contact / title block ---------- */
+  #contact{padding-bottom:40px;}
+  .contact-inner{
+    text-align:left;
+  }
+  .contact-big{
+    font-size:clamp(34px,6vw,64px);
+    max-width:780px;
+    margin-bottom:44px;
+    opacity:0;
+    transform:translateY(16px);
+  }
+  .contact-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:60px;
+  }
+
+  .title-block{
+    border:1px solid var(--bp-line);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .title-row{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+  }
+  @media (max-width:760px){ .title-row{grid-template-columns:repeat(2,1fr);} }
+  .title-cell{
+    padding:16px 18px;
+    border-right:1px solid var(--bp-line-soft);
+    border-bottom:1px solid var(--bp-line-soft);
+  }
+  .title-cell:last-child{border-right:none;}
+  .title-cell .k{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--bp-muted);
+    margin-bottom:6px;
+  }
+  .title-cell .v{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--bp-paper);
+  }
+
+  footer{
+    text-align:center;
+    padding:36px var(--edge-pad) 48px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    color:var(--bp-muted);
+    position:relative;
+    z-index:1;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+  <div id="ruler"><div id="ruler-fill"></div></div>
+
+  <header>
+    <a href="#hero" class="seal" aria-label="Back to top">
+      <span class="seal-mark">WA</span>
+      <span class="seal-text"><b>WAQAS ALI</b>BACKEND ENGINEER</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#experience">Architecture</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- SHEET 01 — HERO -->
+    <section id="hero">
+      <span class="crosshair ch-tl" aria-hidden="true"></span>
+      <span class="crosshair ch-tr" aria-hidden="true"></span>
+      <span class="crosshair ch-bl" aria-hidden="true"></span>
+      <span class="crosshair ch-br" aria-hidden="true"></span>
+
+      <div class="hero-inner">
+        <p class="eyebrow" data-anim="fade-up">Project dossier — Backend Systems Engineer</p>
+        <h1 class="hero-title" data-anim="fade-up">WAQAS<br>ALI</h1>
+        <p class="hero-sub" data-anim="fade-up">
+          Senior Software Engineer who designs and ships the backend architecture, APIs, and production
+          infrastructure that national platforms and SaaS products run on.
+        </p>
+
+        <div class="hero-tags" data-anim="fade-up">
+          <span class="hero-tag">Backend Architecture</span>
+          <span class="hero-tag">API Design</span>
+          <span class="hero-tag">Laravel · Node · Go</span>
+          <span class="hero-tag">Production Operations</span>
+          <span class="hero-tag">Team Leadership</span>
+        </div>
+
+        <div class="hero-cta" data-anim="fade-up">
+          <a class="btn btn-primary" href="#experience">View the build log</a>
+          <a class="btn btn-ghost" href="mailto:wa797789@gmail.com">Email me</a>
+        </div>
+
+        <div class="hero-meta" data-anim="fade-up">
+          <span>Location — Riyadh, Saudi Arabia</span>
+          <span>Sheet 01 / 06</span>
+          <span>Scale 1:1</span>
+          <span>Rev. 2026</span>
+        </div>
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">
+        <span class="line"></span>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- SHEET 02 — SUMMARY -->
+    <section id="summary" class="sheet">
+      <div class="sheet-tag" data-tag><span class="num">02</span><span>Summary</span><span class="rule"></span></div>
+      <div class="summary-grid">
+        <p class="summary-label">Who's building</p>
+        <div class="summary-body">
+          <p data-anim="fade-up">
+            An <span class="glow">8-year backend engineer</span> with a track record across fintech, logistics,
+            e-commerce, education security, and government infrastructure — currently the core backend engineer
+            on a national industrial platform for the Saudi Ministry of Industry &amp; Mineral Resources.
+          </p>
+          <p data-anim="fade-up">
+            Comfortable owning a system end-to-end: architecture, API integrations, database optimization,
+            deployments, monitoring, and the incident that comes in at 2am. Fluent across
+            <span class="glow">JavaScript, PHP, and Go</span>, with deep experience in Laravel, Node.js,
+            Vue.js, Angular, Magento, and WordPress.
+          </p>
+          <p data-anim="fade-up">
+            Has also led from the front — running 52 engineers across 7 parallel projects as an
+            engineering team lead, owning architecture decisions, mentoring, and delivery.
+          </p>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat" data-anim="fade-up"><b>8+</b><span>Years shipping production systems</span></div>
+        <div class="stat" data-anim="fade-up"><b>52</b><span>Engineers led across 7 projects</span></div>
+        <div class="stat" data-anim="fade-up"><b>3</b><span>Industries: gov, fintech, edtech</span></div>
+      </div>
+    </section>
+
+    <!-- SHEET 03 — EXPERIENCE / ARCHITECTURE -->
+    <section id="experience" class="sheet">
+      <div class="sheet-tag" data-tag><span class="num">03</span><span>System Architecture — Career, diagrammed as the systems he built</span><span class="rule"></span></div>
+
+      <div class="arch-wrap">
+        <svg id="arch-svg" preserveAspectRatio="none">
+          <line id="arch-line" x1="28" y1="0" x2="28" y2="100%" stroke="#6fa8dc" stroke-width="2" stroke-dasharray="1" stroke-dashoffset="1"/>
+        </svg>
+
+        <article class="node" data-anim="node">
+          <span class="node-dot"></span>
+          <div class="node-head">
+            <span class="node-company">Cooperative Computing</span>
+            <span class="node-tag">Foundation Layer</span>
+          </div>
+          <p class="node-role">Software Engineering Team Lead → Senior Software Engineer → Developer → Intern</p>
+          <p class="node-period">Karachi, Pakistan · May 2018 – May 2023 · 5 yrs 1 mo</p>
+          <p class="node-desc">
+            Grew from intern to <b>leading 52 engineers across 7 parallel projects</b> in fintech, logistics,
+            and e-commerce. Hands-on across Laravel, Golang, Node.js, Vue.js, and Angular, with ownership of
+            architecture design, mentoring, and delivery.
+          </p>
+          <div class="node-progress">
+            <span>Intern</span><span>Developer</span><span>Senior Engineer</span><span>Team Lead</span>
+          </div>
+        </article>
+
+        <article class="node" data-anim="node">
+          <span class="node-dot"></span>
+          <div class="node-head">
+            <span class="node-company">TPLEX</span>
+            <span class="node-tag">Scaling Layer</span>
+          </div>
+          <p class="node-role">Senior Software Engineer</p>
+          <p class="node-period">Karachi, Pakistan · May 2023 – Nov 2024 · 1 yr 7 mo</p>
+          <p class="node-desc">
+            Built and scaled <b>Securly</b>, a security and monitoring SaaS for educational institutions.
+            Backend in Laravel, Golang, and Node.js; frontend in Angular. Stood up CI/CD pipelines on
+            Jenkins and AWS, improving reliability, observability, and scalability across services.
+          </p>
+        </article>
+
+        <article class="node live" data-anim="node">
+          <span class="node-dot"></span>
+          <div class="node-head">
+            <span class="node-company">Ministry of Industry &amp; Mineral Resources</span>
+            <span class="node-tag">Production — Live</span>
+          </div>
+          <p class="node-role">Senior Software Engineer</p>
+          <p class="node-period">Riyadh, Saudi Arabia · Dec 2024 – Present</p>
+          <p class="node-desc">
+            Core backend engineer on <b>Senaei</b>, a national Laravel-based industrial platform. Owns backend
+            architecture, API integrations, and database optimization, plus full production operations —
+            deployments, monitoring, incident handling, and performance tuning — working closely with
+            product, QA, DevOps, and government stakeholders to meet SLAs.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SHEET 04 — STACK -->
+    <section id="stack" class="sheet">
+      <div class="sheet-tag" data-tag><span class="num">04</span><span>Parts List — Tools of record</span><span class="rule"></span></div>
+
+      <div class="stack-grid">
+        <div class="stack-group" data-anim="stack">
+          <p class="stack-group-label">Languages</p>
+          <ul class="stack-items">
+            <li>JavaScript</li>
+            <li>PHP</li>
+            <li>Go (Golang)</li>
+          </ul>
+        </div>
+        <div class="stack-group" data-anim="stack">
+          <p class="stack-group-label">Backend</p>
+          <ul class="stack-items">
+            <li>Laravel</li>
+            <li>Node.js</li>
+          </ul>
+        </div>
+        <div class="stack-group" data-anim="stack">
+          <p class="stack-group-label">Frontend</p>
+          <ul class="stack-items">
+            <li>Vue.js</li>
+            <li>Angular</li>
+          </ul>
+        </div>
+        <div class="stack-group" data-anim="stack">
+          <p class="stack-group-label">Platforms &amp; CMS</p>
+          <ul class="stack-items">
+            <li>Magento</li>
+            <li>WordPress</li>
+          </ul>
+        </div>
+        <div class="stack-group" data-anim="stack">
+          <p class="stack-group-label">Infrastructure</p>
+          <ul class="stack-items">
+            <li>AWS</li>
+            <li>Jenkins / CI-CD</li>
+            <li>Production monitoring</li>
+          </ul>
+        </div>
+        <div class="stack-group" data-anim="stack">
+          <p class="stack-group-label">Leadership</p>
+          <ul class="stack-items">
+            <li>Architecture design</li>
+            <li>Team leadership (52 eng.)</li>
+            <li>Stakeholder management</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHEET 05 — EDUCATION -->
+    <section id="education" class="sheet">
+      <div class="sheet-tag" data-tag><span class="num">05</span><span>Education</span><span class="rule"></span></div>
+
+      <div class="edu-list">
+        <div class="edu-item" data-anim="fade-up">
+          <p class="edu-period">Jan 2020 – Dec 2023</p>
+          <div>
+            <p class="edu-degree">BS, Computer Science</p>
+            <p class="edu-school">Emaan Institute of Management &amp; Sciences</p>
+          </div>
+        </div>
+        <div class="edu-item" data-anim="fade-up">
+          <p class="edu-period">2015 – 2018</p>
+          <div>
+            <p class="edu-degree">DAE, Diploma of Associate Engineering — Computer Information Technology</p>
+            <p class="edu-school">Aligarh Institute of Technology</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHEET 06 — CONTACT -->
+    <section id="contact" class="sheet">
+      <div class="sheet-tag" data-tag><span class="num">06</span><span>Contact — Title block</span><span class="rule"></span></div>
+
+      <div class="contact-inner">
+        <h2 class="contact-big" data-anim="fade-up">Let's build<br>something that stays up.</h2>
+
+        <div class="contact-links" data-anim="fade-up">
+          <a class="btn btn-primary" href="mailto:wa797789@gmail.com">wa797789@gmail.com</a>
+          <a class="btn btn-ghost" href="tel:+966560635147">+966 56 063 5147</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/waqas-ali-163a3816b/" target="_blank" rel="noopener">LinkedIn Profile</a>
+        </div>
+
+        <div class="title-block" data-anim="fade-up">
+          <div class="title-row">
+            <div class="title-cell">
+              <p class="k">Drawn by</p>
+              <p class="v">W. Ali</p>
+            </div>
+            <div class="title-cell">
+              <p class="k">Location</p>
+              <p class="v">Riyadh, SA</p>
+            </div>
+            <div class="title-cell">
+              <p class="k">Sheet</p>
+              <p class="v">06 / 06</p>
+            </div>
+            <div class="title-cell">
+              <p class="k">Scale</p>
+              <p class="v">1:1</p>
+            </div>
+            <div class="title-cell">
+              <p class="k">Status</p>
+              <p class="v">Open to work</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Waqas Ali — Drafted &amp; deployed by hand. No template used.
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---- scroll progress ruler ----
+    const rulerFill = document.getElementById('ruler-fill');
+    function updateRuler(){
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+      rulerFill.style.width = scrolled + '%';
+    }
+    document.addEventListener('scroll', updateRuler, {passive:true});
+    updateRuler();
+
+    if (reduceMotion || typeof gsap === 'undefined') {
+      // fail-safe: reveal everything statically
+      document.querySelectorAll('[data-anim], [data-tag]').forEach(el=>{
+        el.style.opacity = 1;
+        el.style.transform = 'none';
+      });
+    } else {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // ---- hero load-in sequence ----
+      const heroTl = gsap.timeline({defaults:{ease:'power3.out'}});
+      heroTl
+        .to('.eyebrow', {opacity:1, y:0, duration:.7}, 0.1)
+        .to('.hero-title', {opacity:1, y:0, duration:1}, 0.25)
+        .to('.hero-sub', {opacity:1, y:0, duration:.8}, 0.55)
+        .to('.hero-tags', {opacity:1, duration:.6}, 0.75)
+        .to('.hero-tags .hero-tag', {opacity:1, y:0, stagger:.06, duration:.5}, 0.8)
+        .to('.hero-cta', {opacity:1, y:0, duration:.6}, 0.9)
+        .to('.hero-meta', {opacity:1, duration:.6}, 1.05)
+        .to('.scroll-cue', {opacity:1, duration:.6}, 1.2);
+
+      gsap.set('.hero-tags .hero-tag', {opacity:0, y:8});
+
+      // ---- sheet tag reveal ----
+      document.querySelectorAll('[data-tag]').forEach(el=>{
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 85%',
+          onEnter: () => el.classList.add('in'),
+          once:true
+        });
+      });
+
+      // ---- generic fade-up reveals ----
+      gsap.utils.toArray('[data-anim="fade-up"]').forEach(el=>{
+        gsap.to(el, {
+          opacity:1, y:0, duration:.9, ease:'power3.out',
+          scrollTrigger:{ trigger:el, start:'top 88%', once:true }
+        });
+      });
+
+      // ---- stack groups ----
+      gsap.utils.toArray('[data-anim="stack"]').forEach((el,i)=>{
+        gsap.to(el, {
+          opacity:1, y:0, duration:.7, ease:'power3.out', delay:(i%2)*0.08,
+          scrollTrigger:{ trigger:el, start:'top 90%', once:true },
+          onComplete:()=> el.classList.add('in')
+        });
+      });
+
+      // ---- architecture line + nodes ----
+      const archLine = document.getElementById('arch-line');
+      const archWrap = document.querySelector('.arch-wrap');
+      const nodes = gsap.utils.toArray('.node');
+
+      function setLineHeight(){
+        const h = archWrap.offsetHeight;
+        archLine.setAttribute('y2', h);
+        const len = h;
+        archLine.style.strokeDasharray = len;
+        archLine.style.strokeDashoffset = len;
+      }
+      setLineHeight();
+      window.addEventListener('resize', setLineHeight);
+
+      ScrollTrigger.create({
+        trigger: archWrap,
+        start: 'top 70%',
+        end: 'bottom 60%',
+        scrub: 0.6,
+        onUpdate: self => {
+          const len = archWrap.offsetHeight;
+          archLine.style.strokeDashoffset = len * (1 - self.progress);
+        }
+      });
+
+      nodes.forEach(node=>{
+        gsap.to(node, {
+          opacity:1, x:0, duration:.8, ease:'power3.out',
+          scrollTrigger:{ trigger:node, start:'top 78%', once:true }
+        });
+      });
+
+      // ---- education items ----
+      gsap.utils.toArray('.edu-item').forEach((el,i)=>{
+        gsap.to(el, {
+          opacity:1, y:0, duration:.7, ease:'power3.out', delay:i*0.06,
+          scrollTrigger:{ trigger:el, start:'top 88%', once:true }
+        });
+      });
+
+      // ---- subtle grid parallax ----
+      gsap.to('body', {
+        backgroundPosition: '0px 60px',
+        ease:'none',
+        scrollTrigger:{ trigger:'body', start:'top top', end:'bottom bottom', scrub:1 }
+      });
+    }
+
+    // ---- smooth active-nav underline on click (progressive enhancement) ----
+    document.querySelectorAll('nav a').forEach(link=>{
+      link.addEventListener('click', e=>{
+        const id = link.getAttribute('href');
+        const target = document.querySelector(id);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'start'});
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
