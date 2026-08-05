@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Waqas Ali — Senior Software Engineer</title>
 <meta name="description" content="Waqas Ali — Senior Software Engineer. Backend architecture, APIs, and production systems for platforms in fintech, logistics, e-commerce, and government infrastructure.">
+<meta name="theme-color" content="#081827">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta property="og:title" content="Waqas Ali — Senior Software Engineer">
+<meta property="og:description" content="Backend architecture, APIs, and production systems for fintech, logistics, e-commerce, and government platforms.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://waqasali-dev1.github.io/resume/">
+<meta property="og:image" content="https://waqasali-dev1.github.io/resume/waqas.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Waqas Ali — Senior Software Engineer">
+<meta name="twitter:description" content="Backend architecture, APIs, and production systems for fintech, logistics, e-commerce, and government platforms.">
+<meta name="twitter:image" content="https://waqasali-dev1.github.io/resume/waqas.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -99,7 +111,7 @@
   }
 
   /* ---------- nav ---------- */
-  header{
+  body > header{
     position:fixed;
     top:4px; left:0; right:0;
     z-index:150;
@@ -302,6 +314,75 @@
     width:100%;
     padding:0 var(--edge-pad);
     position:relative;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:clamp(24px, 4vw, 48px);
+    align-items:center;
+  }
+  .hero-copy{min-width:0;}
+
+  .hero-photo{
+    width:clamp(168px, 19vw, 240px);
+    justify-self:end;
+    align-self:center;
+    opacity:0;
+    transform:translateY(14px);
+  }
+  .hero-photo figure{
+    margin:0;
+    border:1px solid var(--bp-line);
+    background:var(--bp-navy-mid);
+    padding:3px;
+    line-height:0;
+  }
+  .hero-photo img{
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ratio:2/3;
+    object-fit:cover;
+    object-position:center 12%;
+  }
+
+  /* tablet */
+  @media (max-width:900px){
+    .hero-inner{
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:22px;
+      align-items:start;
+    }
+    .hero-photo{
+      width:clamp(148px, 22vw, 196px);
+      margin-top:6px;
+    }
+  }
+
+  /* mobile */
+  @media (max-width:640px){
+    .hero-inner{
+      grid-template-columns:auto minmax(0,1fr);
+      gap:14px 16px;
+      align-items:start;
+    }
+    .hero-photo{
+      width:112px;
+      grid-column:1;
+      grid-row:1;
+      justify-self:start;
+      margin-top:2px;
+    }
+    .hero-copy{
+      grid-column:2;
+      grid-row:1;
+    }
+    .hero-photo img{aspect-ratio:3/4;}
+    .hero-title{font-size:clamp(34px, 10vw, 52px);}
+    .hero-sub{margin-top:18px;}
+    .hero-tags{margin-top:22px;}
+  }
+
+  @media (max-width:400px){
+    .hero-photo{width:96px;}
   }
 
   .crosshair{
@@ -381,6 +462,34 @@
     margin-top:44px;
     opacity:0;
   }
+
+  .open-to{
+    margin-top:28px;
+    max-width:720px;
+    border:1px solid var(--bp-line);
+    border-left:3px solid var(--bp-amber);
+    background:rgba(14,37,64,.55);
+    padding:14px 18px;
+    opacity:0;
+    transform:translateY(12px);
+  }
+  .open-to .k{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--bp-amber);
+    margin-bottom:8px;
+  }
+  .open-to .v{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.04em;
+    color:var(--bp-paper);
+    line-height:1.55;
+  }
+  .open-to .v span{color:var(--bp-muted);}
+
   .btn{
     font-family:'IBM Plex Mono', monospace;
     font-size:12.5px;
@@ -596,6 +705,32 @@
   }
   .node-desc b{color:var(--bp-paper); font-weight:500;}
 
+  .node-outcomes{
+    list-style:none;
+    margin-top:16px;
+    max-width:640px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .node-outcomes li{
+    position:relative;
+    padding-left:16px;
+    font-size:14px;
+    color:var(--bp-paper);
+    line-height:1.45;
+  }
+  .node-outcomes li::before{
+    content:"";
+    position:absolute;
+    left:0; top:.55em;
+    width:7px; height:1.5px;
+    background:var(--bp-amber);
+  }
+  .node-outcomes li span{
+    color:var(--bp-muted);
+  }
+
   .node-progress{
     margin-top:14px;
     display:flex;
@@ -665,6 +800,154 @@
     transition:width .5s ease;
   }
   .stack-group.in .stack-items li::before{ width:16px; }
+
+  /* ---------- case studies ---------- */
+  .case-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+  }
+  @media (max-width:900px){ .case-grid{grid-template-columns:1fr;} }
+  .case-card{
+    border:1px solid var(--bp-line);
+    border-radius:2px;
+    background:rgba(14,37,64,.45);
+    padding:22px 22px 24px;
+    opacity:0;
+    transform:translateY(16px);
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    min-height:100%;
+  }
+  .case-card .case-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--bp-line-bright);
+  }
+  .case-card h3{
+    font-size:clamp(18px,2vw,22px);
+    color:var(--bp-paper);
+    line-height:1.25;
+  }
+  .case-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    color:var(--bp-muted);
+  }
+  .case-block .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--bp-amber);
+    margin-bottom:6px;
+  }
+  .case-block p{
+    font-size:14px;
+    color:var(--bp-muted);
+    line-height:1.5;
+  }
+  .case-block p b{color:var(--bp-paper); font-weight:500;}
+  .case-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:auto;
+    padding-top:8px;
+  }
+  .case-tags span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--bp-line-bright);
+    border:1px solid var(--bp-line-soft);
+    padding:4px 8px;
+  }
+
+  /* ---------- endorsements ---------- */
+  .endorse-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:18px;
+  }
+  @media (max-width:820px){ .endorse-grid{grid-template-columns:1fr;} }
+  .endorse-card{
+    border:1px solid var(--bp-line);
+    border-radius:2px;
+    background:rgba(14,37,64,.45);
+    padding:22px 22px 24px;
+    opacity:0;
+    transform:translateY(16px);
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    min-height:100%;
+  }
+  .endorse-head{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+  }
+  .endorse-avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    object-fit:cover;
+    border:1.5px solid var(--bp-line-bright);
+    flex-shrink:0;
+    background:var(--bp-navy-mid);
+  }
+  .endorse-who{min-width:0;}
+  .endorse-who .name{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:16px;
+    font-weight:600;
+    color:var(--bp-paper);
+  }
+  .endorse-who .role{
+    font-size:13px;
+    color:var(--bp-muted);
+    margin-top:3px;
+    line-height:1.4;
+  }
+  .endorse-who .relation{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.06em;
+    color:var(--bp-line-bright);
+    margin-top:8px;
+    line-height:1.4;
+  }
+  .endorse-card blockquote{
+    font-size:14.5px;
+    line-height:1.55;
+    color:var(--bp-paper);
+    quotes:none;
+    border-top:1px solid var(--bp-line-soft);
+    padding-top:14px;
+  }
+  .endorse-card blockquote::before{
+    content:"“";
+    color:var(--bp-amber);
+    font-family:'Space Grotesk', sans-serif;
+    font-size:26px;
+    line-height:1;
+    display:block;
+    margin-bottom:4px;
+  }
+  .endorse-note{
+    margin-top:22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--bp-muted);
+    letter-spacing:.04em;
+  }
+  .endorse-note a{color:var(--bp-line-bright); text-decoration:underline; text-underline-offset:3px;}
 
   /* ---------- education ---------- */
   .edu-list{
@@ -879,8 +1162,9 @@
       <ul id="primary-nav-list">
         <li><a href="#summary">Summary</a></li>
         <li><a href="#experience">Architecture</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="#stack">Stack</a></li>
-        <li><a href="#education">Education</a></li>
+        <li><a href="#endorsements">Proof</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -896,31 +1180,55 @@
       <span class="crosshair ch-br" aria-hidden="true"></span>
 
       <div class="hero-inner">
-        <p class="eyebrow" data-anim="fade-up">Project dossier — Backend Systems Engineer</p>
-        <h1 class="hero-title" data-anim="fade-up">WAQAS<br>ALI</h1>
-        <p class="hero-sub" data-anim="fade-up">
-          Senior Software Engineer who designs and ships the backend architecture, APIs, and production
-          infrastructure that national platforms and SaaS products run on.
-        </p>
+        <div class="hero-copy">
+          <p class="eyebrow" data-anim="fade-up">Project dossier — Backend Systems Engineer</p>
+          <h1 class="hero-title" data-anim="fade-up">WAQAS<br>ALI</h1>
+          <p class="hero-sub" data-anim="fade-up">
+            Senior Software Engineer who designs and ships the backend architecture, APIs, and production
+            infrastructure that national platforms and SaaS products run on.
+          </p>
 
-        <div class="hero-tags" data-anim="fade-up">
-          <span class="hero-tag">Backend Architecture</span>
-          <span class="hero-tag">API Design</span>
-          <span class="hero-tag">Laravel · Node · Go</span>
-          <span class="hero-tag">Production Operations</span>
-          <span class="hero-tag">Team Leadership</span>
+          <div class="hero-tags" data-anim="fade-up">
+            <span class="hero-tag">Backend Architecture</span>
+            <span class="hero-tag">API Design</span>
+            <span class="hero-tag">Laravel · Node · Go</span>
+            <span class="hero-tag">Production Operations</span>
+            <span class="hero-tag">Team Leadership</span>
+          </div>
+
+          <div class="open-to" data-anim="fade-up">
+            <p class="k">Open to</p>
+            <p class="v">
+              Senior Backend · Platform Engineer · Engineering Lead<br>
+              <span>Based in Riyadh · Open to Riyadh / GCC hybrid / remote · Available for conversations</span>
+            </p>
+          </div>
+
+          <div class="hero-cta" data-anim="fade-up">
+            <a class="btn btn-primary" href="#experience">View the build log</a>
+            <a class="btn btn-ghost" href="waqas-ali-resume.pdf" download="Waqas-Ali-Resume.pdf">Download CV</a>
+            <a class="btn btn-ghost" href="#contact">Email me</a>
+          </div>
+
+          <div class="hero-meta" data-anim="fade-up">
+            <span>Location — Riyadh, Saudi Arabia</span>
+            <span>Sheet 01 / 08</span>
+            <span>Scale 1:1</span>
+            <span>Rev. 2026</span>
+          </div>
         </div>
 
-        <div class="hero-cta" data-anim="fade-up">
-          <a class="btn btn-primary" href="#experience">View the build log</a>
-          <a class="btn btn-ghost" href="mailto:wa797789@gmail.com">Email me</a>
-        </div>
-
-        <div class="hero-meta" data-anim="fade-up">
-          <span>Location — Riyadh, Saudi Arabia</span>
-          <span>Sheet 01 / 06</span>
-          <span>Scale 1:1</span>
-          <span>Rev. 2026</span>
+        <div class="hero-photo">
+          <figure>
+            <img
+              src="waqas.png"
+              alt="Waqas Ali"
+              width="720"
+              height="1081"
+              decoding="async"
+              fetchpriority="high"
+            >
+          </figure>
         </div>
       </div>
 
@@ -983,6 +1291,11 @@
             and e-commerce. Hands-on across Laravel, Golang, Node.js, Vue.js, and Angular, with ownership of
             architecture design, mentoring, and delivery.
           </p>
+          <ul class="node-outcomes">
+            <li>Led <b>52 engineers</b> across <b>7 concurrent</b> projects — fintech, logistics, e-commerce</li>
+            <li>Promoted <b>Intern → Developer → Senior → Team Lead</b> on delivery and mentoring track record</li>
+            <li>Owned architecture decisions, modular codebases, third-party API integrations, and stakeholder delivery</li>
+          </ul>
           <div class="node-progress">
             <span>Intern</span><span>Developer</span><span>Senior Engineer</span><span>Team Lead</span>
           </div>
@@ -1001,6 +1314,11 @@
             Backend in Laravel, Golang, and Node.js; frontend in Angular. Stood up CI/CD pipelines on
             Jenkins and AWS, improving reliability, observability, and scalability across services.
           </p>
+          <ul class="node-outcomes">
+            <li>Shipped backend for <b>Securly</b> (education security SaaS) across Laravel, Go, and Node.js services</li>
+            <li>Stood up <b>Jenkins CI/CD</b> and AWS deploy paths (EC2, S3, RDS) for faster, repeatable releases</li>
+            <li>Raised reliability and observability across services with performance monitoring and scale work</li>
+          </ul>
         </article>
 
         <article class="node live" data-anim="node">
@@ -1017,19 +1335,94 @@
             deployments, monitoring, incident handling, and performance tuning — working closely with
             product, QA, DevOps, and government stakeholders to meet SLAs.
           </p>
+          <ul class="node-outcomes">
+            <li>Core backend owner on <b>Senaei</b> — national industrial platform for Saudi MIM</li>
+            <li>Owns architecture, API integrations, DB optimization, deploys, monitoring, and incident response</li>
+            <li>Partners with product, QA, DevOps, and government stakeholders to hit production SLAs</li>
+          </ul>
         </article>
       </div>
     </section>
 
-    <!-- SHEET 04 — STACK -->
+    <!-- SHEET 04 — SELECTED WORK -->
+    <section id="work" class="sheet">
+      <div class="sheet-tag" data-tag><span class="num">04</span><span>Selected work — Problem → build → result</span><span class="rule"></span></div>
+
+      <div class="case-grid">
+        <article class="case-card" data-anim="fade-up">
+          <p class="case-num">Case 01</p>
+          <h3>Senaei — national industrial platform</h3>
+          <p class="case-meta">Ministry of Industry &amp; Mineral Resources · Riyadh</p>
+          <div class="case-block">
+            <p class="label">Problem</p>
+            <p>A government industrial platform that must stay reliable under real stakeholder pressure and production SLAs.</p>
+          </div>
+          <div class="case-block">
+            <p class="label">Build</p>
+            <p>Backend architecture on <b>Laravel</b>, API integrations, database optimization, and full production operations — deploys, monitoring, incidents.</p>
+          </div>
+          <div class="case-block">
+            <p class="label">Result</p>
+            <p>Core backend ownership on a live national system, shipping with product, QA, DevOps, and government partners.</p>
+          </div>
+          <div class="case-tags">
+            <span>Laravel</span><span>APIs</span><span>MySQL</span><span>Prod Ops</span>
+          </div>
+        </article>
+
+        <article class="case-card" data-anim="fade-up">
+          <p class="case-num">Case 02</p>
+          <h3>Securly — education security SaaS</h3>
+          <p class="case-meta">TPLEX · securly.com</p>
+          <div class="case-block">
+            <p class="label">Problem</p>
+            <p>Scale a security and monitoring product for educational institutions without slowing releases or hiding failures.</p>
+          </div>
+          <div class="case-block">
+            <p class="label">Build</p>
+            <p>Backend services in <b>Laravel, Go, Node.js</b>; Angular frontend; Jenkins CI/CD and AWS infrastructure for deployability.</p>
+          </div>
+          <div class="case-block">
+            <p class="label">Result</p>
+            <p>More reliable release paths and stronger observability across services as the platform scaled.</p>
+          </div>
+          <div class="case-tags">
+            <span>Go</span><span>Node.js</span><span>Jenkins</span><span>AWS</span>
+          </div>
+        </article>
+
+        <article class="case-card" data-anim="fade-up">
+          <p class="case-num">Case 03</p>
+          <h3>Multi-project delivery at scale</h3>
+          <p class="case-meta">Cooperative Computing · Fintech · Logistics · E-commerce</p>
+          <div class="case-block">
+            <p class="label">Problem</p>
+            <p>Seven parallel client products needed architecture ownership, mentoring, and delivery without collapsing into chaos.</p>
+          </div>
+          <div class="case-block">
+            <p class="label">Build</p>
+            <p>Led engineering across Laravel, Go, Node, Vue, and Angular — architecture standards, mentoring, and stakeholder-facing delivery.</p>
+          </div>
+          <div class="case-block">
+            <p class="label">Result</p>
+            <p>Grew into leading <b>52 engineers</b> across <b>7 projects</b>, promoted through every engineering rung on proven execution.</p>
+          </div>
+          <div class="case-tags">
+            <span>Leadership</span><span>Architecture</span><span>Mentoring</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SHEET 05 — STACK -->
     <section id="stack" class="sheet">
-      <div class="sheet-tag" data-tag><span class="num">04</span><span>Parts List — Tools of record</span><span class="rule"></span></div>
+      <div class="sheet-tag" data-tag><span class="num">05</span><span>Parts List — Tools of record</span><span class="rule"></span></div>
 
       <div class="stack-grid">
         <div class="stack-group" data-anim="stack">
           <p class="stack-group-label">Languages</p>
           <ul class="stack-items">
-            <li>JavaScript</li>
+            <li>JavaScript / TypeScript</li>
             <li>PHP</li>
             <li>Go (Golang)</li>
           </ul>
@@ -1039,26 +1432,29 @@
           <ul class="stack-items">
             <li>Laravel</li>
             <li>Node.js</li>
+            <li>REST APIs · Microservices</li>
+          </ul>
+        </div>
+        <div class="stack-group" data-anim="stack">
+          <p class="stack-group-label">Data</p>
+          <ul class="stack-items">
+            <li>MySQL</li>
+            <li>Redis</li>
+            <li>NoSQL</li>
           </ul>
         </div>
         <div class="stack-group" data-anim="stack">
           <p class="stack-group-label">Frontend</p>
           <ul class="stack-items">
-            <li>Vue.js</li>
+            <li>Vue.js · Nuxt</li>
             <li>Angular</li>
-          </ul>
-        </div>
-        <div class="stack-group" data-anim="stack">
-          <p class="stack-group-label">Platforms &amp; CMS</p>
-          <ul class="stack-items">
-            <li>Magento</li>
-            <li>WordPress</li>
+            <li>Next.js</li>
           </ul>
         </div>
         <div class="stack-group" data-anim="stack">
           <p class="stack-group-label">Infrastructure</p>
           <ul class="stack-items">
-            <li>AWS</li>
+            <li>AWS (EC2, S3, RDS, CloudFormation)</li>
             <li>Jenkins / CI-CD</li>
             <li>Production monitoring</li>
           </ul>
@@ -1074,9 +1470,103 @@
       </div>
     </section>
 
-    <!-- SHEET 05 — EDUCATION -->
+    <!-- SHEET 06 — ENDORSEMENTS -->
+    <section id="endorsements" class="sheet">
+      <div class="sheet-tag" data-tag><span class="num">06</span><span>Proof — LinkedIn recommendations</span><span class="rule"></span></div>
+
+      <div class="endorse-grid" id="endorse-grid">
+        <article class="endorse-card" data-anim="fade-up">
+          <div class="endorse-head">
+            <img class="endorse-avatar" src="assets/recommenders/craig.jpg" alt="" width="48" height="48" loading="lazy">
+            <div class="endorse-who">
+              <p class="name">Craig Fearnsides</p>
+              <p class="role">Product at Securly</p>
+              <p class="relation">Aug 18, 2025 · Managed Waqas directly</p>
+            </div>
+          </div>
+          <blockquote>
+            Working with Waqas was a delight, he's one of those engineers who under promises and over achieves and was instrumental within the team when delivering a major software project unpicking two long-time entrenched systems. Waqas went above and beyond to document the current and future state, then carefully implementing the changes, and finally provided excellent knowledge transfer to the wider team. Waqas will be an asset to any team that is lucky enough to have him and I wish him all the best.
+          </blockquote>
+        </article>
+
+        <article class="endorse-card" data-anim="fade-up">
+          <div class="endorse-head">
+            <img class="endorse-avatar" src="assets/recommenders/faizan.jpg" alt="" width="48" height="48" loading="lazy">
+            <div class="endorse-who">
+              <p class="name">Faizan Mahmood</p>
+              <p class="role">iOS Engineer @ Valus · xCC · xAvanza · xDigital Dividend</p>
+              <p class="relation">May 22, 2023 · Worked with Waqas on the same team</p>
+            </div>
+          </div>
+          <blockquote>
+            Having had the pleasure of working closely with Waqas for 3 years, I can confidently attest to their exceptional skills, dedication, and expertise in backend development. During our collaboration, Waqas consistently demonstrated a deep understanding of backend technologies and frameworks, effectively translating complex requirements into robust and efficient solutions. Their ability to architect scalable and maintainable systems is truly impressive. Furthermore, Waqas is a true team player. They actively contribute to discussions, offer valuable insights, and collaborate effectively with cross-functional teams, including frontend developers, project managers, and stakeholders. Their excellent communication skills ensure that complex technical concepts are conveyed clearly and concisely, fostering a cohesive and productive work environment.
+          </blockquote>
+        </article>
+
+        <article class="endorse-card" data-anim="fade-up">
+          <div class="endorse-head">
+            <img class="endorse-avatar" src="assets/recommenders/rizwan.jpg" alt="" width="48" height="48" loading="lazy">
+            <div class="endorse-who">
+              <p class="name">Mohammad Rizwan Zafar</p>
+              <p class="role">Software Engineer @ Godaitec</p>
+              <p class="relation">Mar 9, 2023 · Studied together</p>
+            </div>
+          </div>
+          <blockquote>
+            It is my pleasure to recommend Waqas Ali for his outstanding work as a Team Lead. I had the opportunity to work closely with Waqas for several years, and during that time, I was always impressed with his professionalism, expertise, and leadership abilities. As a team lead, Waqas has consistently demonstrated his ability to motivate and inspire his team members to achieve their goals. He has a deep understanding of project management and is skilled in planning, organizing, and executing complex projects. He also has exceptional communication skills, which enable him to effectively communicate with stakeholders at all levels of an organization. In addition to his technical skills, Waqas is a team player who is always willing to lend a hand to his colleagues. He is highly organized, detail-oriented, and has a strong work ethic, which allows him to consistently deliver quality work on time and within budget. Overall, I highly recommend Waqas for any leadership role. His dedication, passion, and expertise will be a valuable asset to any team.
+          </blockquote>
+        </article>
+
+        <article class="endorse-card" data-anim="fade-up">
+          <div class="endorse-head">
+            <img class="endorse-avatar" src="assets/recommenders/raza.jpg" alt="" width="48" height="48" loading="lazy">
+            <div class="endorse-who">
+              <p class="name">Muhammad Raza Bangi</p>
+              <p class="role">Software Engineer @ MIM · Full-Stack · Laravel · Node.js · Vue.js · MySQL</p>
+              <p class="relation">Mar 7, 2023 · Reported to Waqas directly</p>
+            </div>
+          </div>
+          <blockquote>
+            I am thrilled to recommend Waqas Ali, our Unit Team Lead Software Engineer, for their exceptional work in PHP, Laravel, and Node.js development. Waqas Ali has been an essential member of our team, providing exceptional leadership, technical knowledge, and guidance to our software engineering projects. As a Unit Team Lead Software Engineer, Waqas Ali has displayed an unparalleled level of expertise in PHP, Laravel, and Node.js, providing valuable insights and recommendations to our team of developers. They are a true expert in their field, able to deliver complex software solutions with ease, and always willing to go the extra mile to ensure that our projects are completed on time and to the highest quality. In conclusion, I strongly recommend Waqas Ali for any role that involves PHP, Laravel, and Node.js development or leadership. They are a top-tier software engineer and leader, and I have no doubt that they will continue to excel in their career.
+          </blockquote>
+        </article>
+
+        <article class="endorse-card" data-anim="fade-up">
+          <div class="endorse-head">
+            <img class="endorse-avatar" src="assets/recommenders/ayaz.jpg" alt="" width="48" height="48" loading="lazy">
+            <div class="endorse-who">
+              <p class="name">Muhammad Ayaz</p>
+              <p class="role">Sr. Software Engineer at MIM Riyadh</p>
+              <p class="relation">Mar 7, 2023 · Worked with Waqas on the same team</p>
+            </div>
+          </div>
+          <blockquote>
+            I am writing to recommend Waqas as a software engineer without hesitation. He has been a valuable member of our team for 2 years, consistently impressing us with his technical expertise, work ethic, and collaborative approach. Waqas is highly skilled in PHP, Laravel, Node.js, Nest.js, Next.js, and has a strong foundation in software engineering principles. He has an uncanny ability to quickly pick up new technologies and tools, making him a valuable asset to any team. In addition to his technical abilities, Waqas is an excellent communicator who works collaboratively with team members to find the best solution for our clients. He is also dedicated to continually improving his skills and knowledge, and has a passion for staying up-to-date with the latest trends in the field. Overall, I believe that Waqas would be an asset to any organization. He is a talented and committed software engineer, and I would recommend him without reservation.
+          </blockquote>
+        </article>
+
+        <article class="endorse-card" data-anim="fade-up">
+          <div class="endorse-head">
+            <img class="endorse-avatar" src="assets/recommenders/talha.jpg" alt="" width="48" height="48" loading="lazy">
+            <div class="endorse-who">
+              <p class="name">Talha Mustafa</p>
+              <p class="role">Full-stack JavaScript Engineer · Angular · Node.js · React · TypeScript</p>
+              <p class="relation">Dec 28, 2020 · Worked with Waqas on the same team</p>
+            </div>
+          </div>
+          <blockquote>
+            The only thing I can say about this guy is, he is God gifted in skills. A true team player, a quick learner, and critical thinker. A person with whom it's fun to work.
+          </blockquote>
+        </article>
+      </div>
+      <p class="endorse-note">
+        <a href="https://www.linkedin.com/in/waqas-ali-163a3816b/details/recommendations/" target="_blank" rel="noopener">See all recommendations on LinkedIn →</a>
+      </p>
+    </section>
+
+    <!-- SHEET 07 — EDUCATION -->
     <section id="education" class="sheet">
-      <div class="sheet-tag" data-tag><span class="num">05</span><span>Education</span><span class="rule"></span></div>
+      <div class="sheet-tag" data-tag><span class="num">07</span><span>Education</span><span class="rule"></span></div>
 
       <div class="edu-list">
         <div class="edu-item" data-anim="fade-up">
@@ -1096,9 +1586,9 @@
       </div>
     </section>
 
-    <!-- SHEET 06 — CONTACT -->
+    <!-- SHEET 08 — CONTACT -->
     <section id="contact" class="sheet">
-      <div class="sheet-tag" data-tag><span class="num">06</span><span>Contact — Title block</span><span class="rule"></span></div>
+      <div class="sheet-tag" data-tag><span class="num">08</span><span>Contact — Title block</span><span class="rule"></span></div>
 
       <div class="contact-inner">
         <h2 class="contact-big" data-anim="fade-up">Let's build<br>something that stays up.</h2>
@@ -1147,7 +1637,7 @@
             </div>
             <div class="title-cell">
               <p class="k">Sheet</p>
-              <p class="v">06 / 06</p>
+              <p class="v">08 / 08</p>
             </div>
             <div class="title-cell">
               <p class="k">Scale</p>
@@ -1185,7 +1675,7 @@
 
     if (reduceMotion || typeof gsap === 'undefined') {
       // fail-safe: reveal everything statically
-      document.querySelectorAll('[data-anim], [data-tag]').forEach(el=>{
+      document.querySelectorAll('[data-anim], [data-tag], .hero-photo').forEach(el=>{
         el.style.opacity = 1;
         el.style.transform = 'none';
       });
@@ -1197,12 +1687,14 @@
       heroTl
         .to('.eyebrow', {opacity:1, y:0, duration:.7}, 0.1)
         .to('.hero-title', {opacity:1, y:0, duration:1}, 0.25)
+        .to('.hero-photo', {opacity:1, y:0, duration:.8}, 0.3)
         .to('.hero-sub', {opacity:1, y:0, duration:.8}, 0.55)
         .to('.hero-tags', {opacity:1, duration:.6}, 0.75)
         .to('.hero-tags .hero-tag', {opacity:1, y:0, stagger:.06, duration:.5}, 0.8)
-        .to('.hero-cta', {opacity:1, y:0, duration:.6}, 0.9)
-        .to('.hero-meta', {opacity:1, duration:.6}, 1.05)
-        .to('.scroll-cue', {opacity:1, duration:.6}, 1.2);
+        .to('.open-to', {opacity:1, y:0, duration:.6}, 0.88)
+        .to('.hero-cta', {opacity:1, y:0, duration:.6}, 1.0)
+        .to('.hero-meta', {opacity:1, duration:.6}, 1.15)
+        .to('.scroll-cue', {opacity:1, duration:.6}, 1.3);
 
       gsap.set('.hero-tags .hero-tag', {opacity:0, y:8});
 
