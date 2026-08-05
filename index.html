@@ -717,8 +717,102 @@
     display:flex;
     flex-wrap:wrap;
     gap:16px;
-    margin-bottom:60px;
+    margin-bottom:36px;
   }
+
+  .contact-form{
+    max-width:640px;
+    margin-bottom:60px;
+    border:1px solid var(--bp-line);
+    border-radius:2px;
+    padding:clamp(20px,3vw,28px);
+    background:rgba(14,37,64,.45);
+  }
+  .contact-form .form-intro{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--bp-line-bright);
+    margin-bottom:22px;
+  }
+  .form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:560px){
+    .form-grid{grid-template-columns:1fr;}
+  }
+  .form-field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .form-field.full{grid-column:1 / -1;}
+  .form-field label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--bp-muted);
+  }
+  .form-field input,
+  .form-field textarea{
+    width:100%;
+    background:var(--bp-navy-deep);
+    border:1px solid var(--bp-line-soft);
+    border-radius:2px;
+    color:var(--bp-paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:15px;
+    padding:12px 14px;
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  .form-field textarea{
+    min-height:120px;
+    resize:vertical;
+    line-height:1.5;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder{color:rgba(143,169,196,.55);}
+  .form-field input:focus,
+  .form-field textarea:focus{border-color:var(--bp-line-bright);}
+  .form-honey{
+    position:absolute;
+    left:-9999px;
+    opacity:0;
+    height:0;
+    width:0;
+    overflow:hidden;
+  }
+  .form-actions{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:14px 18px;
+    margin-top:18px;
+  }
+  .form-actions .btn{
+    border:none;
+    cursor:pointer;
+    font:inherit;
+  }
+  .form-actions .btn:disabled{
+    opacity:.65;
+    cursor:wait;
+    transform:none;
+  }
+  .form-status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--bp-muted);
+    min-height:1.2em;
+  }
+  .form-status.is-ok{color:var(--bp-green);}
+  .form-status.is-err{color:#ff7b7b;}
 
   .title-block{
     border:1px solid var(--bp-line);
@@ -1015,6 +1109,32 @@
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/waqas-ali-163a3816b/" target="_blank" rel="noopener">LinkedIn Profile</a>
         </div>
 
+        <form class="contact-form" id="contact-form" data-anim="fade-up" novalidate>
+          <p class="form-intro">Send a message</p>
+          <div class="form-honey" aria-hidden="true">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="contact-name">Name</label>
+              <input id="contact-name" name="name" type="text" required autocomplete="name" placeholder="Your name">
+            </div>
+            <div class="form-field">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">
+            </div>
+            <div class="form-field full">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" required placeholder="What are you building?"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit" id="contact-submit">Send message</button>
+            <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
         <div class="title-block" data-anim="fade-up">
           <div class="title-row">
             <div class="title-cell">
@@ -1188,6 +1308,59 @@
           target.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'start'});
         }
       });
+    });
+
+    // ---- contact form via FormSubmit (static-site friendly) ----
+    const contactForm = document.getElementById('contact-form');
+    const contactSubmit = document.getElementById('contact-submit');
+    const contactStatus = document.getElementById('contact-status');
+    const setContactStatus = (msg, kind='')=>{
+      contactStatus.textContent = msg;
+      contactStatus.classList.remove('is-ok','is-err');
+      if(kind) contactStatus.classList.add(kind);
+    };
+    contactForm.addEventListener('submit', async e=>{
+      e.preventDefault();
+      if(contactForm._honey && contactForm._honey.value) return;
+
+      const name = contactForm.name.value.trim();
+      const email = contactForm.email.value.trim();
+      const message = contactForm.message.value.trim();
+      if(!name || !email || !message){
+        setContactStatus('Please fill in all fields.', 'is-err');
+        return;
+      }
+
+      contactSubmit.disabled = true;
+      setContactStatus('Sending…');
+
+      try{
+        const res = await fetch('https://formsubmit.co/ajax/wa797789@gmail.com', {
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+            'Accept':'application/json'
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            message,
+            _subject: 'Resume site — new contact message',
+            _template: 'table',
+            _captcha: 'false'
+          })
+        });
+        const data = await res.json().catch(()=>({}));
+        if(!res.ok){
+          throw new Error(data.message || 'Send failed');
+        }
+        contactForm.reset();
+        setContactStatus('Message sent. I will get back to you soon.', 'is-ok');
+      }catch(err){
+        setContactStatus('Could not send. Email me directly at wa797789@gmail.com.', 'is-err');
+      }finally{
+        contactSubmit.disabled = false;
+      }
     });
   </script>
 
