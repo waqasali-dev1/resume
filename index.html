@@ -1138,6 +1138,175 @@
     z-index:1;
   }
 
+  /* ---------- resume chatbot ---------- */
+  .chat-launcher{
+    position:fixed;
+    right:max(18px, var(--edge-pad));
+    bottom:18px;
+    z-index:240;
+    width:54px;
+    height:54px;
+    border-radius:2px;
+    border:1px solid var(--bp-line-bright);
+    background:var(--bp-amber);
+    color:#0b2036;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 28px rgba(0,0,0,.35);
+    transition:transform .2s ease, background .2s ease;
+  }
+  .chat-launcher:hover{transform:translateY(-2px); background:#ffb84d;}
+  .chat-launcher svg{width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.8;}
+  .chat-launcher[aria-expanded="true"]{background:var(--bp-panel); color:var(--bp-paper); border-color:var(--bp-line);}
+
+  .chat-panel{
+    position:fixed;
+    right:max(18px, var(--edge-pad));
+    bottom:84px;
+    z-index:240;
+    width:min(380px, calc(100vw - 28px));
+    height:min(520px, calc(100vh - 120px));
+    display:none;
+    flex-direction:column;
+    border:1px solid var(--bp-line);
+    border-radius:2px;
+    background:rgba(8,24,39,.97);
+    backdrop-filter:blur(14px);
+    box-shadow:0 18px 50px rgba(0,0,0,.45);
+    overflow:hidden;
+  }
+  .chat-panel.is-open{display:flex;}
+
+  .chat-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 16px;
+    border-bottom:1px solid var(--bp-line-soft);
+    background:linear-gradient(180deg, rgba(14,37,64,.9), rgba(14,37,64,.4));
+  }
+  .chat-head-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:15px;
+    font-weight:600;
+    color:var(--bp-paper);
+  }
+  .chat-head-sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--bp-line-bright);
+    margin-top:3px;
+  }
+  .chat-close{
+    width:32px; height:32px;
+    border:1px solid var(--bp-line);
+    background:transparent;
+    color:var(--bp-muted);
+    cursor:pointer;
+    font-size:18px;
+    line-height:1;
+    border-radius:2px;
+  }
+  .chat-close:hover{color:var(--bp-paper); border-color:var(--bp-line-bright);}
+
+  .chat-log{
+    flex:1;
+    overflow-y:auto;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .chat-bubble{
+    max-width:92%;
+    padding:10px 12px;
+    border-radius:2px;
+    font-size:14px;
+    line-height:1.5;
+    white-space:pre-wrap;
+    word-break:break-word;
+  }
+  .chat-bubble.bot{
+    align-self:flex-start;
+    background:rgba(14,37,64,.85);
+    border:1px solid var(--bp-line-soft);
+    color:var(--bp-paper);
+  }
+  .chat-bubble.user{
+    align-self:flex-end;
+    background:rgba(245,166,35,.16);
+    border:1px solid rgba(245,166,35,.45);
+    color:var(--bp-paper);
+  }
+  .chat-bubble.is-error{
+    border-color:#ff7b7b;
+    color:#ffb0b0;
+  }
+  .chat-typing{
+    align-self:flex-start;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    color:var(--bp-muted);
+  }
+
+  .chat-form{
+    display:flex;
+    gap:8px;
+    padding:12px;
+    border-top:1px solid var(--bp-line-soft);
+    background:rgba(14,37,64,.55);
+  }
+  .chat-form input{
+    flex:1;
+    min-width:0;
+    background:var(--bp-navy-deep);
+    border:1px solid var(--bp-line-soft);
+    border-radius:2px;
+    color:var(--bp-paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:14px;
+    padding:11px 12px;
+    outline:none;
+  }
+  .chat-form input:focus{border-color:var(--bp-line-bright);}
+  .chat-form button{
+    border:none;
+    border-radius:2px;
+    background:var(--bp-amber);
+    color:#0b2036;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:0 14px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .chat-form button:disabled{opacity:.6; cursor:wait;}
+  .chat-hint{
+    padding:0 12px 10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:.04em;
+    color:var(--bp-muted);
+  }
+
+  @media (max-width:480px){
+    .chat-panel{
+      right:10px; left:10px;
+      width:auto;
+      bottom:78px;
+      height:min(70vh, 560px);
+    }
+    .chat-launcher{right:14px; bottom:14px;}
+  }
+
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
     html{scroll-behavior:auto;}
@@ -1658,6 +1827,28 @@
     © 2026 Waqas Ali — Drafted &amp; deployed by hand. No template used.
   </footer>
 
+  <button class="chat-launcher" id="chat-launcher" type="button" aria-expanded="false" aria-controls="chat-panel" aria-label="Open chat about Waqas">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v10H8l-4 3v-13z"/></svg>
+  </button>
+
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Ask about Waqas" aria-hidden="true">
+    <div class="chat-head">
+      <div>
+        <p class="chat-head-title">Ask about Waqas</p>
+        <p class="chat-head-sub">Resume assistant · Gemini</p>
+      </div>
+      <button class="chat-close" id="chat-close" type="button" aria-label="Close chat">×</button>
+    </div>
+    <div class="chat-log" id="chat-log" aria-live="polite"></div>
+    <form class="chat-form" id="chat-form">
+      <input id="chat-input" type="text" placeholder="Ask about experience, stack, availability…" autocomplete="off" maxlength="800">
+      <button type="submit" id="chat-send">Send</button>
+    </form>
+    <p class="chat-hint">Answers are based on this resume. For hiring, use the contact form too.</p>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="cv-knowledge.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script>
@@ -1854,6 +2045,122 @@
         contactSubmit.disabled = false;
       }
     });
+
+    // ---- Gemini resume chatbot ----
+    (function initResumeChat(){
+      const launcher = document.getElementById('chat-launcher');
+      const panel = document.getElementById('chat-panel');
+      const closeBtn = document.getElementById('chat-close');
+      const form = document.getElementById('chat-form');
+      const input = document.getElementById('chat-input');
+      const sendBtn = document.getElementById('chat-send');
+      const log = document.getElementById('chat-log');
+      if(!launcher || !panel || !form || !log) return;
+
+      const cfg = window.RESUME_CHAT_CONFIG || {};
+      const model = cfg.model || 'gemini-3.6-flash';
+      const history = [];
+
+      const setOpen = (open)=>{
+        panel.classList.toggle('is-open', open);
+        panel.setAttribute('aria-hidden', String(!open));
+        launcher.setAttribute('aria-expanded', String(open));
+        launcher.setAttribute('aria-label', open ? 'Close chat' : 'Open chat about Waqas');
+        if(open) setTimeout(()=> input.focus(), 50);
+      };
+
+      const addBubble = (text, who, isError=false)=>{
+        const el = document.createElement('div');
+        el.className = `chat-bubble ${who}${isError ? ' is-error' : ''}`;
+        el.textContent = text;
+        log.appendChild(el);
+        log.scrollTop = log.scrollHeight;
+        return el;
+      };
+
+      addBubble(
+        "Hi — I can answer questions about Waqas Ali's experience, stack, leadership, and availability. What would you like to know?",
+        'bot'
+      );
+
+      launcher.addEventListener('click', ()=> setOpen(!panel.classList.contains('is-open')));
+      closeBtn.addEventListener('click', ()=> setOpen(false));
+      document.addEventListener('keydown', e=>{
+        if(e.key === 'Escape' && panel.classList.contains('is-open')) setOpen(false);
+      });
+
+      const askGemini = async (question)=>{
+        const key = (cfg.geminiApiKey || '').trim();
+        if(!key || key.includes('PASTE_YOUR')){
+          throw new Error('Chat is almost ready — add your Gemini API key in config.js (see config.example.js).');
+        }
+
+        const contents = history.map(turn=>({
+          role: turn.role,
+          parts: [{ text: turn.text }]
+        }));
+        contents.push({ role: 'user', parts: [{ text: question }] });
+
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`;
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system_instruction: {
+              parts: [{ text: window.WAQAS_CV_CONTEXT || 'You help visitors learn about Waqas Ali from his resume.' }]
+            },
+            contents,
+            generationConfig: {
+              temperature: 0.4,
+              maxOutputTokens: 512
+            }
+          })
+        });
+
+        const data = await res.json().catch(()=>({}));
+        if(!res.ok){
+          const msg = data?.error?.message || `Gemini request failed (${res.status})`;
+          throw new Error(msg);
+        }
+        const text = data?.candidates?.[0]?.content?.parts?.map(p=>p.text).filter(Boolean).join('\n').trim();
+        if(!text){
+          throw new Error('No reply from the model. Try again in a moment.');
+        }
+        return text;
+      };
+
+      form.addEventListener('submit', async e=>{
+        e.preventDefault();
+        const question = input.value.trim();
+        if(!question) return;
+
+        addBubble(question, 'user');
+        input.value = '';
+        sendBtn.disabled = true;
+        input.disabled = true;
+        const typing = document.createElement('div');
+        typing.className = 'chat-typing';
+        typing.textContent = 'Thinking…';
+        log.appendChild(typing);
+        log.scrollTop = log.scrollHeight;
+
+        try{
+          const answer = await askGemini(question);
+          typing.remove();
+          history.push({ role: 'user', text: question });
+          history.push({ role: 'model', text: answer });
+          if(history.length > 16) history.splice(0, history.length - 16);
+          addBubble(answer, 'bot');
+        }catch(err){
+          typing.remove();
+          addBubble(err.message || 'Something went wrong.', 'bot', true);
+        }finally{
+          sendBtn.disabled = false;
+          input.disabled = false;
+          input.focus();
+        }
+      });
+    })();
   </script>
 
 </body>
