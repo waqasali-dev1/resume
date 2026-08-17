@@ -1,0 +1,65 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build site with Gemini config
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GEMINI_API_KEY}" ]; then
+            echo "Missing repository secret GEMINI_API_KEY" >&2
+            exit 1
+          fi
+
+          mkdir -p _site/assets
+          cp index.html favicon.svg waqas.png waqas-ali-resume.pdf cv-knowledge.js _site/
+          cp -R assets/recommenders _site/assets/
+
+          python3 <<'PY'
+          import json, os, pathlib
+          key = os.environ["GEMINI_API_KEY"]
+          out = pathlib.Path("_site/config.js")
+          out.write_text(
+              "window.RESUME_CHAT_CONFIG = {\n"
+              f"  geminiApiKey: {json.dumps(key)},\n"
+              "  model: 'gemini-3.6-flash'\n"
+              "};\n",
+              encoding="utf-8",
+          )
+          print("Wrote", out)
+          PY
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
