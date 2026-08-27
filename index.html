@@ -1472,6 +1472,18 @@
   }
   .game-lock-btn:hover{background:rgba(0,0,0,0.65); border-color:rgba(255,255,255,0.7);}
   .game-lock-btn.is-locked{background:rgba(245,166,35,0.9); border-color:#f5a623; color:#0b2036;}
+  .game-mute-btn{
+    border:0;
+    background:transparent;
+    color:#fff;
+    font-size:14px;
+    line-height:1;
+    cursor:pointer;
+    padding:0;
+    display:flex;
+    align-items:center;
+  }
+  .game-mute-btn:hover{opacity:.8;}
   @media (max-width:480px){
     .game-panel{max-height:94vh;}
     .game-body{padding:12px;}
@@ -2037,7 +2049,7 @@
         <div id="game-stage" style="position:relative;width:100%;height:420px;border-radius:12px;overflow:hidden;background:#7ea8d8;touch-action:none;cursor:grab">
           <div id="game-canvas-holder" style="position:absolute;inset:0"></div>
           <button type="button" id="game-lock-btn" class="game-lock-btn">🖱️ Lock camera</button>
-          <div id="game-scoreboard" style="position:absolute;top:10px;right:10px;font-size:12px;color:#fff;background:rgba(0,0,0,0.35);padding:4px 10px;border-radius:6px">⚽ Goals: <span id="game-goalCount">0</span></div>
+          <div id="game-scoreboard" style="position:absolute;top:10px;right:10px;font-size:12px;color:#fff;background:rgba(0,0,0,0.35);padding:4px 10px;border-radius:6px;display:flex;align-items:center;gap:9px"><button type="button" id="game-mute-btn" class="game-mute-btn" aria-label="Mute sound effects">🔊</button><span>⚽ Goals: <span id="game-goalCount">0</span></span></div>
           <div id="game-goalMsg" style="position:absolute;top:38%;left:50%;transform:translate(-50%,-50%) scale(0.8);font-size:30px;font-weight:800;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.65);opacity:0;transition:opacity .2s ease,transform .2s ease;pointer-events:none;letter-spacing:1px">GOAL!</div>
           <div id="game-pad" style="position:absolute;bottom:14px;right:14px;display:grid;grid-template-columns:40px 40px 40px;grid-template-rows:40px 40px 40px;gap:4px">
             <div></div><button data-k="f" style="grid-column:2;grid-row:1" class="game-padbtn" aria-label="Move forward">▲</button><div></div>
@@ -2047,7 +2059,7 @@
             <div></div><button data-k="b" style="grid-column:2;grid-row:3" class="game-padbtn" aria-label="Move back">▼</button><div></div>
           </div>
         </div>
-        <p style="font-size:12px;color:var(--bp-muted);text-align:center;margin-top:8px">Click "Lock camera" for mouse-look (press Esc to release), or just drag the scene. Use the pad or WASD/arrow keys to walk. Get close to the ball and press Space (or tap ⚽) to shoot!</p>
+        <p style="font-size:12px;color:var(--bp-muted);text-align:center;margin-top:8px">Click "Lock camera" for mouse-look (press Esc to release), or just drag the scene. Use the pad or WASD/arrow keys to walk (hold Shift to sprint). Get close to the ball and press Space (or tap ⚽) to shoot!</p>
       </div>
     </div>
   </div>
