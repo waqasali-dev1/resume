@@ -35,7 +35,7 @@ jobs:
           fi
 
           mkdir -p _site/assets
-          cp index.html favicon.svg waqas.png waqas-ali-resume.pdf cv-knowledge.js _site/
+          cp index.html favicon.svg waqas.png waqas-ali-resume.pdf cv-knowledge.js game-stadium.js _site/
           cp -R assets/recommenders _site/assets/
 
           python3 <<'PY'
