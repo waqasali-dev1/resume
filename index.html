@@ -35,6 +35,9 @@
     --bp-green:#4cd787;
     --sheet-max:1120px;
     --edge-pad:clamp(20px, 5vw, 64px);
+    --cursor-default:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='7' fill='none' stroke='%23f5a623' stroke-width='1.6'/%3E%3Ccircle cx='13' cy='13' r='1.5' fill='%23f5a623'/%3E%3Cpath d='M13 1v5M13 20v5M1 13h5M20 13h5' stroke='%23f5a623' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 13 13, auto;
+    --cursor-pointer:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='8' fill='%23f5a623' fill-opacity='0.16' stroke='%23f5a623' stroke-width='1.8'/%3E%3Ccircle cx='13' cy='13' r='2.6' fill='%23f5a623'/%3E%3Cpath d='M13 0v5M13 21v5M0 13h5M21 13h5' stroke='%23f5a623' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") 13 13, pointer;
+    --cursor-text:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='26' viewBox='0 0 18 26'%3E%3Cpath d='M9 1v24M4 1h10M4 25h10' stroke='%23f5a623' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 9 13, text;
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -49,6 +52,7 @@
     line-height:1.6;
     position:relative;
     overflow-x:hidden;
+    cursor:var(--cursor-default);
   }
 
   /* blueprint grid backdrop */
@@ -188,6 +192,21 @@
   nav a:hover, nav a:focus-visible{color:var(--bp-paper);}
   nav a:hover::after, nav a:focus-visible::after{width:100%;}
 
+  .nav-hire-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#0b2036;
+    background:var(--bp-amber);
+    border:none;
+    padding:9px 16px;
+    border-radius:2px;
+    margin-left:clamp(14px,2.4vw,34px);
+    transition:transform .25s ease, background .25s ease;
+  }
+  .nav-hire-btn:hover, .nav-hire-btn:focus-visible{background:#ffb84d; transform:translateY(-2px);}
+
   .nav-toggle{
     display:none;
     width:40px;
@@ -255,6 +274,14 @@
       font-size:13px;
       letter-spacing:.16em;
       padding:16px 0;
+    }
+    .nav-hire-item{border-bottom:none; margin-top:18px;}
+    .nav-hire-btn{
+      display:block;
+      width:100%;
+      text-align:center;
+      margin-left:0;
+      padding:14px 16px;
     }
   }
 
@@ -985,6 +1012,125 @@
     color:var(--bp-line-bright);
   }
 
+  /* ---------- freelance CTA ---------- */
+  .freelance-sheet{padding-bottom:40px;}
+  .freelance-inner{max-width:760px;}
+  .freelance-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--bp-green);
+    border:1px solid var(--bp-line);
+    background:rgba(76,215,135,.08);
+    padding:8px 14px;
+    border-radius:20px;
+    margin-bottom:26px;
+    opacity:0;
+    transform:translateY(12px);
+  }
+  .freelance-badge .dot{
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--bp-green);
+    box-shadow:0 0 0 3px rgba(76,215,135,.25);
+  }
+  .freelance-big{
+    font-size:clamp(30px,5vw,52px);
+    max-width:720px;
+    margin-bottom:20px;
+    opacity:0;
+    transform:translateY(16px);
+  }
+  .freelance-sub{
+    max-width:600px;
+    color:var(--bp-muted);
+    font-size:16px;
+    line-height:1.7;
+    margin-bottom:36px;
+    opacity:0;
+    transform:translateY(14px);
+  }
+  .freelance-cta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    opacity:0;
+    transform:translateY(12px);
+  }
+
+  /* ---------- Hire Me modal ---------- */
+  .hire-modal{
+    position:fixed;
+    inset:0;
+    z-index:300;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .hire-modal.is-open{display:flex;}
+  .hire-modal-backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(4,12,20,.86);
+    backdrop-filter:blur(6px);
+  }
+  .hire-panel{
+    position:relative;
+    width:min(560px, 100%);
+    max-height:min(680px, 92vh);
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    border:1px solid var(--bp-line);
+    border-radius:2px;
+    background:rgba(8,24,39,.98);
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
+  }
+  .hire-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding:20px 22px 16px;
+    border-bottom:1px solid var(--bp-line-soft);
+    background:linear-gradient(180deg, rgba(14,37,64,.9), rgba(14,37,64,.4));
+  }
+  .hire-head-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:18px;
+    font-weight:600;
+    color:var(--bp-paper);
+  }
+  .hire-head-sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--bp-muted);
+    margin-top:6px;
+    line-height:1.5;
+    max-width:380px;
+  }
+  .hire-close{
+    width:32px; height:32px;
+    border:1px solid var(--bp-line);
+    background:transparent;
+    color:var(--bp-muted);
+    font-size:18px;
+    line-height:1;
+    border-radius:2px;
+    flex:none;
+  }
+  .hire-close:hover{color:var(--bp-paper); border-color:var(--bp-line-bright);}
+  .hire-body{padding:22px;}
+  .hire-form{max-width:none; margin-bottom:0; background:transparent; border:none; padding:0;}
+  @media (max-width:480px){
+    .hire-body{padding:16px;}
+  }
+
   /* ---------- contact / title block ---------- */
   #contact{padding-bottom:40px;}
   .contact-inner{
@@ -1489,6 +1635,17 @@
     .game-body{padding:12px;}
   }
 
+  /* ---------- custom themed cursor (blueprint crosshair) ---------- */
+  a, button, input[type="submit"], input[type="button"], input[type="reset"],
+  select, label[for], summary, [role="button"], .btn,
+  .nav-toggle, .form-actions .btn, .chat-launcher, .chat-close, .chat-form button,
+  .hero-play-btn, .game-close, .game-lock-btn, .game-mute-btn, .nav-hire-btn, .hire-close{
+    cursor:var(--cursor-pointer);
+  }
+  input[type="text"], input[type="email"], input[type="tel"], input[type="search"], textarea{
+    cursor:var(--cursor-text);
+  }
+
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
     html{scroll-behavior:auto;}
@@ -1517,6 +1674,7 @@
         <li><a href="#stack">Stack</a></li>
         <li><a href="#endorsements">Proof</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li class="nav-hire-item"><button type="button" class="nav-hire-btn js-hire-launcher" aria-haspopup="dialog" aria-controls="hire-modal">Hire me</button></li>
       </ul>
     </nav>
   </header>
@@ -1563,7 +1721,7 @@
 
           <div class="hero-meta" data-anim="fade-up">
             <span>Location — Riyadh, Saudi Arabia</span>
-            <span>Sheet 01 / 08</span>
+            <span>Sheet 01 / 09</span>
             <span>Scale 1:1</span>
             <span>Rev. 2026</span>
           </div>
@@ -1941,9 +2099,27 @@
       </div>
     </section>
 
-    <!-- SHEET 08 — CONTACT -->
+    <!-- SHEET 08 — FREELANCE CTA -->
+    <section id="freelance" class="sheet freelance-sheet">
+      <div class="sheet-tag" data-tag><span class="num">08</span><span>Freelance — Project inquiries</span><span class="rule"></span></div>
+
+      <div class="freelance-inner">
+        <p class="freelance-badge" data-anim="fade-up"><span class="dot" aria-hidden="true"></span>Available for freelancing</p>
+        <h2 class="freelance-big" data-anim="fade-up">Have a project in mind?<br>Let's make it real.</h2>
+        <p class="freelance-sub" data-anim="fade-up">
+          Fixed-scope builds, backend architecture, API integrations, or ongoing production support —
+          I take on a limited number of freelance engagements alongside full-time work.
+        </p>
+        <div class="freelance-cta" data-anim="fade-up">
+          <button type="button" class="btn btn-primary js-hire-launcher" aria-haspopup="dialog" aria-controls="hire-modal">Hire me</button>
+          <a class="btn btn-ghost" href="#contact">Or use the contact form</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHEET 09 — CONTACT -->
     <section id="contact" class="sheet">
-      <div class="sheet-tag" data-tag><span class="num">08</span><span>Contact — Title block</span><span class="rule"></span></div>
+      <div class="sheet-tag" data-tag><span class="num">09</span><span>Contact — Title block</span><span class="rule"></span></div>
 
       <div class="contact-inner">
         <h2 class="contact-big" data-anim="fade-up">Let's build<br>something that stays up.</h2>
@@ -1992,7 +2168,7 @@
             </div>
             <div class="title-cell">
               <p class="k">Sheet</p>
-              <p class="v">08 / 08</p>
+              <p class="v">09 / 09</p>
             </div>
             <div class="title-cell">
               <p class="k">Scale</p>
@@ -2031,6 +2207,45 @@
       <button type="submit" id="chat-send">Send</button>
     </form>
     <p class="chat-hint">Answers are based on this resume. For hiring, use the contact form too.</p>
+  </div>
+
+  <div class="hire-modal" id="hire-modal" role="dialog" aria-modal="true" aria-label="Hire Waqas Ali" aria-hidden="true">
+    <div class="hire-modal-backdrop" data-hire-dismiss></div>
+    <div class="hire-panel">
+      <div class="hire-head">
+        <div>
+          <p class="hire-head-title">Let's work together</p>
+          <p class="hire-head-sub">Tell me about the project — I'll get back to you within a day or two.</p>
+        </div>
+        <button class="hire-close" id="hire-close" type="button" aria-label="Close">×</button>
+      </div>
+      <div class="hire-body">
+        <form class="contact-form hire-form" id="hire-form" novalidate>
+          <div class="form-honey" aria-hidden="true">
+            <label for="hire-company">Company</label>
+            <input type="text" id="hire-company" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="hire-name">Name</label>
+              <input id="hire-name" name="name" type="text" required autocomplete="name" placeholder="Your name">
+            </div>
+            <div class="form-field">
+              <label for="hire-email">Email</label>
+              <input id="hire-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">
+            </div>
+            <div class="form-field full">
+              <label for="hire-message">Project details</label>
+              <textarea id="hire-message" name="message" required placeholder="What are you building, and what's the timeline?"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit" id="hire-submit">Send message</button>
+            <p class="form-status" id="hire-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
   <div class="game-modal" id="game-modal" role="dialog" aria-modal="true" aria-label="Waqas Ali — Stadium mini-game" aria-hidden="true">
@@ -2122,6 +2337,32 @@
         if(document.pointerLockElement || window.__stadiumPointerRecentlyUnlocked) return;
         setOpen(false);
       }
+    });
+  })();
+
+  // ---- Hire Me modal launcher ----
+  (function(){
+    var modal=document.getElementById('hire-modal');
+    var closeBtn=document.getElementById('hire-close');
+    var backdrop=modal?modal.querySelector('[data-hire-dismiss]'):null;
+    var launchers=document.querySelectorAll('.js-hire-launcher');
+    if(!modal||!launchers.length) return;
+
+    function setOpen(open){
+      modal.classList.toggle('is-open', open);
+      modal.setAttribute('aria-hidden', String(!open));
+      if(open){
+        var firstField=document.getElementById('hire-name');
+        if(firstField) setTimeout(function(){ firstField.focus(); }, 60);
+      }
+    }
+    window.__closeHireModal=function(){ setOpen(false); };
+
+    launchers.forEach(function(btn){ btn.addEventListener('click', function(){ setOpen(true); }); });
+    if(closeBtn) closeBtn.addEventListener('click', function(){ setOpen(false); });
+    if(backdrop) backdrop.addEventListener('click', function(){ setOpen(false); });
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape' && modal.classList.contains('is-open')) setOpen(false);
     });
   })();
   </script>
@@ -2273,58 +2514,74 @@
       });
     });
 
-    // ---- contact form via FormSubmit (static-site friendly) ----
-    const contactForm = document.getElementById('contact-form');
-    const contactSubmit = document.getElementById('contact-submit');
-    const contactStatus = document.getElementById('contact-status');
-    const setContactStatus = (msg, kind='')=>{
-      contactStatus.textContent = msg;
-      contactStatus.classList.remove('is-ok','is-err');
-      if(kind) contactStatus.classList.add(kind);
-    };
-    contactForm.addEventListener('submit', async e=>{
-      e.preventDefault();
-      if(contactForm._honey && contactForm._honey.value) return;
+    // ---- contact forms via FormSubmit (static-site friendly) ----
+    function bindContactForm(form, submitBtn, statusEl, subject, onSuccess){
+      if(!form || !submitBtn || !statusEl) return;
+      const setStatus = (msg, kind='')=>{
+        statusEl.textContent = msg;
+        statusEl.classList.remove('is-ok','is-err');
+        if(kind) statusEl.classList.add(kind);
+      };
+      form.addEventListener('submit', async e=>{
+        e.preventDefault();
+        if(form._honey && form._honey.value) return;
 
-      const name = contactForm.name.value.trim();
-      const email = contactForm.email.value.trim();
-      const message = contactForm.message.value.trim();
-      if(!name || !email || !message){
-        setContactStatus('Please fill in all fields.', 'is-err');
-        return;
-      }
-
-      contactSubmit.disabled = true;
-      setContactStatus('Sending…');
-
-      try{
-        const res = await fetch('https://formsubmit.co/ajax/wa797789@gmail.com', {
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json',
-            'Accept':'application/json'
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            message,
-            _subject: 'Resume site — new contact message',
-            _template: 'table',
-            _captcha: 'false'
-          })
-        });
-        const data = await res.json().catch(()=>({}));
-        if(!res.ok){
-          throw new Error(data.message || 'Send failed');
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+        if(!name || !email || !message){
+          setStatus('Please fill in all fields.', 'is-err');
+          return;
         }
-        contactForm.reset();
-        setContactStatus('Message sent. I will get back to you soon.', 'is-ok');
-      }catch(err){
-        setContactStatus('Could not send. Email me directly at wa797789@gmail.com.', 'is-err');
-      }finally{
-        contactSubmit.disabled = false;
-      }
-    });
+
+        submitBtn.disabled = true;
+        setStatus('Sending…');
+
+        try{
+          const res = await fetch('https://formsubmit.co/ajax/wa797789@gmail.com', {
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json',
+              'Accept':'application/json'
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              message,
+              _subject: subject,
+              _template: 'table',
+              _captcha: 'false'
+            })
+          });
+          const data = await res.json().catch(()=>({}));
+          if(!res.ok){
+            throw new Error(data.message || 'Send failed');
+          }
+          form.reset();
+          setStatus('Message sent. I will get back to you soon.', 'is-ok');
+          if(onSuccess) onSuccess();
+        }catch(err){
+          setStatus('Could not send. Email me directly at wa797789@gmail.com.', 'is-err');
+        }finally{
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    bindContactForm(
+      document.getElementById('contact-form'),
+      document.getElementById('contact-submit'),
+      document.getElementById('contact-status'),
+      'Resume site — new contact message'
+    );
+
+    bindContactForm(
+      document.getElementById('hire-form'),
+      document.getElementById('hire-submit'),
+      document.getElementById('hire-status'),
+      'Resume site — Hire Me inquiry',
+      ()=>{ setTimeout(()=>{ if(typeof window.__closeHireModal==='function') window.__closeHireModal(); }, 1600); }
+    );
 
     // ---- Gemini resume chatbot ----
     (function initResumeChat(){
