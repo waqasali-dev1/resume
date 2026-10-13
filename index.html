@@ -3,41 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  // Apply saved theme/language before first paint, to avoid a flash of the wrong theme/direction.
+  (function(){
+    try{
+      var theme = localStorage.getItem('wa-theme');
+      if(theme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+      var lang = localStorage.getItem('wa-lang');
+      if(lang === 'ar'){
+        document.documentElement.setAttribute('lang','ar');
+        document.documentElement.setAttribute('dir','rtl');
+      }
+    }catch(e){}
+  })();
+</script>
 <title>Waqas Ali — Senior Software Engineer</title>
 <meta name="description" content="Waqas Ali — Senior Software Engineer. Backend architecture, APIs, and production systems for platforms in fintech, logistics, e-commerce, and government infrastructure.">
-<meta name="theme-color" content="#081827">
+<meta name="theme-color" content="#f3f7f8">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="favicon.svg">
+
+<!-- SEO -->
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://waqasali-dev1.github.io/resume/">
+<meta name="author" content="Waqas Ali">
+
+<!-- TODO: paste your Search Console HTML-tag verification value below once you have it -->
+<meta name="google-site-verification" content="g_AvOX9LeUc0ZwZDznHDaqo-Vw7ZTWXi6QCL7PZNnOA">
+
 <meta property="og:title" content="Waqas Ali — Senior Software Engineer">
 <meta property="og:description" content="Backend architecture, APIs, and production systems for fintech, logistics, e-commerce, and government platforms.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://waqasali-dev1.github.io/resume/">
 <meta property="og:image" content="https://waqasali-dev1.github.io/resume/waqas.png">
+<meta property="og:site_name" content="Waqas Ali">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Waqas Ali — Senior Software Engineer">
 <meta name="twitter:description" content="Backend architecture, APIs, and production systems for fintech, logistics, e-commerce, and government platforms.">
 <meta name="twitter:image" content="https://waqasali-dev1.github.io/resume/waqas.png">
+
+<!-- Structured data: helps Google render a rich result (name, job title, photo, links) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Waqas Ali",
+  "jobTitle": "Senior Software Engineer",
+  "description": "Senior Software Engineer specializing in backend architecture, API design, and production infrastructure.",
+  "url": "https://waqasali-dev1.github.io/resume/",
+  "image": "https://waqasali-dev1.github.io/resume/waqas.png",
+  "email": "mailto:wa797789@gmail.com",
+  "telephone": "+966560635147",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Riyadh",
+    "addressCountry": "SA"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/waqas-ali-163a3816b/"
+  ],
+  "knowsAbout": ["Backend Architecture", "API Design", "Laravel", "Node.js", "Go", "JavaScript", "PHP", "Production Operations", "Team Leadership"]
+}
+</script>
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D8ENQ7LP7L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D8ENQ7LP7L');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Theme tokens: names kept from the original dark "blueprint" palette to avoid
+     touching every var() call site, but values now point to a light, teal
+     "digital service" palette (navy-deep/navy/navy-mid => light surfaces,
+     amber => primary teal accent, paper => dark text). */
   :root{
-    --bp-navy-deep:#081827;
-    --bp-navy:#0b2036;
-    --bp-navy-mid:#102a47;
-    --bp-panel:#0e2540;
-    --bp-line:#2c527a;
-    --bp-line-soft:#1c3a5c;
-    --bp-line-bright:#6fa8dc;
-    --bp-paper:#eaf1f8;
-    --bp-muted:#8fa9c4;
-    --bp-amber:#f5a623;
-    --bp-green:#4cd787;
+    --bp-navy-deep:#f3f7f8;
+    --bp-navy:#ffffff;
+    --bp-navy-mid:#e4edf0;
+    --bp-panel:#ffffff;
+    --bp-line:#d7e2e6;
+    --bp-line-soft:#e6edef;
+    --bp-line-bright:#3c97ac;
+    --bp-paper:#212b33;
+    --bp-muted:#5c6b74;
+    --bp-amber:#2f879b;
+    --bp-amber-dark:#256d7d;
+    --bp-green:#15803d;
+    --bp-error:#b42318;
+    --bp-error-border:#e4a4a0;
+    --panel-rgb:228,237,240;
+    --modal-rgb:255,255,255;
+    --page-rgb:243,247,248;
+    --shadow-card:rgba(16,30,40,.14);
+    --shadow-modal:rgba(16,30,40,.35);
     --sheet-max:1120px;
     --edge-pad:clamp(20px, 5vw, 64px);
-    --cursor-default:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='7' fill='none' stroke='%23f5a623' stroke-width='1.6'/%3E%3Ccircle cx='13' cy='13' r='1.5' fill='%23f5a623'/%3E%3Cpath d='M13 1v5M13 20v5M1 13h5M20 13h5' stroke='%23f5a623' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 13 13, auto;
-    --cursor-pointer:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='8' fill='%23f5a623' fill-opacity='0.16' stroke='%23f5a623' stroke-width='1.8'/%3E%3Ccircle cx='13' cy='13' r='2.6' fill='%23f5a623'/%3E%3Cpath d='M13 0v5M13 21v5M0 13h5M21 13h5' stroke='%23f5a623' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") 13 13, pointer;
-    --cursor-text:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='26' viewBox='0 0 18 26'%3E%3Cpath d='M9 1v24M4 1h10M4 25h10' stroke='%23f5a623' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 9 13, text;
+    --cursor-default:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='7' fill='none' stroke='%232f879b' stroke-width='1.6'/%3E%3Ccircle cx='13' cy='13' r='1.5' fill='%232f879b'/%3E%3Cpath d='M13 1v5M13 20v5M1 13h5M20 13h5' stroke='%232f879b' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 13 13, auto;
+    --cursor-pointer:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='8' fill='%232f879b' fill-opacity='0.16' stroke='%232f879b' stroke-width='1.8'/%3E%3Ccircle cx='13' cy='13' r='2.6' fill='%232f879b'/%3E%3Cpath d='M13 0v5M13 21v5M0 13h5M21 13h5' stroke='%232f879b' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") 13 13, pointer;
+    --cursor-text:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='26' viewBox='0 0 18 26'%3E%3Cpath d='M9 1v24M4 1h10M4 25h10' stroke='%232f879b' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 9 13, text;
+  }
+
+  /* ---------- night mode ---------- */
+  html[data-theme="dark"]{
+    --bp-navy-deep:#0b1620;
+    --bp-navy:#0f1e29;
+    --bp-navy-mid:#162934;
+    --bp-panel:#122029;
+    --bp-line:#25404e;
+    --bp-line-soft:#1b303c;
+    --bp-line-bright:#5fc1d6;
+    --bp-paper:#e8f1f4;
+    --bp-muted:#8fa4ad;
+    --bp-amber:#3fa6bb;
+    --bp-amber-dark:#5fc1d6;
+    --bp-green:#34c37a;
+    --bp-error:#ff8a80;
+    --bp-error-border:#6b3430;
+    --panel-rgb:22,40,51;
+    --modal-rgb:15,26,34;
+    --page-rgb:11,22,32;
+    --shadow-card:rgba(0,0,0,.35);
+    --shadow-modal:rgba(0,0,0,.6);
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -55,30 +149,37 @@
     cursor:var(--cursor-default);
   }
 
-  /* blueprint grid backdrop */
-  body::before{
-    content:"";
+  /* blueprint grid backdrop (real elements so scroll + pointer parallax can drive them) */
+  .bp-grid{
     position:fixed;
-    inset:0;
+    inset:-10% -10%;
+    pointer-events:none;
+    z-index:0;
+    will-change:transform;
+  }
+  .bp-grid-near{
     background-image:
       linear-gradient(var(--bp-line-soft) 1px, transparent 1px),
       linear-gradient(90deg, var(--bp-line-soft) 1px, transparent 1px);
     background-size:64px 64px;
-    opacity:.35;
-    pointer-events:none;
-    z-index:0;
+    opacity:.8;
   }
-  body::after{
-    content:"";
-    position:fixed;
-    inset:0;
+  .bp-grid-far{
     background-image:
       linear-gradient(var(--bp-line) 1px, transparent 1px),
       linear-gradient(90deg, var(--bp-line) 1px, transparent 1px);
     background-size:320px 320px;
-    opacity:.3;
+    opacity:.7;
+  }
+  .bp-glow{
+    position:fixed;
+    top:-20vh; right:-10vw;
+    width:60vw; height:60vw;
+    max-width:900px; max-height:900px;
+    background:radial-gradient(circle, rgba(60,151,172,.16), transparent 65%);
     pointer-events:none;
     z-index:0;
+    will-change:transform;
   }
 
   h1,h2,h3{
@@ -110,7 +211,7 @@
     height:100%;
     width:0%;
     background:var(--bp-amber);
-    box-shadow:0 0 8px rgba(245,166,35,.7);
+    box-shadow:0 0 8px rgba(47,135,155,.6);
     transition:width .08s linear;
   }
 
@@ -124,7 +225,7 @@
     justify-content:space-between;
     padding:18px var(--edge-pad);
     backdrop-filter:blur(10px);
-    background:linear-gradient(rgba(8,24,39,.75), rgba(8,24,39,0));
+    background:linear-gradient(rgba(var(--page-rgb),.85), rgba(var(--page-rgb),0));
   }
   .seal{
     display:flex;
@@ -150,7 +251,7 @@
     content:"";
     position:absolute;
     inset:5px;
-    border:1px solid rgba(111,168,220,.35);
+    border:1px solid rgba(60,151,172,.35);
     border-radius:50%;
   }
   .seal-text{
@@ -189,15 +290,15 @@
     background:var(--bp-amber);
     transition:width .3s ease;
   }
-  nav a:hover, nav a:focus-visible{color:var(--bp-paper);}
-  nav a:hover::after, nav a:focus-visible::after{width:100%;}
+  nav a:hover, nav a:focus-visible, nav a.is-active{color:var(--bp-paper);}
+  nav a:hover::after, nav a:focus-visible::after, nav a.is-active::after{width:100%;}
 
   .nav-hire-btn{
     font-family:'IBM Plex Mono', monospace;
     font-size:11px;
     letter-spacing:.1em;
     text-transform:uppercase;
-    color:#0b2036;
+    color:#fff;
     background:var(--bp-amber);
     border:none;
     padding:9px 16px;
@@ -205,7 +306,7 @@
     margin-left:clamp(14px,2.4vw,34px);
     transition:transform .25s ease, background .25s ease;
   }
-  .nav-hire-btn:hover, .nav-hire-btn:focus-visible{background:#ffb84d; transform:translateY(-2px);}
+  .nav-hire-btn:hover, .nav-hire-btn:focus-visible{background:var(--bp-amber-dark); transform:translateY(-2px);}
 
   .nav-toggle{
     display:none;
@@ -213,7 +314,7 @@
     height:40px;
     padding:0;
     border:1.5px solid var(--bp-line);
-    background:rgba(14,37,64,.85);
+    background:rgba(var(--panel-rgb),.85);
     border-radius:2px;
     cursor:pointer;
     align-items:center;
@@ -239,6 +340,41 @@
     transform:translateY(-6.5px) rotate(-45deg);
   }
 
+  .header-utils{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-left:14px;
+    z-index:160;
+  }
+  .util-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    width:38px;
+    height:38px;
+    padding:0;
+    border:1.5px solid var(--bp-line);
+    background:rgba(var(--panel-rgb),.6);
+    border-radius:50%;
+    color:var(--bp-muted);
+    transition:color .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .util-btn:hover, .util-btn:focus-visible{color:var(--bp-paper); border-color:var(--bp-line-bright);}
+  .util-btn svg{width:18px; height:18px; flex-shrink:0;}
+  .util-btn .icon-sun{display:none;}
+  html[data-theme="dark"] .util-btn .icon-sun{display:block;}
+  html[data-theme="dark"] .util-btn .icon-moon{display:none;}
+  .util-btn-lang{
+    width:auto;
+    padding:0 12px;
+    border-radius:19px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+  }
+
   @media (max-width:720px){
     .seal-text{display:none;}
     .nav-toggle{display:flex;}
@@ -253,7 +389,7 @@
       flex-direction:column;
       align-items:flex-start;
       gap:0;
-      background:rgba(8,24,39,.97);
+      background:rgba(var(--modal-rgb),.98);
       border-left:1px solid var(--bp-line-soft);
       backdrop-filter:blur(14px);
       transform:translateX(100%);
@@ -451,8 +587,9 @@
     font-size:clamp(46px, 9vw, 108px);
     line-height:.98;
     color:var(--bp-paper);
-    opacity:0;
-    transform:translateY(24px);
+  }
+  .hero-title .char{
+    display:inline-block;
   }
 
   .hero-sub{
@@ -480,7 +617,7 @@
     border:1px solid var(--bp-line);
     padding:7px 12px;
     border-radius:2px;
-    background:rgba(111,168,220,.05);
+    background:rgba(60,151,172,.08);
   }
 
   .hero-cta{
@@ -496,7 +633,7 @@
     max-width:720px;
     border:1px solid var(--bp-line);
     border-left:3px solid var(--bp-amber);
-    background:rgba(14,37,64,.55);
+    background:rgba(var(--panel-rgb),.55);
     padding:14px 18px;
     opacity:0;
     transform:translateY(12px);
@@ -532,10 +669,10 @@
   }
   .btn-primary{
     background:var(--bp-amber);
-    color:#0b2036;
+    color:#fff;
     font-weight:500;
   }
-  .btn-primary:hover{transform:translateY(-2px); background:#ffb84d;}
+  .btn-primary:hover{transform:translateY(-2px); background:var(--bp-amber-dark);}
   .btn-ghost{
     border:1px solid var(--bp-line);
     color:var(--bp-paper);
@@ -705,7 +842,7 @@
     letter-spacing:.1em;
     text-transform:uppercase;
     color:var(--bp-amber);
-    border:1px solid rgba(245,166,35,.4);
+    border:1px solid rgba(47,135,155,.4);
     padding:4px 9px;
     border-radius:2px;
   }
@@ -839,7 +976,7 @@
   .case-card{
     border:1px solid var(--bp-line);
     border-radius:2px;
-    background:rgba(14,37,64,.45);
+    background:rgba(var(--panel-rgb),.45);
     padding:22px 22px 24px;
     opacity:0;
     transform:translateY(16px);
@@ -847,6 +984,12 @@
     flex-direction:column;
     gap:14px;
     min-height:100%;
+    will-change:transform;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  .case-card:hover{
+    border-color:var(--bp-line-bright);
+    box-shadow:0 20px 50px var(--shadow-card);
   }
   .case-card .case-num{
     font-family:'IBM Plex Mono', monospace;
@@ -907,7 +1050,7 @@
   .endorse-card{
     border:1px solid var(--bp-line);
     border-radius:2px;
-    background:rgba(14,37,64,.45);
+    background:rgba(var(--panel-rgb),.45);
     padding:22px 22px 24px;
     opacity:0;
     transform:translateY(16px);
@@ -915,6 +1058,12 @@
     flex-direction:column;
     gap:16px;
     min-height:100%;
+    will-change:transform;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  .endorse-card:hover{
+    border-color:var(--bp-line-bright);
+    box-shadow:0 20px 50px var(--shadow-card);
   }
   .endorse-head{
     display:flex;
@@ -1013,7 +1162,19 @@
   }
 
   /* ---------- freelance CTA ---------- */
-  .freelance-sheet{padding-bottom:40px;}
+  .freelance-sheet{padding-bottom:40px; position:relative; overflow:hidden;}
+  .freelance-sheet::before{
+    content:"";
+    position:absolute;
+    top:0; left:50%;
+    width:100vw; height:100%;
+    transform:translateX(-50%);
+    background:
+      radial-gradient(circle at 12% 15%, rgba(47,135,155,.12), transparent 42%),
+      radial-gradient(circle at 88% 85%, rgba(76,215,135,.09), transparent 42%);
+    z-index:-1;
+    pointer-events:none;
+  }
   .freelance-inner{max-width:760px;}
   .freelance-badge{
     display:inline-flex;
@@ -1088,8 +1249,8 @@
     flex-direction:column;
     border:1px solid var(--bp-line);
     border-radius:2px;
-    background:rgba(8,24,39,.98);
-    box-shadow:0 30px 80px rgba(0,0,0,.55);
+    background:rgba(var(--modal-rgb),.98);
+    box-shadow:0 30px 80px var(--shadow-modal);
   }
   .hire-head{
     display:flex;
@@ -1098,7 +1259,7 @@
     gap:12px;
     padding:20px 22px 16px;
     border-bottom:1px solid var(--bp-line-soft);
-    background:linear-gradient(180deg, rgba(14,37,64,.9), rgba(14,37,64,.4));
+    background:linear-gradient(180deg, rgba(var(--panel-rgb),.9), rgba(var(--panel-rgb),.4));
   }
   .hire-head-title{
     font-family:'Space Grotesk', sans-serif;
@@ -1156,7 +1317,7 @@
     border:1px solid var(--bp-line);
     border-radius:2px;
     padding:clamp(20px,3vw,28px);
-    background:rgba(14,37,64,.45);
+    background:rgba(var(--panel-rgb),.45);
   }
   .contact-form .form-intro{
     font-family:'IBM Plex Mono', monospace;
@@ -1206,7 +1367,7 @@
     line-height:1.5;
   }
   .form-field input::placeholder,
-  .form-field textarea::placeholder{color:rgba(143,169,196,.55);}
+  .form-field textarea::placeholder{color:rgba(92,107,116,.6);}
   .form-field input:focus,
   .form-field textarea:focus{border-color:var(--bp-line-bright);}
   .form-honey{
@@ -1242,7 +1403,7 @@
     min-height:1.2em;
   }
   .form-status.is-ok{color:var(--bp-green);}
-  .form-status.is-err{color:#ff7b7b;}
+  .form-status.is-err{color:var(--bp-error);}
 
   .title-block{
     border:1px solid var(--bp-line);
@@ -1296,7 +1457,7 @@
     border-radius:2px;
     border:1px solid var(--bp-line-bright);
     background:var(--bp-amber);
-    color:#0b2036;
+    color:#fff;
     cursor:pointer;
     display:flex;
     align-items:center;
@@ -1304,7 +1465,7 @@
     box-shadow:0 10px 28px rgba(0,0,0,.35);
     transition:transform .2s ease, background .2s ease;
   }
-  .chat-launcher:hover{transform:translateY(-2px); background:#ffb84d;}
+  .chat-launcher:hover{transform:translateY(-2px); background:var(--bp-amber-dark);}
   .chat-launcher svg{width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.8;}
   .chat-launcher[aria-expanded="true"]{background:var(--bp-panel); color:var(--bp-paper); border-color:var(--bp-line);}
 
@@ -1319,9 +1480,9 @@
     flex-direction:column;
     border:1px solid var(--bp-line);
     border-radius:2px;
-    background:rgba(8,24,39,.97);
+    background:rgba(var(--modal-rgb),.97);
     backdrop-filter:blur(14px);
-    box-shadow:0 18px 50px rgba(0,0,0,.45);
+    box-shadow:0 18px 50px var(--shadow-modal);
     overflow:hidden;
   }
   .chat-panel.is-open{display:flex;}
@@ -1333,7 +1494,7 @@
     gap:12px;
     padding:14px 16px;
     border-bottom:1px solid var(--bp-line-soft);
-    background:linear-gradient(180deg, rgba(14,37,64,.9), rgba(14,37,64,.4));
+    background:linear-gradient(180deg, rgba(var(--panel-rgb),.9), rgba(var(--panel-rgb),.4));
   }
   .chat-head-title{
     font-family:'Space Grotesk', sans-serif;
@@ -1380,19 +1541,19 @@
   }
   .chat-bubble.bot{
     align-self:flex-start;
-    background:rgba(14,37,64,.85);
+    background:rgba(var(--panel-rgb),.85);
     border:1px solid var(--bp-line-soft);
     color:var(--bp-paper);
   }
   .chat-bubble.user{
     align-self:flex-end;
-    background:rgba(245,166,35,.16);
-    border:1px solid rgba(245,166,35,.45);
+    background:rgba(47,135,155,.16);
+    border:1px solid rgba(47,135,155,.45);
     color:var(--bp-paper);
   }
   .chat-bubble.is-error{
-    border-color:#ff7b7b;
-    color:#ffb0b0;
+    border-color:var(--bp-error-border);
+    color:var(--bp-error);
   }
   .chat-typing{
     align-self:flex-start;
@@ -1407,7 +1568,7 @@
     gap:8px;
     padding:12px;
     border-top:1px solid var(--bp-line-soft);
-    background:rgba(14,37,64,.55);
+    background:rgba(var(--panel-rgb),.55);
   }
   .chat-form input{
     flex:1;
@@ -1426,7 +1587,7 @@
     border:none;
     border-radius:2px;
     background:var(--bp-amber);
-    color:#0b2036;
+    color:#fff;
     font-family:'IBM Plex Mono', monospace;
     font-size:11px;
     letter-spacing:.08em;
@@ -1475,8 +1636,8 @@
     height:clamp(34px, 9vw, 54px);
     border-radius:50%;
     border:1px solid var(--bp-line-bright);
-    background:rgba(8,24,39,.82);
-    color:var(--bp-amber);
+    background:rgba(23,41,48,.78);
+    color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -1488,7 +1649,7 @@
   .hero-play-btn:hover, .hero-play-btn:focus-visible{
     transform:translate(-50%,-50%) scale(1.08);
     background:var(--bp-amber);
-    color:#0b2036;
+    color:#fff;
   }
   .hero-play-btn svg{width:42%;height:42%;fill:currentColor;margin-left:8%;}
   .hero-play-caption{
@@ -1500,8 +1661,8 @@
     font-size:9px;
     letter-spacing:.14em;
     text-transform:uppercase;
-    color:var(--bp-paper);
-    background:rgba(8,24,39,.72);
+    color:#fff;
+    background:rgba(23,41,48,.72);
     padding:3px 8px;
     border-radius:2px;
     z-index:3;
@@ -1537,8 +1698,8 @@
     flex-direction:column;
     border:1px solid var(--bp-line);
     border-radius:2px;
-    background:rgba(8,24,39,.98);
-    box-shadow:0 30px 80px rgba(0,0,0,.55);
+    background:rgba(var(--modal-rgb),.98);
+    box-shadow:0 30px 80px var(--shadow-modal);
     overflow:hidden;
   }
   .game-head{
@@ -1548,7 +1709,7 @@
     gap:12px;
     padding:16px 18px;
     border-bottom:1px solid var(--bp-line-soft);
-    background:linear-gradient(180deg, rgba(14,37,64,.9), rgba(14,37,64,.4));
+    background:linear-gradient(180deg, rgba(var(--panel-rgb),.9), rgba(var(--panel-rgb),.4));
   }
   .game-head-title{
     font-family:'Space Grotesk', sans-serif;
@@ -1617,7 +1778,7 @@
     transition:background .2s ease, border-color .2s ease;
   }
   .game-lock-btn:hover{background:rgba(0,0,0,0.65); border-color:rgba(255,255,255,0.7);}
-  .game-lock-btn.is-locked{background:rgba(245,166,35,0.9); border-color:#f5a623; color:#0b2036;}
+  .game-lock-btn.is-locked{background:rgba(47,135,155,0.9); border-color:#2f879b; color:#fff;}
   .game-mute-btn{
     border:0;
     background:transparent;
@@ -1646,6 +1807,54 @@
     cursor:var(--cursor-text);
   }
 
+  /* ---------- live cursor (dot + lagging ring), progressive enhancement over the SVG cursor ---------- */
+  .cursor-dot, .cursor-ring{
+    position:fixed;
+    left:0; top:0;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:999;
+    opacity:0;
+  }
+  .cursor-dot{width:6px; height:6px; background:var(--bp-amber);}
+  .cursor-ring{
+    width:34px; height:34px;
+    border:1.5px solid var(--bp-amber);
+    transition:width .25s cubic-bezier(.16,1,.3,1), height .25s cubic-bezier(.16,1,.3,1), background-color .25s ease, opacity .2s ease;
+  }
+  html.has-live-cursor .cursor-dot, html.has-live-cursor .cursor-ring{opacity:.85;}
+  html.has-live-cursor .cursor-ring.is-hover{
+    width:56px; height:56px;
+    background:rgba(47,135,155,.14);
+  }
+  html.has-live-cursor .cursor-dot.is-hidden, html.has-live-cursor .cursor-ring.is-hidden{opacity:0;}
+
+  /* ---------- Arabic / RTL ---------- */
+  html[dir="rtl"] body,
+  html[dir="rtl"] input,
+  html[dir="rtl"] textarea,
+  html[dir="rtl"] button{
+    font-family:'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif;
+  }
+  html[dir="rtl"] h1,
+  html[dir="rtl"] h2,
+  html[dir="rtl"] h3{
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+  }
+  html[dir="rtl"] *{letter-spacing:normal !important;}
+  html[dir="rtl"] .contact-inner{text-align:right;}
+  html[dir="rtl"] .nav-hire-btn{margin-left:0; margin-right:clamp(14px,2.4vw,34px);}
+  html[dir="rtl"] .header-utils{margin-left:0; margin-right:14px;}
+  html[dir="rtl"] .open-to{border-left:none; border-right:3px solid var(--bp-amber);}
+  html[dir="rtl"] .node-outcomes li{padding-left:0; padding-right:16px;}
+  html[dir="rtl"] .node-outcomes li::before{left:auto; right:0;}
+  html[dir="rtl"] .node-progress span:not(:last-child)::after{content:"←"; margin-left:0; margin-right:8px;}
+  html[dir="rtl"] .form-field{text-align:right;}
+  html[dir="rtl"] .case-block, html[dir="rtl"] .summary-body{text-align:right;}
+  html[dir="rtl"] .stat, html[dir="rtl"] .edu-item, html[dir="rtl"] .title-cell{text-align:right;}
+  html[dir="rtl"] .node-desc, html[dir="rtl"] .hero-sub, html[dir="rtl"] .freelance-sub, html[dir="rtl"] .open-to .v{text-align:right;}
+
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
     html{scroll-behavior:auto;}
@@ -1653,6 +1862,13 @@
 </style>
 </head>
 <body>
+
+  <div class="bp-grid bp-grid-far" id="bp-grid-far" aria-hidden="true"></div>
+  <div class="bp-grid bp-grid-near" id="bp-grid-near" aria-hidden="true"></div>
+  <div class="bp-glow" id="bp-glow" aria-hidden="true"></div>
+
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
 
   <div id="ruler"><div id="ruler-fill"></div></div>
 
@@ -1676,6 +1892,16 @@
         <li><a href="#contact">Contact</a></li>
         <li class="nav-hire-item"><button type="button" class="nav-hire-btn js-hire-launcher" aria-haspopup="dialog" aria-controls="hire-modal">Hire me</button></li>
       </ul>
+      <div class="header-utils">
+        <button type="button" class="util-btn" id="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M4.4 4.4l1.8 1.8M17.8 17.8l1.8 1.8M2 12h2.5M19.5 12H22M4.4 19.6l1.8-1.8M17.8 6.2l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button type="button" class="util-btn util-btn-lang" id="lang-toggle" aria-label="Switch to Arabic">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.8 2.4 4.2 5.6 4.2 9s-1.4 6.6-4.2 9c-2.8-2.4-4.2-5.6-4.2-9s1.4-6.6 4.2-9z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span id="lang-toggle-label">AR</span>
+        </button>
+      </div>
     </nav>
   </header>
 
@@ -1691,7 +1917,7 @@
       <div class="hero-inner">
         <div class="hero-copy">
           <p class="eyebrow" data-anim="fade-up">Project dossier — Backend Systems Engineer</p>
-          <h1 class="hero-title" data-anim="fade-up">WAQAS<br>ALI</h1>
+          <h1 class="hero-title" aria-label="WAQAS ALI"><span class="hero-title-line">WAQAS</span><br><span class="hero-title-line">ALI</span></h1>
           <p class="hero-sub" data-anim="fade-up">
             Senior Software Engineer who designs and ships the backend architecture, APIs, and production
             infrastructure that national platforms and SaaS products run on.
@@ -1788,7 +2014,7 @@
 
       <div class="arch-wrap">
         <svg id="arch-svg" preserveAspectRatio="none">
-          <line id="arch-line" x1="28" y1="0" x2="28" y2="100%" stroke="#6fa8dc" stroke-width="2" stroke-dasharray="1" stroke-dashoffset="1"/>
+          <line id="arch-line" x1="28" y1="0" x2="28" y2="100%" stroke="#3c97ac" stroke-width="2" stroke-dasharray="1" stroke-dashoffset="1"/>
         </svg>
 
         <article class="node" data-anim="node">
@@ -2126,7 +2352,7 @@
 
         <div class="contact-links" data-anim="fade-up">
           <a class="btn btn-primary" href="mailto:wa797789@gmail.com">wa797789@gmail.com</a>
-          <a class="btn btn-ghost" href="tel:+966560635147">+966 56 063 5147</a>
+          <a class="btn btn-ghost" href="tel:+966560635147" dir="ltr">+966 56 063 5147</a>
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/waqas-ali-163a3816b/" target="_blank" rel="noopener">LinkedIn Profile</a>
         </div>
 
@@ -2315,7 +2541,7 @@
       document.body.appendChild(gameScript);
 
       var threeScript=document.createElement('script');
-      threeScript.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+      threeScript.src='three.min.js';
       threeScript.onload=onOneLoaded;
       threeScript.onerror=onOneFailed;
       document.body.appendChild(threeScript);
@@ -2370,10 +2596,52 @@
 
   <script src="config.js"></script>
   <script src="cv-knowledge.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="gsap.min.js"></script>
+  <script src="scrolltrigger.min.js"></script>
   <script>
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---- live cursor: dot + lagging ring, only for real mice (progressive enhancement over the SVG cursor) ----
+    (function initLiveCursor(){
+      if(reduceMotion) return;
+      if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+      const dot = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      if(!dot || !ring) return;
+
+      document.documentElement.classList.add('has-live-cursor');
+      document.documentElement.style.setProperty('--cursor-default', 'none');
+      document.documentElement.style.setProperty('--cursor-pointer', 'none');
+
+      let mx = window.innerWidth/2, my = window.innerHeight/2, rx = mx, ry = my, started = false;
+      window.addEventListener('mousemove', e=>{
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px';
+        dot.style.top = my + 'px';
+        if(!started){ started = true; rx = mx; ry = my; ring.style.left = mx + 'px'; ring.style.top = my + 'px'; }
+      }, {passive:true});
+
+      (function loop(){
+        rx += (mx - rx) * 0.18;
+        ry += (my - ry) * 0.18;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(loop);
+      })();
+
+      const hoverSelector = 'a, button, input[type="submit"], input[type="button"], input[type="reset"], select, label[for], summary, [role="button"], .btn, .nav-toggle, .chat-launcher, .chat-close, .hero-play-btn, .game-close, .game-lock-btn, .game-mute-btn, .nav-hire-btn, .hire-close';
+      const hideSelector = '#game-stage, input, textarea';
+      document.addEventListener('mouseover', e=>{
+        if(e.target.closest(hoverSelector)) ring.classList.add('is-hover');
+        if(e.target.closest(hideSelector)){ dot.classList.add('is-hidden'); ring.classList.add('is-hidden'); }
+      });
+      document.addEventListener('mouseout', e=>{
+        if(e.target.closest(hoverSelector)) ring.classList.remove('is-hover');
+        if(e.target.closest(hideSelector)){ dot.classList.remove('is-hidden'); ring.classList.remove('is-hidden'); }
+      });
+      document.documentElement.addEventListener('mouseleave', ()=>{ dot.classList.add('is-hidden'); ring.classList.add('is-hidden'); });
+      document.documentElement.addEventListener('mouseenter', ()=>{ dot.classList.remove('is-hidden'); ring.classList.remove('is-hidden'); });
+    })();
 
     // ---- scroll progress ruler ----
     const rulerFill = document.getElementById('ruler-fill');
@@ -2385,20 +2653,44 @@
     document.addEventListener('scroll', updateRuler, {passive:true});
     updateRuler();
 
+    if (typeof gsap === 'undefined') {
+      console.warn('[animations] GSAP failed to load (likely blocked by an ad-blocker, extension, or network filter on cdnjs.cloudflare.com) — falling back to a plain CSS fade-in.');
+    }
     if (reduceMotion || typeof gsap === 'undefined') {
-      // fail-safe: reveal everything statically
-      document.querySelectorAll('[data-anim], [data-tag], .hero-photo').forEach(el=>{
-        el.style.opacity = 1;
-        el.style.transform = 'none';
-      });
+      // fail-safe: reveal everything, with a plain opacity fade when motion isn't explicitly disabled by the user
+      const revealEls = document.querySelectorAll('[data-anim], [data-tag], .hero-photo');
+      revealEls.forEach(el=>{ el.style.transform = 'none'; });
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>{
+            if (entry.isIntersecting) {
+              entry.target.style.transition = 'opacity .7s ease';
+              entry.target.style.opacity = 1;
+              io.unobserve(entry.target);
+            }
+          });
+        }, {threshold:0.15});
+        revealEls.forEach(el=>{ el.style.opacity = 0; io.observe(el); });
+      } else {
+        revealEls.forEach(el=>{ el.style.opacity = 1; });
+      }
     } else {
       gsap.registerPlugin(ScrollTrigger);
+
+      // ---- hero title: split into characters for a kinetic reveal ----
+      document.querySelectorAll('.hero-title-line').forEach(line=>{
+        const chars = line.textContent.split('').map(ch=>
+          `<span class="char">${ch === ' ' ? '&nbsp;' : ch}</span>`
+        ).join('');
+        line.innerHTML = chars;
+      });
+      gsap.set('.hero-title .char', {opacity:0, y:'60%'});
 
       // ---- hero load-in sequence ----
       const heroTl = gsap.timeline({defaults:{ease:'power3.out'}});
       heroTl
         .to('.eyebrow', {opacity:1, y:0, duration:.7}, 0.1)
-        .to('.hero-title', {opacity:1, y:0, duration:1}, 0.25)
+        .to('.hero-title .char', {opacity:1, y:'0%', duration:.9, stagger:.025, clearProps:'transform'}, 0.2)
         .to('.hero-photo', {opacity:1, y:0, duration:.8}, 0.3)
         .to('.hero-sub', {opacity:1, y:0, duration:.8}, 0.55)
         .to('.hero-tags', {opacity:1, duration:.6}, 0.75)
@@ -2478,13 +2770,382 @@
         });
       });
 
-      // ---- subtle grid parallax ----
-      gsap.to('body', {
-        backgroundPosition: '0px 60px',
-        ease:'none',
-        scrollTrigger:{ trigger:'body', start:'top top', end:'bottom bottom', scrub:1 }
+      // ---- blueprint grid depth parallax (scroll + pointer) ----
+      gsap.to('#bp-grid-near', {
+        y: -140, x: 30, ease:'none',
+        scrollTrigger:{ trigger:'body', start:'top top', end:'bottom bottom', scrub:0.6 }
       });
+      gsap.to('#bp-grid-far', {
+        y: -60, x: -16, ease:'none',
+        scrollTrigger:{ trigger:'body', start:'top top', end:'bottom bottom', scrub:0.6 }
+      });
+      gsap.to('#bp-glow', {
+        y: 220, ease:'none',
+        scrollTrigger:{ trigger:'body', start:'top top', end:'bottom bottom', scrub:0.6 }
+      });
+
+      if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+        let px = 0, py = 0;
+        window.addEventListener('mousemove', e=>{
+          px = (e.clientX / window.innerWidth - 0.5);
+          py = (e.clientY / window.innerHeight - 0.5);
+          gsap.to('#bp-grid-near', {x: px * -24, duration:1.2, ease:'power2.out', overwrite:'auto'});
+          gsap.to('#bp-grid-far', {x: px * -10, y: py * -10, duration:1.6, ease:'power2.out', overwrite:'auto'});
+          gsap.to('#bp-glow', {x: px * 40, y: py * 40, duration:1.6, ease:'power2.out', overwrite:'auto'});
+        }, {passive:true});
+      }
+
+      // ---- animated stat counters ----
+      gsap.utils.toArray('.stat b').forEach(el=>{
+        const text = el.textContent.trim();
+        const match = text.match(/[\d.]+/);
+        if(!match) return;
+        const target = parseFloat(match[0]);
+        const suffix = text.slice(match.index + match[0].length);
+        const counter = {val:0};
+        ScrollTrigger.create({
+          trigger: el, start:'top 90%', once:true,
+          onEnter: ()=>{
+            gsap.to(counter, {
+              val: target, duration:1.4, ease:'power2.out',
+              onUpdate: ()=>{ el.textContent = (Number.isInteger(target) ? Math.round(counter.val) : counter.val.toFixed(1)) + suffix; }
+            });
+          }
+        });
+      });
+
+      // ---- tilt-on-hover for case/endorsement/node cards ----
+      if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+        gsap.utils.toArray('.case-card, .endorse-card').forEach(card=>{
+          const strength = 8;
+          card.addEventListener('mousemove', e=>{
+            const r = card.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            gsap.to(card, {
+              rotateX: py * -strength, rotateY: px * strength, transformPerspective:600,
+              duration:.4, ease:'power2.out'
+            });
+          });
+          card.addEventListener('mouseleave', ()=>{
+            gsap.to(card, {rotateX:0, rotateY:0, duration:.6, ease:'power3.out'});
+          });
+        });
+      }
+
+      // ---- magnetic primary CTAs ----
+      if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+        gsap.utils.toArray('.btn-primary, .nav-hire-btn').forEach(btn=>{
+          btn.addEventListener('mousemove', e=>{
+            const r = btn.getBoundingClientRect();
+            const mx = (e.clientX - r.left) / r.width - 0.5;
+            const my = (e.clientY - r.top) / r.height - 0.5;
+            gsap.to(btn, {x: mx * 14, y: my * 10, duration:.3, ease:'power2.out'});
+          });
+          btn.addEventListener('mouseleave', ()=>{
+            gsap.to(btn, {x:0, y:0, duration:.5, ease:'elastic.out(1, 0.4)'});
+          });
+        });
+      }
     }
+
+    // ---- active nav link tracks current section while scrolling ----
+    // (plain position check, not ScrollTrigger: stays correct even if it runs before images/fonts settle layout)
+    (function initActiveNav(){
+      const navSections = [];
+      document.querySelectorAll('nav a[href^="#"]').forEach(link=>{
+        const section = document.querySelector(link.getAttribute('href'));
+        if(section) navSections.push({link, section});
+      });
+      if(!navSections.length) return;
+
+      function updateActiveNav(){
+        const refY = window.innerHeight * 0.55;
+        let current = null;
+        for(const item of navSections){
+          const r = item.section.getBoundingClientRect();
+          if(r.top <= refY) current = item;
+        }
+        navSections.forEach(item => item.link.classList.toggle('is-active', item === current));
+      }
+      window.addEventListener('scroll', updateActiveNav, {passive:true});
+      window.addEventListener('resize', updateActiveNav);
+      window.addEventListener('load', updateActiveNav);
+      updateActiveNav();
+    })();
+
+    // ---- dark mode toggle ----
+    (function initThemeToggle(){
+      const btn = document.getElementById('theme-toggle');
+      if(!btn) return;
+      function apply(theme){
+        if(theme === 'dark'){
+          document.documentElement.setAttribute('data-theme','dark');
+          btn.setAttribute('aria-pressed','true');
+          btn.setAttribute('aria-label','Switch to light mode');
+        }else{
+          document.documentElement.removeAttribute('data-theme');
+          btn.setAttribute('aria-pressed','false');
+          btn.setAttribute('aria-label','Switch to dark mode');
+        }
+      }
+      apply(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+      btn.addEventListener('click', ()=>{
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        apply(next);
+        try{ localStorage.setItem('wa-theme', next); }catch(e){}
+      });
+    })();
+
+    // ---- English / Arabic language toggle ----
+    // NOTE: LinkedIn testimonial quotes (the <blockquote> bodies in #endorsements) are kept in their
+    // original English in both languages — they're direct quotes from named third parties, not our copy.
+    // The stadium mini-game's in-canvas HUD and the "Lock camera" button label (overwritten at runtime by
+    // game-stadium.js) are also left in English, since translating them would require touching that file
+    // and could end up half-translated once the game's own JS rewrites the label.
+    (function initLanguageToggle(){
+      const btn = document.getElementById('lang-toggle');
+      const label = document.getElementById('lang-toggle-label');
+      if(!btn || !label) return;
+
+      const T = [
+        // ---- nav / header utils ----
+        {s:'nav a[href="#summary"]', en:'Summary', ar:'الملخص'},
+        {s:'nav a[href="#experience"]', en:'Architecture', ar:'البنية'},
+        {s:'nav a[href="#work"]', en:'Work', ar:'الأعمال'},
+        {s:'nav a[href="#stack"]', en:'Stack', ar:'التقنيات'},
+        {s:'nav a[href="#endorsements"]', en:'Proof', ar:'التوصيات'},
+        {s:'nav a[href="#contact"]', en:'Contact', ar:'التواصل'},
+        {s:'.nav-hire-btn', en:'Hire me', ar:'وظّفني'},
+        {s:'#lang-toggle', attr:'aria-label', en:'Switch to Arabic', ar:'التبديل إلى الإنجليزية'},
+
+        // ---- hero ----
+        {s:'.eyebrow', en:'Project dossier — Backend Systems Engineer', ar:'ملف المشروع — مهندس أنظمة خلفية'},
+        {s:'.hero-title', attr:'aria-label', en:'WAQAS ALI', ar:'وقاص علي'},
+        {s:'.hero-sub', en:'Senior Software Engineer who designs and ships the backend architecture, APIs, and production infrastructure that national platforms and SaaS products run on.', ar:'مهندس برمجيات أول يصمم وينفّذ البنية الخلفية وواجهات البرمجة (API) والبنية التحتية الإنتاجية التي تعتمد عليها المنصات الوطنية ومنتجات SaaS.'},
+        {s:'.hero-tags .hero-tag:nth-child(1)', en:'Backend Architecture', ar:'هندسة الأنظمة الخلفية'},
+        {s:'.hero-tags .hero-tag:nth-child(2)', en:'API Design', ar:'تصميم واجهات API'},
+        {s:'.hero-tags .hero-tag:nth-child(4)', en:'Production Operations', ar:'عمليات الإنتاج'},
+        {s:'.hero-tags .hero-tag:nth-child(5)', en:'Team Leadership', ar:'قيادة الفريق'},
+        {s:'.open-to .k', en:'Open to', ar:'متاح لـ'},
+        {s:'.open-to .v', en:'Senior Backend · Platform Engineer · Engineering Lead<br><span>Based in Riyadh · Open to Riyadh / GCC hybrid / remote · Available for conversations</span>', ar:'مهندس باك إند أول · مهندس منصات · قائد هندسي<br><span>مقيم في الرياض · متاح للعمل في الرياض / دول الخليج (هجين) / عن بُعد · متاح لإجراء المقابلات</span>'},
+        {s:'.hero-cta .btn-primary', en:'View the build log', ar:'عرض سجل الإنجازات'},
+        {s:'.hero-cta .btn-ghost:nth-child(2)', en:'Download CV', ar:'تحميل السيرة الذاتية'},
+        {s:'.hero-cta .btn-ghost:nth-child(3)', en:'Email me', ar:'راسلني'},
+        {s:'.hero-meta span:nth-child(1)', en:'Location — Riyadh, Saudi Arabia', ar:'الموقع — الرياض، المملكة العربية السعودية'},
+        {s:'.hero-meta span:nth-child(2)', en:'Sheet 01 / 09', ar:'الصفحة 01 / 09'},
+        {s:'.hero-meta span:nth-child(3)', en:'Scale 1:1', ar:'المقياس 1:1'},
+        {s:'.hero-meta span:nth-child(4)', en:'Rev. 2026', ar:'الإصدار 2026'},
+        {s:'.scroll-cue span:last-child', en:'Scroll', ar:'مرّر للأسفل'},
+        {s:'#game-launcher', attr:'aria-label', en:'Play the stadium mini-game', ar:'تشغيل لعبة الملعب المصغرة'},
+        {s:'.hero-play-caption', en:'Play', ar:'تشغيل'},
+
+        // ---- summary ----
+        {s:'#summary .num', en:'02', ar:'02'},
+        {s:'#summary .sheet-tag span:nth-child(2)', en:'Summary', ar:'الملخص'},
+        {s:'.summary-label', en:"Who's building", ar:'نبذة عني'},
+        {s:'.summary-body p:nth-of-type(1)', en:'An <span class="glow">8-year backend engineer</span> with a track record across fintech, logistics, e-commerce, education security, and government infrastructure — currently the core backend engineer on a national industrial platform for the Saudi Ministry of Industry &amp; Mineral Resources.', ar:'<span class="glow">مهندس باك إند بخبرة 8 سنوات</span>، بسجل حافل في قطاعات التقنية المالية، والخدمات اللوجستية، والتجارة الإلكترونية، وأمن القطاع التعليمي، والبنية التحتية الحكومية — ويعمل حاليًا كمهندس الباك إند الأساسي على منصة صناعية وطنية لوزارة الصناعة والثروة المعدنية السعودية.'},
+        {s:'.summary-body p:nth-of-type(2)', en:'Comfortable owning a system end-to-end: architecture, API integrations, database optimization, deployments, monitoring, and the incident that comes in at 2am. Fluent across <span class="glow">JavaScript, PHP, and Go</span>, with deep experience in Laravel, Node.js, Vue.js, Angular, Magento, and WordPress.', ar:'مرتاح في امتلاك النظام من الألف إلى الياء: التصميم المعماري، وربط واجهات API، وتحسين قواعد البيانات، والنشر، والمراقبة، وحتى البلاغ الطارئ الذي يصل الساعة 2 فجرًا. يتقن <span class="glow">JavaScript وPHP وGo</span>، ولديه خبرة عميقة في Laravel وNode.js وVue.js وAngular وMagento وWordPress.'},
+        {s:'.summary-body p:nth-of-type(3)', en:'Has also led from the front — running 52 engineers across 7 parallel projects as an engineering team lead, owning architecture decisions, mentoring, and delivery.', ar:'كما قاد الفرق من الصفوف الأمامية — بإدارة 52 مهندسًا عبر 7 مشاريع متوازية بصفته قائدًا هندسيًا، مع مسؤولية القرارات المعمارية والتوجيه والتسليم.'},
+        {s:'.stat:nth-child(1) span', en:'Years shipping production systems', ar:'سنوات في بناء أنظمة إنتاجية'},
+        {s:'.stat:nth-child(2) span', en:'Engineers led across 7 projects', ar:'مهندسًا تمت قيادتهم عبر 7 مشاريع'},
+        {s:'.stat:nth-child(3) span', en:'Industries: gov, fintech, edtech', ar:'قطاعات: حكومي، تقنية مالية، تقنية تعليمية'},
+
+        // ---- experience / architecture ----
+        {s:'#experience .sheet-tag span:nth-child(2)', en:'System Architecture — Career, diagrammed as the systems he built', ar:'الهيكلة الوظيفية — مسيرة مهنية مرسومة كالأنظمة التي بناها'},
+
+        {s:'.node:nth-of-type(1) .node-tag', en:'Foundation Layer', ar:'طبقة التأسيس'},
+        {s:'.node:nth-of-type(1) .node-role', en:'Software Engineering Team Lead → Senior Software Engineer → Developer → Intern', ar:'قائد فريق هندسة البرمجيات ← مهندس برمجيات أول ← مطوّر ← متدرب'},
+        {s:'.node:nth-of-type(1) .node-period', en:'Karachi, Pakistan · May 2018 – May 2023 · 5 yrs 1 mo', ar:'كراتشي، باكستان · مايو 2018 – مايو 2023 · 5 سنوات و1 شهر'},
+        {s:'.node:nth-of-type(1) .node-desc', en:'Grew from intern to <b>leading 52 engineers across 7 parallel projects</b> in fintech, logistics, and e-commerce. Hands-on across Laravel, Golang, Node.js, Vue.js, and Angular, with ownership of architecture design, mentoring, and delivery.', ar:'تطور من متدرب إلى <b>قيادة 52 مهندسًا عبر 7 مشاريع متوازية</b> في التقنية المالية والخدمات اللوجستية والتجارة الإلكترونية. عمل عمليًا على Laravel وGolang وNode.js وVue.js وAngular، مع مسؤولية التصميم المعماري والتوجيه والتسليم.'},
+        {s:'.node:nth-of-type(1) .node-outcomes li:nth-child(1)', en:'Led <b>52 engineers</b> across <b>7 concurrent</b> projects — fintech, logistics, e-commerce', ar:'قاد <b>52 مهندسًا</b> عبر <b>7 مشاريع متزامنة</b> — تقنية مالية، لوجستيات، تجارة إلكترونية'},
+        {s:'.node:nth-of-type(1) .node-outcomes li:nth-child(2)', en:'Promoted <b>Intern → Developer → Senior → Team Lead</b> on delivery and mentoring track record', ar:'تمت ترقيته <b>من متدرب ← مطوّر ← أول ← قائد فريق</b> بناءً على سجل التسليم والتوجيه'},
+        {s:'.node:nth-of-type(1) .node-outcomes li:nth-child(3)', en:'Owned architecture decisions, modular codebases, third-party API integrations, and stakeholder delivery', ar:'تولى القرارات المعمارية، والأكواد المعيارية، وربط واجهات API الخارجية، والتسليم لأصحاب المصلحة'},
+        {s:'.node:nth-of-type(1) .node-progress span:nth-child(1)', en:'Intern', ar:'متدرب'},
+        {s:'.node:nth-of-type(1) .node-progress span:nth-child(2)', en:'Developer', ar:'مطوّر'},
+        {s:'.node:nth-of-type(1) .node-progress span:nth-child(3)', en:'Senior Engineer', ar:'مهندس أول'},
+        {s:'.node:nth-of-type(1) .node-progress span:nth-child(4)', en:'Team Lead', ar:'قائد فريق'},
+
+        {s:'.node:nth-of-type(2) .node-tag', en:'Scaling Layer', ar:'طبقة التوسّع'},
+        {s:'.node:nth-of-type(2) .node-role', en:'Senior Software Engineer', ar:'مهندس برمجيات أول'},
+        {s:'.node:nth-of-type(2) .node-period', en:'Karachi, Pakistan · May 2023 – Nov 2024 · 1 yr 7 mo', ar:'كراتشي، باكستان · مايو 2023 – نوفمبر 2024 · سنة و7 أشهر'},
+        {s:'.node:nth-of-type(2) .node-desc', en:'Built and scaled <b>Securly</b>, a security and monitoring SaaS for educational institutions. Backend in Laravel, Golang, and Node.js; frontend in Angular. Stood up CI/CD pipelines on Jenkins and AWS, improving reliability, observability, and scalability across services.', ar:'بنى ووسّع <b>Securly</b>، وهو منتج SaaS للأمن والمراقبة للمؤسسات التعليمية. الباك إند بلغات Laravel وGolang وNode.js، والواجهة الأمامية بـ Angular. أنشأ خطوط CI/CD على Jenkins وAWS، مما رفع الموثوقية والمراقبة وقابلية التوسّع عبر الخدمات.'},
+        {s:'.node:nth-of-type(2) .node-outcomes li:nth-child(1)', en:'Shipped backend for <b>Securly</b> (education security SaaS) across Laravel, Go, and Node.js services', ar:'أطلق الباك إند لمنتج <b>Securly</b> (أمن تعليمي كخدمة SaaS) عبر خدمات Laravel وGo وNode.js'},
+        {s:'.node:nth-of-type(2) .node-outcomes li:nth-child(2)', en:'Stood up <b>Jenkins CI/CD</b> and AWS deploy paths (EC2, S3, RDS) for faster, repeatable releases', ar:'أنشأ خطوط <b>Jenkins CI/CD</b> ومسارات نشر AWS (EC2, S3, RDS) لإصدارات أسرع وقابلة للتكرار'},
+        {s:'.node:nth-of-type(2) .node-outcomes li:nth-child(3)', en:'Raised reliability and observability across services with performance monitoring and scale work', ar:'رفع الموثوقية والمراقبة عبر الخدمات من خلال مراقبة الأداء وأعمال التوسّع'},
+
+        {s:'.node.live .node-tag', en:'Production — Live', ar:'الإنتاج — حاليًا'},
+        {s:'.node.live .node-role', en:'Senior Software Engineer', ar:'مهندس برمجيات أول'},
+        {s:'.node.live .node-period', en:'Riyadh, Saudi Arabia · Dec 2024 – Present', ar:'الرياض، المملكة العربية السعودية · ديسمبر 2024 – حتى الآن'},
+        {s:'.node.live .node-desc', en:'Core backend engineer on <b>Senaei</b>, a national Laravel-based industrial platform. Owns backend architecture, API integrations, and database optimization, plus full production operations — deployments, monitoring, incident handling, and performance tuning — working closely with product, QA, DevOps, and government stakeholders to meet SLAs.', ar:'مهندس الباك إند الأساسي في منصة <b>سناعي</b>، وهي منصة صناعية وطنية مبنية على Laravel. يتولى البنية المعمارية الخلفية وربط واجهات API وتحسين قواعد البيانات، بالإضافة إلى كامل عمليات الإنتاج — النشر والمراقبة ومعالجة الأعطال وضبط الأداء — بالتعاون الوثيق مع فرق المنتج وضمان الجودة وDevOps والجهات الحكومية لتحقيق اتفاقيات مستوى الخدمة.'},
+        {s:'.node.live .node-outcomes li:nth-child(1)', en:'Core backend owner on <b>Senaei</b> — national industrial platform for Saudi MIM', ar:'المسؤول الأساسي عن الباك إند في منصة <b>سناعي</b> — المنصة الصناعية الوطنية لوزارة الصناعة والثروة المعدنية'},
+        {s:'.node.live .node-outcomes li:nth-child(2)', en:'Owns architecture, API integrations, DB optimization, deploys, monitoring, and incident response', ar:'يتولى الهيكلة المعمارية، وربط واجهات API، وتحسين قواعد البيانات، والنشر، والمراقبة، والاستجابة للأعطال'},
+        {s:'.node.live .node-outcomes li:nth-child(3)', en:'Partners with product, QA, DevOps, and government stakeholders to hit production SLAs', ar:'يتعاون مع فرق المنتج وضمان الجودة وDevOps والجهات الحكومية لتحقيق اتفاقيات مستوى خدمة الإنتاج'},
+
+        // ---- work ----
+        {s:'#work .sheet-tag span:nth-child(2)', en:'Selected work — Problem → build → result', ar:'أعمال مختارة — المشكلة ← الحل ← النتيجة'},
+
+        {s:'.case-card:nth-of-type(1) .case-num', en:'Case 01', ar:'الحالة 01'},
+        {s:'.case-card:nth-of-type(1) h3', en:'Senaei — national industrial platform', ar:'سناعي — منصة صناعية وطنية'},
+        {s:'.case-card:nth-of-type(1) .case-meta', en:'Ministry of Industry &amp; Mineral Resources · Riyadh', ar:'وزارة الصناعة والثروة المعدنية · الرياض'},
+        {s:'.case-card:nth-of-type(1) .case-block:nth-of-type(1) .label', en:'Problem', ar:'المشكلة'},
+        {s:'.case-card:nth-of-type(1) .case-block:nth-of-type(1) p:last-child', en:'A government industrial platform that must stay reliable under real stakeholder pressure and production SLAs.', ar:'منصة صناعية حكومية يجب أن تبقى موثوقة تحت ضغط أصحاب المصلحة الفعلي واتفاقيات مستوى الخدمة الإنتاجية.'},
+        {s:'.case-card:nth-of-type(1) .case-block:nth-of-type(2) .label', en:'Build', ar:'الحل'},
+        {s:'.case-card:nth-of-type(1) .case-block:nth-of-type(2) p:last-child', en:'Backend architecture on <b>Laravel</b>, API integrations, database optimization, and full production operations — deploys, monitoring, incidents.', ar:'بنية خلفية معمارية على <b>Laravel</b>، وربط واجهات API، وتحسين قواعد البيانات، وكامل عمليات الإنتاج — النشر والمراقبة والأعطال.'},
+        {s:'.case-card:nth-of-type(1) .case-block:nth-of-type(3) .label', en:'Result', ar:'النتيجة'},
+        {s:'.case-card:nth-of-type(1) .case-block:nth-of-type(3) p:last-child', en:'Core backend ownership on a live national system, shipping with product, QA, DevOps, and government partners.', ar:'ملكية أساسية للباك إند في نظام وطني فعلي، بالتعاون مع فرق المنتج وضمان الجودة وDevOps والشركاء الحكوميين.'},
+
+        {s:'.case-card:nth-of-type(2) .case-num', en:'Case 02', ar:'الحالة 02'},
+        {s:'.case-card:nth-of-type(2) h3', en:'Securly — education security SaaS', ar:'Securly — أمن تعليمي كخدمة SaaS'},
+        {s:'.case-card:nth-of-type(2) .case-block:nth-of-type(1) .label', en:'Problem', ar:'المشكلة'},
+        {s:'.case-card:nth-of-type(2) .case-block:nth-of-type(1) p:last-child', en:'Scale a security and monitoring product for educational institutions without slowing releases or hiding failures.', ar:'توسيع منتج أمني ومراقبة للمؤسسات التعليمية دون إبطاء الإصدارات أو إخفاء الأعطال.'},
+        {s:'.case-card:nth-of-type(2) .case-block:nth-of-type(2) .label', en:'Build', ar:'الحل'},
+        {s:'.case-card:nth-of-type(2) .case-block:nth-of-type(2) p:last-child', en:'Backend services in <b>Laravel, Go, Node.js</b>; Angular frontend; Jenkins CI/CD and AWS infrastructure for deployability.', ar:'خدمات خلفية بلغات <b>Laravel وGo وNode.js</b>؛ واجهة أمامية بـ Angular؛ وبنية Jenkins CI/CD وAWS لتسهيل النشر.'},
+        {s:'.case-card:nth-of-type(2) .case-block:nth-of-type(3) .label', en:'Result', ar:'النتيجة'},
+        {s:'.case-card:nth-of-type(2) .case-block:nth-of-type(3) p:last-child', en:'More reliable release paths and stronger observability across services as the platform scaled.', ar:'مسارات إصدار أكثر موثوقية ومراقبة أقوى عبر الخدمات مع توسّع المنصة.'},
+
+        {s:'.case-card:nth-of-type(3) .case-num', en:'Case 03', ar:'الحالة 03'},
+        {s:'.case-card:nth-of-type(3) h3', en:'Multi-project delivery at scale', ar:'تسليم مشاريع متعددة على نطاق واسع'},
+        {s:'.case-card:nth-of-type(3) .case-meta', en:'Cooperative Computing · Fintech · Logistics · E-commerce', ar:'Cooperative Computing · تقنية مالية · لوجستيات · تجارة إلكترونية'},
+        {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(1) .label', en:'Problem', ar:'المشكلة'},
+        {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(1) p:last-child', en:'Seven parallel client products needed architecture ownership, mentoring, and delivery without collapsing into chaos.', ar:'سبعة منتجات عملاء متوازية احتاجت إلى ملكية معمارية وتوجيه وتسليم دون الانزلاق إلى الفوضى.'},
+        {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(2) .label', en:'Build', ar:'الحل'},
+        {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(2) p:last-child', en:'Led engineering across Laravel, Go, Node, Vue, and Angular — architecture standards, mentoring, and stakeholder-facing delivery.', ar:'قاد الهندسة عبر Laravel وGo وNode وVue وAngular — معايير معمارية، وتوجيه، وتسليم مباشر لأصحاب المصلحة.'},
+        {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(3) .label', en:'Result', ar:'النتيجة'},
+        {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(3) p:last-child', en:'Grew into leading <b>52 engineers</b> across <b>7 projects</b>, promoted through every engineering rung on proven execution.', ar:'تطور ليقود <b>52 مهندسًا</b> عبر <b>7 مشاريع</b>، وتمت ترقيته عبر كل درجة هندسية بناءً على تنفيذ مثبت.'},
+        {s:'.case-card:nth-of-type(3) .case-tags span:nth-child(1)', en:'Leadership', ar:'قيادة'},
+        {s:'.case-card:nth-of-type(3) .case-tags span:nth-child(2)', en:'Architecture', ar:'هيكلة معمارية'},
+        {s:'.case-card:nth-of-type(3) .case-tags span:nth-child(3)', en:'Mentoring', ar:'توجيه'},
+
+        // ---- stack ----
+        {s:'#stack .sheet-tag span:nth-child(2)', en:'Parts List — Tools of record', ar:'قائمة الأدوات — سجل الأدوات المعتمدة'},
+        {s:'.stack-group:nth-of-type(1) .stack-group-label', en:'Languages', ar:'اللغات'},
+        {s:'.stack-group:nth-of-type(2) .stack-group-label', en:'Backend', ar:'الباك إند'},
+        {s:'.stack-group:nth-of-type(3) .stack-group-label', en:'Data', ar:'البيانات'},
+        {s:'.stack-group:nth-of-type(4) .stack-group-label', en:'Frontend', ar:'الواجهة الأمامية'},
+        {s:'.stack-group:nth-of-type(5) .stack-group-label', en:'Infrastructure', ar:'البنية التحتية'},
+        {s:'.stack-group:nth-of-type(5) .stack-items li:nth-child(3)', en:'Production monitoring', ar:'مراقبة الإنتاج'},
+        {s:'.stack-group:nth-of-type(6) .stack-group-label', en:'Leadership', ar:'القيادة'},
+        {s:'.stack-group:nth-of-type(6) .stack-items li:nth-child(1)', en:'Architecture design', ar:'التصميم المعماري'},
+        {s:'.stack-group:nth-of-type(6) .stack-items li:nth-child(2)', en:'Team leadership (52 eng.)', ar:'قيادة الفريق (52 مهندسًا)'},
+        {s:'.stack-group:nth-of-type(6) .stack-items li:nth-child(3)', en:'Stakeholder management', ar:'إدارة أصحاب المصلحة'},
+
+        // ---- endorsements (quotes stay English — see note above) ----
+        {s:'#endorsements .sheet-tag span:nth-child(2)', en:'Proof — LinkedIn recommendations', ar:'الإثبات — توصيات LinkedIn'},
+        {s:'.endorse-card:nth-of-type(1) .role', en:'Product at Securly', ar:'مسؤول منتج في Securly'},
+        {s:'.endorse-card:nth-of-type(1) .relation', en:'Aug 18, 2025 · Managed Waqas directly', ar:'18 أغسطس 2025 · أشرف على وقاص مباشرة'},
+        {s:'.endorse-card:nth-of-type(2) .role', en:'iOS Engineer @ Valus · xCC · xAvanza · xDigital Dividend', ar:'مهندس iOS في Valus · سابقًا في xCC وxAvanza وxDigital Dividend'},
+        {s:'.endorse-card:nth-of-type(2) .relation', en:'May 22, 2023 · Worked with Waqas on the same team', ar:'22 مايو 2023 · عمل مع وقاص في نفس الفريق'},
+        {s:'.endorse-card:nth-of-type(3) .role', en:'Software Engineer @ Godaitec', ar:'مهندس برمجيات في Godaitec'},
+        {s:'.endorse-card:nth-of-type(3) .relation', en:'Mar 9, 2023 · Studied together', ar:'9 مارس 2023 · درسا معًا'},
+        {s:'.endorse-card:nth-of-type(4) .role', en:'Software Engineer @ MIM · Full-Stack · Laravel · Node.js · Vue.js · MySQL', ar:'مهندس برمجيات في وزارة الصناعة والثروة المعدنية · فل ستاك · Laravel · Node.js · Vue.js · MySQL'},
+        {s:'.endorse-card:nth-of-type(4) .relation', en:'Mar 7, 2023 · Reported to Waqas directly', ar:'7 مارس 2023 · كان يرفع تقاريره مباشرة لوقاص'},
+        {s:'.endorse-card:nth-of-type(5) .role', en:'Sr. Software Engineer at MIM Riyadh', ar:'مهندس برمجيات أول في وزارة الصناعة والثروة المعدنية، الرياض'},
+        {s:'.endorse-card:nth-of-type(5) .relation', en:'Mar 7, 2023 · Worked with Waqas on the same team', ar:'7 مارس 2023 · عمل مع وقاص في نفس الفريق'},
+        {s:'.endorse-card:nth-of-type(6) .role', en:'Full-stack JavaScript Engineer · Angular · Node.js · React · TypeScript', ar:'مهندس جافاسكريبت فل ستاك · Angular · Node.js · React · TypeScript'},
+        {s:'.endorse-card:nth-of-type(6) .relation', en:'Dec 28, 2020 · Worked with Waqas on the same team', ar:'28 ديسمبر 2020 · عمل مع وقاص في نفس الفريق'},
+        {s:'.endorse-note a', en:'See all recommendations on LinkedIn →', ar:'عرض جميع التوصيات على LinkedIn ←'},
+
+        // ---- education ----
+        {s:'#education .sheet-tag span:nth-child(2)', en:'Education', ar:'التعليم'},
+        {s:'.edu-item:nth-of-type(1) .edu-period', en:'Jan 2020 – Dec 2023', ar:'يناير 2020 – ديسمبر 2023'},
+        {s:'.edu-item:nth-of-type(1) .edu-degree', en:'BS, Computer Science', ar:'بكالوريوس علوم الحاسب'},
+        {s:'.edu-item:nth-of-type(2) .edu-period', en:'2015 – 2018', ar:'2015 – 2018'},
+        {s:'.edu-item:nth-of-type(2) .edu-degree', en:'DAE, Diploma of Associate Engineering — Computer Information Technology', ar:'دبلوم الهندسة المساعدة — تقنية المعلومات الحاسوبية'},
+
+        // ---- freelance ----
+        {s:'#freelance .sheet-tag span:nth-child(2)', en:'Freelance — Project inquiries', ar:'العمل الحر — استفسارات المشاريع'},
+        {s:'.freelance-badge', en:'<span class="dot" aria-hidden="true"></span>Available for freelancing', ar:'<span class="dot" aria-hidden="true"></span>متاح للعمل الحر'},
+        {s:'.freelance-big', en:"Have a project in mind?<br>Let's make it real.", ar:'هل لديك مشروع في ذهنك؟<br>لنجعله حقيقة.'},
+        {s:'.freelance-sub', en:'Fixed-scope builds, backend architecture, API integrations, or ongoing production support — I take on a limited number of freelance engagements alongside full-time work.', ar:'مشاريع محددة النطاق، وهيكلة معمارية خلفية، وربط واجهات API، أو دعم إنتاجي مستمر — أقبل عددًا محدودًا من مشاريع العمل الحر إلى جانب عملي الأساسي.'},
+        {s:'.freelance-cta .btn-primary', en:'Hire me', ar:'وظّفني'},
+        {s:'.freelance-cta .btn-ghost', en:'Or use the contact form', ar:'أو استخدم نموذج التواصل'},
+
+        // ---- contact ----
+        {s:'#contact .sheet-tag span:nth-child(2)', en:'Contact — Title block', ar:'التواصل — لوحة البيانات'},
+        {s:'.contact-big', en:"Let's build<br>something that stays up.", ar:'لنبنِ<br>شيئًا يبقى صامدًا.'},
+        {s:'.contact-links .btn-ghost:nth-of-type(2)', en:'LinkedIn Profile', ar:'الملف الشخصي على LinkedIn'},
+        {s:'#contact-form .form-intro', en:'Send a message', ar:'أرسل رسالة'},
+        {s:'label[for="contact-name"]', en:'Name', ar:'الاسم'},
+        {s:'#contact-name', attr:'placeholder', en:'Your name', ar:'اسمك'},
+        {s:'label[for="contact-email"]', en:'Email', ar:'البريد الإلكتروني'},
+        {s:'label[for="contact-message"]', en:'Message', ar:'الرسالة'},
+        {s:'#contact-message', attr:'placeholder', en:'What are you building?', ar:'ما الذي تعمل عليه؟'},
+        {s:'#contact-submit', en:'Send message', ar:'إرسال الرسالة'},
+        {s:'.title-cell:nth-child(1) .k', en:'Drawn by', ar:'إعداد'},
+        {s:'.title-cell:nth-child(2) .k', en:'Location', ar:'الموقع'},
+        {s:'.title-cell:nth-child(2) .v', en:'Riyadh, SA', ar:'الرياض، السعودية'},
+        {s:'.title-cell:nth-child(3) .k', en:'Sheet', ar:'الصفحة'},
+        {s:'.title-cell:nth-child(4) .k', en:'Scale', ar:'المقياس'},
+        {s:'.title-cell:nth-child(5) .k', en:'Status', ar:'الحالة'},
+        {s:'.title-cell:nth-child(5) .v', en:'Open to work', ar:'متاح للعمل'},
+
+        // ---- footer ----
+        {s:'footer', en:'© 2026 Waqas Ali — Drafted &amp; deployed by hand. No template used.', ar:'© 2026 وقاص علي — صُمم ونُشر يدويًا. دون استخدام أي قالب جاهز.'},
+
+        // ---- chat widget (static shell only — Gemini's replies stay in whatever language it answers in) ----
+        {s:'#chat-launcher', attr:'aria-label', en:'Open chat about Waqas', ar:'فتح محادثة حول وقاص'},
+        {s:'.chat-head-title', en:'Ask about Waqas', ar:'اسأل عن وقاص'},
+        {s:'.chat-head-sub', en:'Resume assistant · Gemini', ar:'مساعد السيرة الذاتية · Gemini'},
+        {s:'#chat-close', attr:'aria-label', en:'Close chat', ar:'إغلاق المحادثة'},
+        {s:'#chat-input', attr:'placeholder', en:'Ask about experience, stack, availability…', ar:'اسأل عن الخبرة، التقنيات، التوفر…'},
+        {s:'#chat-send', en:'Send', ar:'إرسال'},
+        {s:'.chat-hint', en:'Answers are based on this resume. For hiring, use the contact form too.', ar:'الإجابات مبنية على هذه السيرة الذاتية. للتوظيف، يُرجى أيضًا استخدام نموذج التواصل.'},
+
+        // ---- hire modal ----
+        {s:'#hire-modal', attr:'aria-label', en:'Hire Waqas Ali', ar:'توظيف وقاص علي'},
+        {s:'.hire-head-title', en:"Let's work together", ar:'لنعمل معًا'},
+        {s:'.hire-head-sub', en:"Tell me about the project — I'll get back to you within a day or two.", ar:'أخبرني عن مشروعك — سأرد عليك خلال يوم أو يومين.'},
+        {s:'#hire-close', attr:'aria-label', en:'Close', ar:'إغلاق'},
+        {s:'label[for="hire-name"]', en:'Name', ar:'الاسم'},
+        {s:'#hire-name', attr:'placeholder', en:'Your name', ar:'اسمك'},
+        {s:'label[for="hire-email"]', en:'Email', ar:'البريد الإلكتروني'},
+        {s:'label[for="hire-message"]', en:'Project details', ar:'تفاصيل المشروع'},
+        {s:'#hire-message', attr:'placeholder', en:"What are you building, and what's the timeline?", ar:'ما الذي تعمل عليه، وما الجدول الزمني؟'},
+        {s:'#hire-submit', en:'Send message', ar:'إرسال الرسالة'},
+
+        // ---- stadium game modal chrome (the in-canvas HUD and "Lock camera" label stay English — see note above) ----
+        {s:'#game-modal', attr:'aria-label', en:'Waqas Ali — Stadium mini-game', ar:'وقاص علي — لعبة الملعب المصغرة'},
+        {s:'.game-head-title', en:'Stadium Kickabout', ar:'ملعب الكرة'},
+        {s:'.game-head-sub', en:'Arcade easter egg — built &amp; shipped by Waqas', ar:'مفاجأة أركيد — صممها ونفّذها وقاص'},
+        {s:'#game-close', attr:'aria-label', en:'Close game', ar:'إغلاق اللعبة'},
+        {s:'#game-loading', en:'Loading the pitch…', ar:'جارٍ تحميل الملعب…'},
+        {s:'[data-k="f"]', attr:'aria-label', en:'Move forward', ar:'تحريك للأمام'},
+        {s:'[data-k="l"]', attr:'aria-label', en:'Move left', ar:'تحريك لليسار'},
+        {s:'[data-k="r"]', attr:'aria-label', en:'Move right', ar:'تحريك لليمين'},
+        {s:'[data-k="b"]', attr:'aria-label', en:'Move back', ar:'تحريك للخلف'},
+        {s:'#game-shootBtn', attr:'aria-label', en:'Shoot', ar:'تسديد'},
+        {s:'#game-mute-btn', attr:'aria-label', en:'Mute sound effects', ar:'كتم المؤثرات الصوتية'},
+        {s:'.game-body > p[style]', en:'Click "Lock camera" for mouse-look (press Esc to release), or just drag the scene. Use the pad or WASD/arrow keys to walk (hold Shift to sprint). Get close to the ball and press Space (or tap ⚽) to shoot!', ar:'اضغط على "تثبيت الكاميرا" للتحكم بالماوس (اضغط Esc للتحرير)، أو اسحب المشهد مباشرة. استخدم لوحة التحكم أو مفاتيح WASD/الأسهم للمشي (اضغط Shift للجري). اقترب من الكرة واضغط مسافة (أو انقر ⚽) للتسديد!'}
+      ];
+
+      function setLang(lang){
+        document.documentElement.setAttribute('lang', lang === 'ar' ? 'ar' : 'en');
+        document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        label.textContent = lang === 'ar' ? 'EN' : 'AR';
+        btn.setAttribute('aria-label', lang === 'ar' ? 'Switch to English' : 'Switch to Arabic');
+        T.forEach(t=>{
+          const el = document.querySelector(t.s);
+          if(!el) return;
+          const val = lang === 'ar' ? t.ar : t.en;
+          if(t.attr) el.setAttribute(t.attr, val);
+          else el.innerHTML = val;
+        });
+        // the hero title is split into per-character spans for the load-in animation;
+        // Arabic is a joined script, so once a language switch happens, swap it for plain text instead.
+        const heroTitle = document.querySelector('.hero-title');
+        if(heroTitle){
+          heroTitle.innerHTML = lang === 'ar' ? 'وقاص<br>علي' : 'WAQAS<br>ALI';
+        }
+      }
+
+      setLang(document.documentElement.getAttribute('lang') === 'ar' ? 'ar' : 'en');
+      btn.addEventListener('click', ()=>{
+        const next = document.documentElement.getAttribute('lang') === 'ar' ? 'en' : 'ar';
+        setLang(next);
+        try{ localStorage.setItem('wa-lang', next); }catch(e){}
+      });
+    })();
 
     // ---- mobile nav toggle ----
     const nav = document.getElementById('primary-nav');
