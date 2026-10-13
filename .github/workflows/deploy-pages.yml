@@ -37,6 +37,7 @@ jobs:
           mkdir -p _site/assets
           cp index.html favicon.svg waqas.png waqas-ali-resume.pdf cv-knowledge.js game-stadium.js gsap.min.js scrolltrigger.min.js three.min.js robots.txt sitemap.xml _site/
           cp -R assets/recommenders _site/assets/
+          cp -R assets/companies _site/assets/
 
           python3 <<'PY'
           import json, os, pathlib

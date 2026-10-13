@@ -826,10 +826,20 @@
   .node-head{
     display:flex;
     flex-wrap:wrap;
-    align-items:baseline;
+    align-items:center;
     gap:12px 18px;
     margin-bottom:8px;
   }
+  .node-logo{
+    height:28px;
+    width:auto;
+    max-width:130px;
+    object-fit:contain;
+    flex-shrink:0;
+  }
+  .node-logo.is-white-logo{filter:invert(1);}
+  html[data-theme="dark"] .node-logo.is-white-logo{filter:none;}
+  html[data-theme="dark"] .node-logo.is-dark-logo{filter:invert(1);}
   .node-company{
     font-family:'Space Grotesk', sans-serif;
     font-size:clamp(20px,2.6vw,27px);
@@ -2020,6 +2030,7 @@
         <article class="node" data-anim="node">
           <span class="node-dot"></span>
           <div class="node-head">
+            <img class="node-logo is-white-logo" src="assets/companies/cooperative-computing.png" alt="Cooperative Computing" loading="lazy">
             <span class="node-company">Cooperative Computing</span>
             <span class="node-tag">Foundation Layer</span>
           </div>
@@ -2043,6 +2054,7 @@
         <article class="node" data-anim="node">
           <span class="node-dot"></span>
           <div class="node-head">
+            <img class="node-logo" src="assets/companies/tplex.png" alt="TPLEX" loading="lazy">
             <span class="node-company">TPLEX</span>
             <span class="node-tag">Scaling Layer</span>
           </div>
@@ -2063,6 +2075,7 @@
         <article class="node live" data-anim="node">
           <span class="node-dot"></span>
           <div class="node-head">
+            <img class="node-logo is-dark-logo" src="assets/companies/senaei.png" alt="Senaei" loading="lazy">
             <span class="node-company">Ministry of Industry &amp; Mineral Resources</span>
             <span class="node-tag">Production — Live</span>
           </div>
@@ -2933,22 +2946,29 @@
         {s:'.hero-cta .btn-ghost:nth-child(2)', en:'Download CV', ar:'تحميل السيرة الذاتية'},
         {s:'.hero-cta .btn-ghost:nth-child(3)', en:'Email me', ar:'راسلني'},
         {s:'.hero-meta span:nth-child(1)', en:'Location — Riyadh, Saudi Arabia', ar:'الموقع — الرياض، المملكة العربية السعودية'},
-        {s:'.hero-meta span:nth-child(2)', en:'Sheet 01 / 09', ar:'الصفحة 01 / 09'},
-        {s:'.hero-meta span:nth-child(3)', en:'Scale 1:1', ar:'المقياس 1:1'},
-        {s:'.hero-meta span:nth-child(4)', en:'Rev. 2026', ar:'الإصدار 2026'},
+        {s:'.hero-meta span:nth-child(2)', en:'Sheet 01 / 09', ar:'الصفحة ٠١ / ٠٩'},
+        {s:'.hero-meta span:nth-child(3)', en:'Scale 1:1', ar:'المقياس ١:١'},
+        {s:'.hero-meta span:nth-child(4)', en:'Rev. 2026', ar:'الإصدار ٢٠٢٦'},
         {s:'.scroll-cue span:last-child', en:'Scroll', ar:'مرّر للأسفل'},
         {s:'#game-launcher', attr:'aria-label', en:'Play the stadium mini-game', ar:'تشغيل لعبة الملعب المصغرة'},
         {s:'.hero-play-caption', en:'Play', ar:'تشغيل'},
 
         // ---- summary ----
-        {s:'#summary .num', en:'02', ar:'02'},
+        {s:'#summary .num', en:'02', ar:'٠٢'},
+        {s:'#experience .num', en:'03', ar:'٠٣'},
+        {s:'#work .num', en:'04', ar:'٠٤'},
+        {s:'#stack .num', en:'05', ar:'٠٥'},
+        {s:'#endorsements .num', en:'06', ar:'٠٦'},
+        {s:'#education .num', en:'07', ar:'٠٧'},
+        {s:'#freelance .num', en:'08', ar:'٠٨'},
+        {s:'#contact .num', en:'09', ar:'٠٩'},
         {s:'#summary .sheet-tag span:nth-child(2)', en:'Summary', ar:'الملخص'},
         {s:'.summary-label', en:"Who's building", ar:'نبذة عني'},
-        {s:'.summary-body p:nth-of-type(1)', en:'An <span class="glow">8-year backend engineer</span> with a track record across fintech, logistics, e-commerce, education security, and government infrastructure — currently the core backend engineer on a national industrial platform for the Saudi Ministry of Industry &amp; Mineral Resources.', ar:'<span class="glow">مهندس باك إند بخبرة 8 سنوات</span>، بسجل حافل في قطاعات التقنية المالية، والخدمات اللوجستية، والتجارة الإلكترونية، وأمن القطاع التعليمي، والبنية التحتية الحكومية — ويعمل حاليًا كمهندس الباك إند الأساسي على منصة صناعية وطنية لوزارة الصناعة والثروة المعدنية السعودية.'},
-        {s:'.summary-body p:nth-of-type(2)', en:'Comfortable owning a system end-to-end: architecture, API integrations, database optimization, deployments, monitoring, and the incident that comes in at 2am. Fluent across <span class="glow">JavaScript, PHP, and Go</span>, with deep experience in Laravel, Node.js, Vue.js, Angular, Magento, and WordPress.', ar:'مرتاح في امتلاك النظام من الألف إلى الياء: التصميم المعماري، وربط واجهات API، وتحسين قواعد البيانات، والنشر، والمراقبة، وحتى البلاغ الطارئ الذي يصل الساعة 2 فجرًا. يتقن <span class="glow">JavaScript وPHP وGo</span>، ولديه خبرة عميقة في Laravel وNode.js وVue.js وAngular وMagento وWordPress.'},
-        {s:'.summary-body p:nth-of-type(3)', en:'Has also led from the front — running 52 engineers across 7 parallel projects as an engineering team lead, owning architecture decisions, mentoring, and delivery.', ar:'كما قاد الفرق من الصفوف الأمامية — بإدارة 52 مهندسًا عبر 7 مشاريع متوازية بصفته قائدًا هندسيًا، مع مسؤولية القرارات المعمارية والتوجيه والتسليم.'},
+        {s:'.summary-body p:nth-of-type(1)', en:'An <span class="glow">8-year backend engineer</span> with a track record across fintech, logistics, e-commerce, education security, and government infrastructure — currently the core backend engineer on a national industrial platform for the Saudi Ministry of Industry &amp; Mineral Resources.', ar:'<span class="glow">مهندس باك إند بخبرة ٨ سنوات</span>، بسجل حافل في قطاعات التقنية المالية، والخدمات اللوجستية، والتجارة الإلكترونية، وأمن القطاع التعليمي، والبنية التحتية الحكومية — ويعمل حاليًا كمهندس الباك إند الأساسي على منصة صناعية وطنية لوزارة الصناعة والثروة المعدنية السعودية.'},
+        {s:'.summary-body p:nth-of-type(2)', en:'Comfortable owning a system end-to-end: architecture, API integrations, database optimization, deployments, monitoring, and the incident that comes in at 2am. Fluent across <span class="glow">JavaScript, PHP, and Go</span>, with deep experience in Laravel, Node.js, Vue.js, Angular, Magento, and WordPress.', ar:'مرتاح في امتلاك النظام من الألف إلى الياء: التصميم المعماري، وربط واجهات API، وتحسين قواعد البيانات، والنشر، والمراقبة، وحتى البلاغ الطارئ الذي يصل الساعة ٢ فجرًا. يتقن <span class="glow">JavaScript وPHP وGo</span>، ولديه خبرة عميقة في Laravel وNode.js وVue.js وAngular وMagento وWordPress.'},
+        {s:'.summary-body p:nth-of-type(3)', en:'Has also led from the front — running 52 engineers across 7 parallel projects as an engineering team lead, owning architecture decisions, mentoring, and delivery.', ar:'كما قاد الفرق من الصفوف الأمامية — بإدارة ٥٢ مهندسًا عبر ٧ مشاريع متوازية بصفته قائدًا هندسيًا، مع مسؤولية القرارات المعمارية والتوجيه والتسليم.'},
         {s:'.stat:nth-child(1) span', en:'Years shipping production systems', ar:'سنوات في بناء أنظمة إنتاجية'},
-        {s:'.stat:nth-child(2) span', en:'Engineers led across 7 projects', ar:'مهندسًا تمت قيادتهم عبر 7 مشاريع'},
+        {s:'.stat:nth-child(2) span', en:'Engineers led across 7 projects', ar:'مهندسًا تمت قيادتهم عبر ٧ مشاريع'},
         {s:'.stat:nth-child(3) span', en:'Industries: gov, fintech, edtech', ar:'قطاعات: حكومي، تقنية مالية، تقنية تعليمية'},
 
         // ---- experience / architecture ----
@@ -2956,9 +2976,9 @@
 
         {s:'.node:nth-of-type(1) .node-tag', en:'Foundation Layer', ar:'طبقة التأسيس'},
         {s:'.node:nth-of-type(1) .node-role', en:'Software Engineering Team Lead → Senior Software Engineer → Developer → Intern', ar:'قائد فريق هندسة البرمجيات ← مهندس برمجيات أول ← مطوّر ← متدرب'},
-        {s:'.node:nth-of-type(1) .node-period', en:'Karachi, Pakistan · May 2018 – May 2023 · 5 yrs 1 mo', ar:'كراتشي، باكستان · مايو 2018 – مايو 2023 · 5 سنوات و1 شهر'},
-        {s:'.node:nth-of-type(1) .node-desc', en:'Grew from intern to <b>leading 52 engineers across 7 parallel projects</b> in fintech, logistics, and e-commerce. Hands-on across Laravel, Golang, Node.js, Vue.js, and Angular, with ownership of architecture design, mentoring, and delivery.', ar:'تطور من متدرب إلى <b>قيادة 52 مهندسًا عبر 7 مشاريع متوازية</b> في التقنية المالية والخدمات اللوجستية والتجارة الإلكترونية. عمل عمليًا على Laravel وGolang وNode.js وVue.js وAngular، مع مسؤولية التصميم المعماري والتوجيه والتسليم.'},
-        {s:'.node:nth-of-type(1) .node-outcomes li:nth-child(1)', en:'Led <b>52 engineers</b> across <b>7 concurrent</b> projects — fintech, logistics, e-commerce', ar:'قاد <b>52 مهندسًا</b> عبر <b>7 مشاريع متزامنة</b> — تقنية مالية، لوجستيات، تجارة إلكترونية'},
+        {s:'.node:nth-of-type(1) .node-period', en:'Karachi, Pakistan · May 2018 – May 2023 · 5 yrs 1 mo', ar:'كراتشي، باكستان · مايو ٢٠١٨ – مايو ٢٠٢٣ · ٥ سنوات و١ شهر'},
+        {s:'.node:nth-of-type(1) .node-desc', en:'Grew from intern to <b>leading 52 engineers across 7 parallel projects</b> in fintech, logistics, and e-commerce. Hands-on across Laravel, Golang, Node.js, Vue.js, and Angular, with ownership of architecture design, mentoring, and delivery.', ar:'تطور من متدرب إلى <b>قيادة ٥٢ مهندسًا عبر ٧ مشاريع متوازية</b> في التقنية المالية والخدمات اللوجستية والتجارة الإلكترونية. عمل عمليًا على Laravel وGolang وNode.js وVue.js وAngular، مع مسؤولية التصميم المعماري والتوجيه والتسليم.'},
+        {s:'.node:nth-of-type(1) .node-outcomes li:nth-child(1)', en:'Led <b>52 engineers</b> across <b>7 concurrent</b> projects — fintech, logistics, e-commerce', ar:'قاد <b>٥٢ مهندسًا</b> عبر <b>٧ مشاريع متزامنة</b> — تقنية مالية، لوجستيات، تجارة إلكترونية'},
         {s:'.node:nth-of-type(1) .node-outcomes li:nth-child(2)', en:'Promoted <b>Intern → Developer → Senior → Team Lead</b> on delivery and mentoring track record', ar:'تمت ترقيته <b>من متدرب ← مطوّر ← أول ← قائد فريق</b> بناءً على سجل التسليم والتوجيه'},
         {s:'.node:nth-of-type(1) .node-outcomes li:nth-child(3)', en:'Owned architecture decisions, modular codebases, third-party API integrations, and stakeholder delivery', ar:'تولى القرارات المعمارية، والأكواد المعيارية، وربط واجهات API الخارجية، والتسليم لأصحاب المصلحة'},
         {s:'.node:nth-of-type(1) .node-progress span:nth-child(1)', en:'Intern', ar:'متدرب'},
@@ -2968,7 +2988,7 @@
 
         {s:'.node:nth-of-type(2) .node-tag', en:'Scaling Layer', ar:'طبقة التوسّع'},
         {s:'.node:nth-of-type(2) .node-role', en:'Senior Software Engineer', ar:'مهندس برمجيات أول'},
-        {s:'.node:nth-of-type(2) .node-period', en:'Karachi, Pakistan · May 2023 – Nov 2024 · 1 yr 7 mo', ar:'كراتشي، باكستان · مايو 2023 – نوفمبر 2024 · سنة و7 أشهر'},
+        {s:'.node:nth-of-type(2) .node-period', en:'Karachi, Pakistan · May 2023 – Nov 2024 · 1 yr 7 mo', ar:'كراتشي، باكستان · مايو ٢٠٢٣ – نوفمبر ٢٠٢٤ · سنة و٧ أشهر'},
         {s:'.node:nth-of-type(2) .node-desc', en:'Built and scaled <b>Securly</b>, a security and monitoring SaaS for educational institutions. Backend in Laravel, Golang, and Node.js; frontend in Angular. Stood up CI/CD pipelines on Jenkins and AWS, improving reliability, observability, and scalability across services.', ar:'بنى ووسّع <b>Securly</b>، وهو منتج SaaS للأمن والمراقبة للمؤسسات التعليمية. الباك إند بلغات Laravel وGolang وNode.js، والواجهة الأمامية بـ Angular. أنشأ خطوط CI/CD على Jenkins وAWS، مما رفع الموثوقية والمراقبة وقابلية التوسّع عبر الخدمات.'},
         {s:'.node:nth-of-type(2) .node-outcomes li:nth-child(1)', en:'Shipped backend for <b>Securly</b> (education security SaaS) across Laravel, Go, and Node.js services', ar:'أطلق الباك إند لمنتج <b>Securly</b> (أمن تعليمي كخدمة SaaS) عبر خدمات Laravel وGo وNode.js'},
         {s:'.node:nth-of-type(2) .node-outcomes li:nth-child(2)', en:'Stood up <b>Jenkins CI/CD</b> and AWS deploy paths (EC2, S3, RDS) for faster, repeatable releases', ar:'أنشأ خطوط <b>Jenkins CI/CD</b> ومسارات نشر AWS (EC2, S3, RDS) لإصدارات أسرع وقابلة للتكرار'},
@@ -2976,7 +2996,7 @@
 
         {s:'.node.live .node-tag', en:'Production — Live', ar:'الإنتاج — حاليًا'},
         {s:'.node.live .node-role', en:'Senior Software Engineer', ar:'مهندس برمجيات أول'},
-        {s:'.node.live .node-period', en:'Riyadh, Saudi Arabia · Dec 2024 – Present', ar:'الرياض، المملكة العربية السعودية · ديسمبر 2024 – حتى الآن'},
+        {s:'.node.live .node-period', en:'Riyadh, Saudi Arabia · Dec 2024 – Present', ar:'الرياض، المملكة العربية السعودية · ديسمبر ٢٠٢٤ – حتى الآن'},
         {s:'.node.live .node-desc', en:'Core backend engineer on <b>Senaei</b>, a national Laravel-based industrial platform. Owns backend architecture, API integrations, and database optimization, plus full production operations — deployments, monitoring, incident handling, and performance tuning — working closely with product, QA, DevOps, and government stakeholders to meet SLAs.', ar:'مهندس الباك إند الأساسي في منصة <b>سناعي</b>، وهي منصة صناعية وطنية مبنية على Laravel. يتولى البنية المعمارية الخلفية وربط واجهات API وتحسين قواعد البيانات، بالإضافة إلى كامل عمليات الإنتاج — النشر والمراقبة ومعالجة الأعطال وضبط الأداء — بالتعاون الوثيق مع فرق المنتج وضمان الجودة وDevOps والجهات الحكومية لتحقيق اتفاقيات مستوى الخدمة.'},
         {s:'.node.live .node-outcomes li:nth-child(1)', en:'Core backend owner on <b>Senaei</b> — national industrial platform for Saudi MIM', ar:'المسؤول الأساسي عن الباك إند في منصة <b>سناعي</b> — المنصة الصناعية الوطنية لوزارة الصناعة والثروة المعدنية'},
         {s:'.node.live .node-outcomes li:nth-child(2)', en:'Owns architecture, API integrations, DB optimization, deploys, monitoring, and incident response', ar:'يتولى الهيكلة المعمارية، وربط واجهات API، وتحسين قواعد البيانات، والنشر، والمراقبة، والاستجابة للأعطال'},
@@ -2985,7 +3005,7 @@
         // ---- work ----
         {s:'#work .sheet-tag span:nth-child(2)', en:'Selected work — Problem → build → result', ar:'أعمال مختارة — المشكلة ← الحل ← النتيجة'},
 
-        {s:'.case-card:nth-of-type(1) .case-num', en:'Case 01', ar:'الحالة 01'},
+        {s:'.case-card:nth-of-type(1) .case-num', en:'Case 01', ar:'الحالة ٠١'},
         {s:'.case-card:nth-of-type(1) h3', en:'Senaei — national industrial platform', ar:'سناعي — منصة صناعية وطنية'},
         {s:'.case-card:nth-of-type(1) .case-meta', en:'Ministry of Industry &amp; Mineral Resources · Riyadh', ar:'وزارة الصناعة والثروة المعدنية · الرياض'},
         {s:'.case-card:nth-of-type(1) .case-block:nth-of-type(1) .label', en:'Problem', ar:'المشكلة'},
@@ -2995,7 +3015,7 @@
         {s:'.case-card:nth-of-type(1) .case-block:nth-of-type(3) .label', en:'Result', ar:'النتيجة'},
         {s:'.case-card:nth-of-type(1) .case-block:nth-of-type(3) p:last-child', en:'Core backend ownership on a live national system, shipping with product, QA, DevOps, and government partners.', ar:'ملكية أساسية للباك إند في نظام وطني فعلي، بالتعاون مع فرق المنتج وضمان الجودة وDevOps والشركاء الحكوميين.'},
 
-        {s:'.case-card:nth-of-type(2) .case-num', en:'Case 02', ar:'الحالة 02'},
+        {s:'.case-card:nth-of-type(2) .case-num', en:'Case 02', ar:'الحالة ٠٢'},
         {s:'.case-card:nth-of-type(2) h3', en:'Securly — education security SaaS', ar:'Securly — أمن تعليمي كخدمة SaaS'},
         {s:'.case-card:nth-of-type(2) .case-block:nth-of-type(1) .label', en:'Problem', ar:'المشكلة'},
         {s:'.case-card:nth-of-type(2) .case-block:nth-of-type(1) p:last-child', en:'Scale a security and monitoring product for educational institutions without slowing releases or hiding failures.', ar:'توسيع منتج أمني ومراقبة للمؤسسات التعليمية دون إبطاء الإصدارات أو إخفاء الأعطال.'},
@@ -3004,7 +3024,7 @@
         {s:'.case-card:nth-of-type(2) .case-block:nth-of-type(3) .label', en:'Result', ar:'النتيجة'},
         {s:'.case-card:nth-of-type(2) .case-block:nth-of-type(3) p:last-child', en:'More reliable release paths and stronger observability across services as the platform scaled.', ar:'مسارات إصدار أكثر موثوقية ومراقبة أقوى عبر الخدمات مع توسّع المنصة.'},
 
-        {s:'.case-card:nth-of-type(3) .case-num', en:'Case 03', ar:'الحالة 03'},
+        {s:'.case-card:nth-of-type(3) .case-num', en:'Case 03', ar:'الحالة ٠٣'},
         {s:'.case-card:nth-of-type(3) h3', en:'Multi-project delivery at scale', ar:'تسليم مشاريع متعددة على نطاق واسع'},
         {s:'.case-card:nth-of-type(3) .case-meta', en:'Cooperative Computing · Fintech · Logistics · E-commerce', ar:'Cooperative Computing · تقنية مالية · لوجستيات · تجارة إلكترونية'},
         {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(1) .label', en:'Problem', ar:'المشكلة'},
@@ -3012,7 +3032,7 @@
         {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(2) .label', en:'Build', ar:'الحل'},
         {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(2) p:last-child', en:'Led engineering across Laravel, Go, Node, Vue, and Angular — architecture standards, mentoring, and stakeholder-facing delivery.', ar:'قاد الهندسة عبر Laravel وGo وNode وVue وAngular — معايير معمارية، وتوجيه، وتسليم مباشر لأصحاب المصلحة.'},
         {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(3) .label', en:'Result', ar:'النتيجة'},
-        {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(3) p:last-child', en:'Grew into leading <b>52 engineers</b> across <b>7 projects</b>, promoted through every engineering rung on proven execution.', ar:'تطور ليقود <b>52 مهندسًا</b> عبر <b>7 مشاريع</b>، وتمت ترقيته عبر كل درجة هندسية بناءً على تنفيذ مثبت.'},
+        {s:'.case-card:nth-of-type(3) .case-block:nth-of-type(3) p:last-child', en:'Grew into leading <b>52 engineers</b> across <b>7 projects</b>, promoted through every engineering rung on proven execution.', ar:'تطور ليقود <b>٥٢ مهندسًا</b> عبر <b>٧ مشاريع</b>، وتمت ترقيته عبر كل درجة هندسية بناءً على تنفيذ مثبت.'},
         {s:'.case-card:nth-of-type(3) .case-tags span:nth-child(1)', en:'Leadership', ar:'قيادة'},
         {s:'.case-card:nth-of-type(3) .case-tags span:nth-child(2)', en:'Architecture', ar:'هيكلة معمارية'},
         {s:'.case-card:nth-of-type(3) .case-tags span:nth-child(3)', en:'Mentoring', ar:'توجيه'},
@@ -3027,30 +3047,36 @@
         {s:'.stack-group:nth-of-type(5) .stack-items li:nth-child(3)', en:'Production monitoring', ar:'مراقبة الإنتاج'},
         {s:'.stack-group:nth-of-type(6) .stack-group-label', en:'Leadership', ar:'القيادة'},
         {s:'.stack-group:nth-of-type(6) .stack-items li:nth-child(1)', en:'Architecture design', ar:'التصميم المعماري'},
-        {s:'.stack-group:nth-of-type(6) .stack-items li:nth-child(2)', en:'Team leadership (52 eng.)', ar:'قيادة الفريق (52 مهندسًا)'},
+        {s:'.stack-group:nth-of-type(6) .stack-items li:nth-child(2)', en:'Team leadership (52 eng.)', ar:'قيادة الفريق (٥٢ مهندسًا)'},
         {s:'.stack-group:nth-of-type(6) .stack-items li:nth-child(3)', en:'Stakeholder management', ar:'إدارة أصحاب المصلحة'},
 
-        // ---- endorsements (quotes stay English — see note above) ----
+        // ---- endorsements ----
         {s:'#endorsements .sheet-tag span:nth-child(2)', en:'Proof — LinkedIn recommendations', ar:'الإثبات — توصيات LinkedIn'},
         {s:'.endorse-card:nth-of-type(1) .role', en:'Product at Securly', ar:'مسؤول منتج في Securly'},
-        {s:'.endorse-card:nth-of-type(1) .relation', en:'Aug 18, 2025 · Managed Waqas directly', ar:'18 أغسطس 2025 · أشرف على وقاص مباشرة'},
+        {s:'.endorse-card:nth-of-type(1) .relation', en:'Aug 18, 2025 · Managed Waqas directly', ar:'١٨ أغسطس ٢٠٢٥ · أشرف على وقاص مباشرة'},
+        {s:'.endorse-card:nth-of-type(1) blockquote', en:"Working with Waqas was a delight, he's one of those engineers who under promises and over achieves and was instrumental within the team when delivering a major software project unpicking two long-time entrenched systems. Waqas went above and beyond to document the current and future state, then carefully implementing the changes, and finally provided excellent knowledge transfer to the wider team. Waqas will be an asset to any team that is lucky enough to have him and I wish him all the best.", ar:'كان العمل مع وقاص تجربة ممتعة، فهو من أولئك المهندسين الذين يَعِدون بأقل مما يحققونه فعليًا، وكان له دور أساسي ضمن الفريق في تسليم مشروع برمجي كبير تضمّن فك تشابك نظامين قديمين متجذرين. بذل وقاص جهدًا استثنائيًا في توثيق الوضع الحالي والمستقبلي، ثم نفّذ التغييرات بعناية فائقة، وأخيرًا قدّم نقل معرفة ممتازًا لبقية الفريق. سيكون وقاص إضافة قيّمة لأي فريق يحظى بفرصة العمل معه، وأتمنى له كل التوفيق.'},
         {s:'.endorse-card:nth-of-type(2) .role', en:'iOS Engineer @ Valus · xCC · xAvanza · xDigital Dividend', ar:'مهندس iOS في Valus · سابقًا في xCC وxAvanza وxDigital Dividend'},
-        {s:'.endorse-card:nth-of-type(2) .relation', en:'May 22, 2023 · Worked with Waqas on the same team', ar:'22 مايو 2023 · عمل مع وقاص في نفس الفريق'},
+        {s:'.endorse-card:nth-of-type(2) .relation', en:'May 22, 2023 · Worked with Waqas on the same team', ar:'٢٢ مايو ٢٠٢٣ · عمل مع وقاص في نفس الفريق'},
+        {s:'.endorse-card:nth-of-type(2) blockquote', en:'Having had the pleasure of working closely with Waqas for 3 years, I can confidently attest to their exceptional skills, dedication, and expertise in backend development. During our collaboration, Waqas consistently demonstrated a deep understanding of backend technologies and frameworks, effectively translating complex requirements into robust and efficient solutions. Their ability to architect scalable and maintainable systems is truly impressive. Furthermore, Waqas is a true team player. They actively contribute to discussions, offer valuable insights, and collaborate effectively with cross-functional teams, including frontend developers, project managers, and stakeholders. Their excellent communication skills ensure that complex technical concepts are conveyed clearly and concisely, fostering a cohesive and productive work environment.', ar:'بعد أن حظيت بشرف العمل عن قرب مع وقاص لمدة ٣ سنوات، يمكنني أن أشهد بثقة على مهاراته الاستثنائية وتفانيه وخبرته العميقة في تطوير الباك إند. خلال فترة تعاوننا، أظهر وقاص باستمرار فهمًا عميقًا لتقنيات وأطر العمل الخلفية، وترجم المتطلبات المعقدة إلى حلول قوية وفعالة. قدرته على تصميم أنظمة قابلة للتوسع وسهلة الصيانة كانت مثيرة للإعجاب حقًا. علاوة على ذلك، فإن وقاص لاعب فريق حقيقي؛ يساهم بفاعلية في النقاشات، ويقدم رؤى قيّمة، ويتعاون بكفاءة مع فرق متعددة التخصصات، بما في ذلك مطوري الواجهة الأمامية ومديري المشاريع وأصحاب المصلحة. مهاراته التواصلية الممتازة تضمن إيصال المفاهيم التقنية المعقدة بوضوح، مما يعزز بيئة عمل متماسكة ومنتجة.'},
         {s:'.endorse-card:nth-of-type(3) .role', en:'Software Engineer @ Godaitec', ar:'مهندس برمجيات في Godaitec'},
-        {s:'.endorse-card:nth-of-type(3) .relation', en:'Mar 9, 2023 · Studied together', ar:'9 مارس 2023 · درسا معًا'},
+        {s:'.endorse-card:nth-of-type(3) .relation', en:'Mar 9, 2023 · Studied together', ar:'٩ مارس ٢٠٢٣ · درسا معًا'},
+        {s:'.endorse-card:nth-of-type(3) blockquote', en:'It is my pleasure to recommend Waqas Ali for his outstanding work as a Team Lead. I had the opportunity to work closely with Waqas for several years, and during that time, I was always impressed with his professionalism, expertise, and leadership abilities. As a team lead, Waqas has consistently demonstrated his ability to motivate and inspire his team members to achieve their goals. He has a deep understanding of project management and is skilled in planning, organizing, and executing complex projects. He also has exceptional communication skills, which enable him to effectively communicate with stakeholders at all levels of an organization. In addition to his technical skills, Waqas is a team player who is always willing to lend a hand to his colleagues. He is highly organized, detail-oriented, and has a strong work ethic, which allows him to consistently deliver quality work on time and within budget. Overall, I highly recommend Waqas for any leadership role. His dedication, passion, and expertise will be a valuable asset to any team.', ar:'يسعدني أن أوصي بوقاص علي لعمله المتميز كقائد فريق. أتيحت لي الفرصة للعمل عن قرب مع وقاص لعدة سنوات، وخلال تلك الفترة أُعجبت دائمًا باحترافيته وخبرته وقدراته القيادية. بصفته قائد فريق، أظهر وقاص باستمرار قدرته على تحفيز أعضاء فريقه وإلهامهم لتحقيق أهدافهم. لديه فهم عميق لإدارة المشاريع ومهارة في التخطيط والتنظيم وتنفيذ المشاريع المعقدة. كما يتمتع بمهارات تواصل استثنائية تمكّنه من التواصل بفعالية مع أصحاب المصلحة على جميع مستويات المؤسسة. بالإضافة إلى مهاراته التقنية، فإن وقاص لاعب فريق دائم الاستعداد لمساعدة زملائه. وهو منظم للغاية، ودقيق في التفاصيل، ويتمتع بأخلاقيات عمل قوية تمكّنه من تسليم عمل عالي الجودة في الوقت المحدد وضمن الميزانية بشكل مستمر. إجمالًا، أوصي بشدة بوقاص لأي دور قيادي؛ فتفانيه وشغفه وخبرته ستكون إضافة قيّمة لأي فريق.'},
         {s:'.endorse-card:nth-of-type(4) .role', en:'Software Engineer @ MIM · Full-Stack · Laravel · Node.js · Vue.js · MySQL', ar:'مهندس برمجيات في وزارة الصناعة والثروة المعدنية · فل ستاك · Laravel · Node.js · Vue.js · MySQL'},
-        {s:'.endorse-card:nth-of-type(4) .relation', en:'Mar 7, 2023 · Reported to Waqas directly', ar:'7 مارس 2023 · كان يرفع تقاريره مباشرة لوقاص'},
+        {s:'.endorse-card:nth-of-type(4) .relation', en:'Mar 7, 2023 · Reported to Waqas directly', ar:'٧ مارس ٢٠٢٣ · كان يرفع تقاريره مباشرة لوقاص'},
+        {s:'.endorse-card:nth-of-type(4) blockquote', en:'I am thrilled to recommend Waqas Ali, our Unit Team Lead Software Engineer, for their exceptional work in PHP, Laravel, and Node.js development. Waqas Ali has been an essential member of our team, providing exceptional leadership, technical knowledge, and guidance to our software engineering projects. As a Unit Team Lead Software Engineer, Waqas Ali has displayed an unparalleled level of expertise in PHP, Laravel, and Node.js, providing valuable insights and recommendations to our team of developers. They are a true expert in their field, able to deliver complex software solutions with ease, and always willing to go the extra mile to ensure that our projects are completed on time and to the highest quality. In conclusion, I strongly recommend Waqas Ali for any role that involves PHP, Laravel, and Node.js development or leadership. They are a top-tier software engineer and leader, and I have no doubt that they will continue to excel in their career.', ar:'يسعدني جدًا أن أوصي بوقاص علي، قائد فريق وحدة هندسة البرمجيات لدينا، لعمله الاستثنائي في تطوير PHP وLaravel وNode.js. كان وقاص علي عضوًا أساسيًا في فريقنا، حيث قدّم قيادة استثنائية ومعرفة تقنية وتوجيهًا لمشاريع هندسة البرمجيات لدينا. بصفته قائد فريق وحدة هندسة البرمجيات، أظهر وقاص علي مستوى لا مثيل له من الخبرة في PHP وLaravel وNode.js، وقدّم رؤى وتوصيات قيّمة لفريق المطورين لدينا. إنه خبير حقيقي في مجاله، قادر على تقديم حلول برمجية معقدة بسهولة، ودائم الاستعداد لبذل جهد إضافي لضمان إنجاز مشاريعنا في الوقت المحدد وبأعلى جودة. في الختام، أوصي بشدة بوقاص علي لأي دور يتضمن تطوير أو قيادة PHP وLaravel وNode.js. إنه مهندس وقائد برمجيات من الطراز الأول، ولا يساورني شك في أنه سيستمر في التفوق في مسيرته المهنية.'},
         {s:'.endorse-card:nth-of-type(5) .role', en:'Sr. Software Engineer at MIM Riyadh', ar:'مهندس برمجيات أول في وزارة الصناعة والثروة المعدنية، الرياض'},
-        {s:'.endorse-card:nth-of-type(5) .relation', en:'Mar 7, 2023 · Worked with Waqas on the same team', ar:'7 مارس 2023 · عمل مع وقاص في نفس الفريق'},
+        {s:'.endorse-card:nth-of-type(5) .relation', en:'Mar 7, 2023 · Worked with Waqas on the same team', ar:'٧ مارس ٢٠٢٣ · عمل مع وقاص في نفس الفريق'},
+        {s:'.endorse-card:nth-of-type(5) blockquote', en:'I am writing to recommend Waqas as a software engineer without hesitation. He has been a valuable member of our team for 2 years, consistently impressing us with his technical expertise, work ethic, and collaborative approach. Waqas is highly skilled in PHP, Laravel, Node.js, Nest.js, Next.js, and has a strong foundation in software engineering principles. He has an uncanny ability to quickly pick up new technologies and tools, making him a valuable asset to any team. In addition to his technical abilities, Waqas is an excellent communicator who works collaboratively with team members to find the best solution for our clients. He is also dedicated to continually improving his skills and knowledge, and has a passion for staying up-to-date with the latest trends in the field. Overall, I believe that Waqas would be an asset to any organization. He is a talented and committed software engineer, and I would recommend him without reservation.', ar:'أكتب لأوصي بوقاص كمهندس برمجيات دون أي تردد. كان عضوًا قيّمًا في فريقنا لمدة سنتين، وأبهرنا باستمرار بخبرته التقنية وأخلاقيات عمله وأسلوبه التعاوني. يتمتع وقاص بمهارة عالية في PHP وLaravel وNode.js وNest.js وNext.js، ولديه أساس متين في مبادئ هندسة البرمجيات. يمتلك قدرة فريدة على تعلّم التقنيات والأدوات الجديدة بسرعة، مما يجعله إضافة قيّمة لأي فريق. بالإضافة إلى قدراته التقنية، فإن وقاص متواصل ممتاز يعمل بتعاون مع أعضاء الفريق لإيجاد أفضل الحلول لعملائنا. كما أنه ملتزم بتطوير مهاراته ومعرفته باستمرار، ولديه شغف بمواكبة أحدث التوجهات في المجال. إجمالًا، أعتقد أن وقاص سيكون إضافة قيّمة لأي مؤسسة. إنه مهندس برمجيات موهوب وملتزم، وأوصي به دون أي تحفظ.'},
         {s:'.endorse-card:nth-of-type(6) .role', en:'Full-stack JavaScript Engineer · Angular · Node.js · React · TypeScript', ar:'مهندس جافاسكريبت فل ستاك · Angular · Node.js · React · TypeScript'},
-        {s:'.endorse-card:nth-of-type(6) .relation', en:'Dec 28, 2020 · Worked with Waqas on the same team', ar:'28 ديسمبر 2020 · عمل مع وقاص في نفس الفريق'},
+        {s:'.endorse-card:nth-of-type(6) .relation', en:'Dec 28, 2020 · Worked with Waqas on the same team', ar:'٢٨ ديسمبر ٢٠٢٠ · عمل مع وقاص في نفس الفريق'},
+        {s:'.endorse-card:nth-of-type(6) blockquote', en:"The only thing I can say about this guy is, he is God gifted in skills. A true team player, a quick learner, and critical thinker. A person with whom it's fun to work.", ar:'الشيء الوحيد الذي يمكنني قوله عن هذا الشخص هو أنه موهوب بشكل استثنائي. لاعب فريق حقيقي، سريع التعلم، ومفكر نقدي. شخص من الممتع العمل معه.'},
         {s:'.endorse-note a', en:'See all recommendations on LinkedIn →', ar:'عرض جميع التوصيات على LinkedIn ←'},
 
         // ---- education ----
         {s:'#education .sheet-tag span:nth-child(2)', en:'Education', ar:'التعليم'},
-        {s:'.edu-item:nth-of-type(1) .edu-period', en:'Jan 2020 – Dec 2023', ar:'يناير 2020 – ديسمبر 2023'},
+        {s:'.edu-item:nth-of-type(1) .edu-period', en:'Jan 2020 – Dec 2023', ar:'يناير ٢٠٢٠ – ديسمبر ٢٠٢٣'},
         {s:'.edu-item:nth-of-type(1) .edu-degree', en:'BS, Computer Science', ar:'بكالوريوس علوم الحاسب'},
-        {s:'.edu-item:nth-of-type(2) .edu-period', en:'2015 – 2018', ar:'2015 – 2018'},
+        {s:'.edu-item:nth-of-type(2) .edu-period', en:'2015 – 2018', ar:'٢٠١٥ – ٢٠١٨'},
         {s:'.edu-item:nth-of-type(2) .edu-degree', en:'DAE, Diploma of Associate Engineering — Computer Information Technology', ar:'دبلوم الهندسة المساعدة — تقنية المعلومات الحاسوبية'},
 
         // ---- freelance ----
@@ -3076,12 +3102,14 @@
         {s:'.title-cell:nth-child(2) .k', en:'Location', ar:'الموقع'},
         {s:'.title-cell:nth-child(2) .v', en:'Riyadh, SA', ar:'الرياض، السعودية'},
         {s:'.title-cell:nth-child(3) .k', en:'Sheet', ar:'الصفحة'},
+        {s:'.title-cell:nth-child(3) .v', en:'09 / 09', ar:'٠٩ / ٠٩'},
         {s:'.title-cell:nth-child(4) .k', en:'Scale', ar:'المقياس'},
+        {s:'.title-cell:nth-child(4) .v', en:'1:1', ar:'١:١'},
         {s:'.title-cell:nth-child(5) .k', en:'Status', ar:'الحالة'},
         {s:'.title-cell:nth-child(5) .v', en:'Open to work', ar:'متاح للعمل'},
 
         // ---- footer ----
-        {s:'footer', en:'© 2026 Waqas Ali — Drafted &amp; deployed by hand. No template used.', ar:'© 2026 وقاص علي — صُمم ونُشر يدويًا. دون استخدام أي قالب جاهز.'},
+        {s:'footer', en:'© 2026 Waqas Ali — Drafted &amp; deployed by hand. No template used.', ar:'© ٢٠٢٦ وقاص علي — صُمم ونُشر يدويًا. دون استخدام أي قالب جاهز.'},
 
         // ---- chat widget (static shell only — Gemini's replies stay in whatever language it answers in) ----
         {s:'#chat-launcher', attr:'aria-label', en:'Open chat about Waqas', ar:'فتح محادثة حول وقاص'},
