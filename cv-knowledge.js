@@ -72,7 +72,16 @@ Leadership skills: architecture design, team leadership, stakeholder management
 - Muhammad Ayaz (teammate): strong PHP/Laravel/Node/Nest/Next skills; collaborative; quick learner.
 - Talha Mustafa (teammate): gifted skills; team player; quick learner; critical thinker.
 
+=== FREELANCE / HIRING ===
+Waqas is available for freelance work alongside his full-time role: fixed-scope builds, backend architecture, API integrations, or ongoing production support. He takes on a limited number of freelance engagements at a time.
+If a visitor wants to hire him or discuss a project, point them to the "Hire me" button (opens a short project-inquiry popup) or the main contact form — both go to the same place.
+
 === HOW VISITORS CAN REACH HIM ===
-Prefer the on-page contact form, email wa797789@gmail.com, phone +966 56 063 5147, or LinkedIn.
+Prefer the on-page contact form, the "Hire me" popup, email wa797789@gmail.com, phone +966 56 063 5147, or LinkedIn.
 PDF CV is downloadable from the site (Download CV button).
+
+=== SITE FEATURES (mention only if asked) ===
+- Light/dark theme toggle (sun/moon icon in the nav).
+- English/Arabic language toggle (globe icon in the nav) — the whole site translates and switches to right-to-left layout.
+- A hidden arcade-style 3D mini-game ("Stadium Kickabout") — click the play button on the profile photo to walk around a stadium and kick a football around. It's just a fun easter egg, not related to his professional work.
 `.trim();
